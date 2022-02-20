@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_MATCHUPS } from '../utils/queries';
-import { useEffect, useState } from 'react';
+import { QUERY_ME } from '../utils/queries';
+// import { useEffect, useState } from 'react';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_MATCHUPS, {
-    fetchPolicy: "no-cache"
-  });
+  // const { loading, data } = useQuery(QUERY_ME, {
+  //   fetchPolicy: "no-cache"
+  // });
   // const [matchups ,setMathupsData]= useState([])
-  const matchupList = data?.matchups || [];
+  // const matchupList = data?.matchups || [];
 
   // useEffect(()=>{ 
   //   if(!loading){

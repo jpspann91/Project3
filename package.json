@@ -1,5 +1,5 @@
 {
-  "name": "tech-matchup-app",
+  "name": "game-dashboard",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -14,5 +14,11 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.3.0"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongo": "^0.1.0"
   }
 }
