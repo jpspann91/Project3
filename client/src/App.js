@@ -45,7 +45,7 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route exact path="/games">
+            <Route path="/games">
               <Games />
             </Route>
             <Route exact path="/profile">
