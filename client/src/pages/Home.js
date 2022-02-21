@@ -1,6 +1,6 @@
 // import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../utils/queries";
 // import { useEffect, useState } from 'react';
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
   // const [matchups ,setMathupsData]= useState([])
   // const matchupList = data?.matchups || [];
 
-  // useEffect(()=>{ 
+  // useEffect(()=>{
   //   if(!loading){
   //     setMathupsData(data)
   //   }

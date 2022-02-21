@@ -1,3 +1,4 @@
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,7 +10,7 @@ import TicTacToe from "./games/TicTacToe.js";
 const Games = (props) => {
   const match = useRouteMatch();
   console.log(match);
-  console.log(`${match.path}/1`)
+  console.log(`${match.path}/1`);
 
   return (
     <Router>
