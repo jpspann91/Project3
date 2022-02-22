@@ -22,7 +22,6 @@ const Games = (props) => {
             </div>
           </Route>
           <Route path={`${match.path}/tictactoe/:gameId`}>
-            <h2>Test Tictactoe</h2>
             <TicTacToe />
           </Route>
         </Switch>
