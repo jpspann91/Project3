@@ -12,6 +12,8 @@ import Home from './pages/Home.js';
 import Games from './pages/Games.js';
 import Profile from './pages/Profile.js'
 
+import 'antd/dist/antd.css';
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
