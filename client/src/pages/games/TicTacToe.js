@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Card, Row, Col, Button } from "antd";
+import { Card, Row, Button } from "antd";
 
 const DEFAULT_GAME_BOARD = [
   [" ", " ", " "],
   [" ", " ", " "],
   [" ", " ", " "],
 ];
+const DEFAULT_ACTIVE_USER = "X";
+const DEFAULT_GAME_STATE = {
+  winner: "",
+  status: "ongoing",
+};
 
 const styles = {
   disabled: {
@@ -15,23 +20,34 @@ const styles = {
   },
 };
 
-const TicTacToe = (props) => {
+const TicTacToe = () => {
   const [gameBoard, setGameBoard] = useState([[], [], []]);
   const [activeUser, setActiveUser] = useState();
   const [gameState, setGameState] = useState();
-  // const { gameId } = useParams();
+  const { gameId } = useParams();
 
   useEffect(() => {
-    const loadedGame = DEFAULT_GAME_BOARD;
-    const loadedActiveUser = "X";
+    // Load previous game state if available
+    const { loadedGameBoard, loadedActiveUser, loadedGameState } =
+      fetchGameState();
 
-    setGameBoard(loadedGame);
+    setGameBoard(loadedGameBoard);
     setActiveUser(loadedActiveUser);
-    setGameState(checkGameState());
+    setGameState(loadedGameState);
   }, []);
 
-  const getGameState = () => {
+  const fetchGameState = () => {
     // Fetch game data from data base
+    // TODO create backend route to fetch
+    const loadedGameBoard = "";
+    const loadedActiveUser = "";
+    const loadedGameState = "";
+
+    return {
+      loadedGameBoard: loadedGameBoard || DEFAULT_GAME_BOARD,
+      loadedActiveUser: loadedActiveUser || DEFAULT_ACTIVE_USER,
+      loadedGameState: loadedGameState || DEFAULT_GAME_STATE,
+    };
   };
 
   const saveGameState = () => {
@@ -149,7 +165,7 @@ const TicTacToe = (props) => {
 
   return (
     <>
-      <Card title="Tic Tac Toe" className={styles.board}>
+      <Card title={`Tic Tac Toe | Game ${gameId}`} className={styles.board}>
         {gameState?.winner && <h2>{gameState.winner} Wins</h2>}
         {gameState?.status === "draw" && <h2>Draw</h2>}
         <div style={gameState?.status !== "ongoing" ? styles.disabled : {}}>
