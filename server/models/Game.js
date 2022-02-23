@@ -18,7 +18,8 @@ const gameSchema = new Schema({
         },
         score: {
             type: String,
-            required: false
+            required: false,
+            default: 0
         }
     },
     players:
@@ -36,8 +37,6 @@ const gameSchema = new Schema({
             maxLength: 1,
             required: true
         },
-        required: true,
-        maxLength: 2
     },
 
 });
