@@ -2,6 +2,8 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import Friends from "../components/friends-tab";
+import Settings from "../components/settings-tab";
+
 // import { useEffect, useState } from 'react';
 
 const Home = () => {
@@ -17,10 +19,20 @@ const Home = () => {
   //   }
   // }, [loading])
 
+  let profileData =  {
+    id: 'EG76J42',
+    icon: 'JD',
+    fullName: 'John Doe',
+    userName: 'JonnyManiac',
+    online: false,
+}
+
   return (
-    <div>
-      <h1>THIS IS OUR HOMEPAGE</h1>
-      {/* <Friends /> */}
+    <div className="h-full w-full">
+      {/* <h1>THIS IS OUR HOMEPAGE</h1> */}
+
+      <Friends />
+      {/* <Settings data={profileData} /> */}
     </div>
   );
 };

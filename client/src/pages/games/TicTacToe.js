@@ -29,7 +29,7 @@ const TicTacToe = () => {
   useEffect(() => {
     // Load previous game state if available
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
-      fetchGameState();
+    fetchGameState();
 
     setGameBoard(loadedGameBoard);
     setActiveUser(loadedActiveUser);
