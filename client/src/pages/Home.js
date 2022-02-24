@@ -13,6 +13,7 @@ import Friends from "../components/friends-tab";
 import { Card, Button } from "antd";
 
 import TicTacToe from "./games/TicTacToe.js";
+import Settings from "../components/settings-tab";
 
 const testGamesList = [
   {
@@ -34,7 +35,7 @@ let profileData =  {
     userName: 'JonnyManiac',
     online: false,
 };
-import Settings from "../components/settings-tab";
+
 
 // import { useEffect, useState } from 'react';
 
