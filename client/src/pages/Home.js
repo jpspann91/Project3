@@ -27,6 +27,17 @@ const testGamesList = [
   },
 ];
 
+let profileData =  {
+    id: 'EG76J42',
+    icon: 'JD',
+    fullName: 'John Doe',
+    userName: 'JonnyManiac',
+    online: false,
+};
+import Settings from "../components/settings-tab";
+
+// import { useEffect, useState } from 'react';
+
 const Home = () => {
   const history = useHistory();
   const match = useRouteMatch();
@@ -66,9 +77,12 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="h-full w-full">
       <h1>THIS IS OUR HOMEPAGE</h1>
       {/* <Friends /> */}
+      
+      <Friends />
+      {/* <Settings data={profileData} /> */}
       <Router>
         <div>
           <Switch>

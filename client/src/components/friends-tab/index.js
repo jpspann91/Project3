@@ -7,10 +7,12 @@ import { ReactComponent as SearchSVG } from './search.svg'
 import seeds from './friend-seed'
 
 function Friends() {
+    
+    
 
     return (
 
-        <div style={{ height: window.innerHeight }} className='w-screen bg-white grid content-start px-4 py-4'>
+        <div className='w-screen grid content-start px-4 py-4'>
             <div className='grid content-between'>
                 <div className='text-4xl font-medium pb-5'>Friends List</div>
                 <div className='relative'>                    
