@@ -14,6 +14,7 @@ import { Card, Button } from "antd";
 import Settings from "../components/settings-tab";
 
 import TicTacToe from "./games/TicTacToe.js";
+import Settings from "../components/settings-tab";
 
 const testGamesList = [
   {
