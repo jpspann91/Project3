@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import { Input, Button, Alert, Form } from 'antd'
 
 
+
 const SignupForm = () => {
     const [userFormData, setUserFormData] = useState({
         username: '',
@@ -69,7 +70,7 @@ const SignupForm = () => {
                     dismissible
                     onClose={() => setShowAlert(false)}
                     show={showAlert}
-                >Soemthing went wrong with your singup!</Alert>
+                >Something went wrong with your singup!</Alert>
 
 
                 {/*Username */}

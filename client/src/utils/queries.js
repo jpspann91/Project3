@@ -10,6 +10,13 @@ export const QUERY_USERS = gql`
         _id
         username
       }
+      online
+      icon
+      fullName
+      activeMatches {
+        _id
+        game
+      }
     }
   }
 `;
@@ -23,6 +30,13 @@ export const QUERY_USER = gql`
       friends{
         _id
         username
+      }
+      online
+      icon
+      fullName
+      activeMatches {
+        _id
+        game
       }
     }
   }
@@ -38,6 +52,13 @@ export const QUERY_ME = gql`
         _id
         username
       }
+      online
+      icon
+      fullName
+      activeMatches {
+        _id
+        game
+      }
     }
   }
 `;
@@ -47,15 +68,7 @@ export const QUERY_GAMES = gql`
     games{
       _id
       gameType
-      gameState{
-        status
-        score
-        winner
-      }
-      players {
-        _id
-        username
-      }
+      ruleSet
     }
   }
 `;
@@ -65,15 +78,7 @@ export const QUERY_SINGLE_GAME = gql`
     game(gameId: $gameId) {
       _id
       gameType
-      gameState{
-        status
-        score
-        winner
-      }
-      players {
-        _id
-        username
-      }
+      ruleSet
     }
   }
 `;
