@@ -18,24 +18,27 @@ import Settings from "../components/settings-tab";
 const testGamesList = [
   {
     name: "Tic Tac Toe",
-    icon: "tictactoe.png",
+    type: "simple",
+    count:"2 Player",
+    icon: "tictactoe.jpg",
     path: "tictactoe/test1",
   },
   {
     name: "Tic Tac Toe",
-    icon: "tictactoe.png",
-    path: "tictactoe/test2",
+    type: "simple",
+    count:"2 Player",
+    icon: "tictactoe.jpg",
+    path: "tictactoe/test1",
   },
 ];
 
-let profileData =  {
-    id: 'EG76J42',
-    icon: 'JD',
-    fullName: 'John Doe',
-    userName: 'JonnyManiac',
-    online: false,
+let profileData = {
+  id: 'EG76J42',
+  icon: 'JD',
+  fullName: 'John Doe',
+  userName: 'JonnyManiac',
+  online: false,
 };
-
 
 // import { useEffect, useState } from 'react';
 
@@ -63,14 +66,31 @@ const Home = () => {
   }
 
   const getGameCards = () => {
-    const cards = testGamesList.map((game) => {
+    const cards = testGamesList.map((game, index) => {
       return (
-        <Card style={{ width: 200, height: 250}} key={game.name}>
-          <h3>{game.name}</h3>
-          <img src={`/gameIcons/${game.icon}`} alt={game.name} style={{ width: 150, height: 150}}/>
-          <Button onClick={() => history.push(`/games/${game.path}`) }>Click Me</Button>
-        </Card>
-        
+        <div className="w-screen px-4 mb-5">
+
+          <div className="px-4 pb-4 pt-3  bg-neutral-200 rounded-md flex justify-between" key={index}>
+            <div className="grid content-between">
+              <div >
+                <div className="text-2xl">{game.name}</div>
+                <div className="flex">
+                <div className=" text-lg font-thin uppercase mr-2">{game.type}</div>
+                <div className=" text-lg">{game.count}</div>
+                  
+                </div>
+              </div>
+              <div className="flex justify-between w-full ">
+                <button className="bg-neutral-800 text-xl text-white px-16 py-2 rounded-sm" onClick={() => history.push(`/games/${game.path}`)}>Play</button>
+              </div>
+            </div>
+            <div>
+              <img className="w-32 h-auto" src={`/gameIcons/${game.icon}`} alt={game.name} />
+
+            </div>
+          </div>
+        </div>
+
       );
     });
 
@@ -78,19 +98,14 @@ const Home = () => {
   };
 
   return (
-    <div className="h-full w-full">
-      <h1>THIS IS OUR HOMEPAGE</h1>
-      {/* <Friends /> */}
-      
-      <Friends />
-      {/* <Settings data={profileData} /> */}
+    <div className="h-full w-full flex">
+
+      <Settings data={profileData} />
       <Router>
-        <div>
+        <div className="w-screen grid content-start justify-center mt-5">
           <Switch>
             <Route exact path={`${match.path}`}>
-              <div>
-                <h2>Games Homepage</h2>
-              </div>
+
               {getGameCards()}
             </Route>
             <Route path={`${match.path}games/tictactoe/:gameId`}>
@@ -99,6 +114,7 @@ const Home = () => {
           </Switch>
         </div>
       </Router>
+      <Friends />
     </div>
   );
 };

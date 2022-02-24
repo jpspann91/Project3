@@ -4,14 +4,14 @@ export default [
         icon: 'JD',
         fullName: 'John Doe',
         gamerName: 'JonnyManiac',
-        online: false,
+        online: true,
     },
     {
         id: 'D5924G8',
         icon: 'DM',
         fullName: 'Dillan Mansor',
         gamerName: 'ConstantEffects',
-        online: false,
+        online: true,
     },
     {
         id: 'IG764F4',
@@ -25,7 +25,7 @@ export default [
         icon: 'DL',
         fullName: 'Daisy L.',
         gamerName: 'HazyDaisy',
-        online: false,
+        online: true,
     },
     {
         id: 'OJB75FG4',

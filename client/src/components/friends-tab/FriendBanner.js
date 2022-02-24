@@ -6,16 +6,16 @@ function FriendBanner(friendObject) {
 
 
     if (friendObject.data.online) {
-        inviteButton = <button className='bg-blue-500 px-4 py-2 rounded-md font-medium text-white text-xs'>INVITE</button>
+        inviteButton = <button className='bg-neutral-700 px-4 py-3  rounded-md font-medium text-white text-xs'>INVITE</button>
     }
 
     return (
 
-        <div className=' flex justify-between align-center py-2'>
+        <div className=' flex justify-between align-center py-2 text-lg'>
             <div className='flex'>
                 <div className='
-                bg-neutral-500 
-                text-neutral-200 
+                bg-white 
+                text-neutral-700 
                 rounded-full w-10 
                 h-10 
                 mr-4  
@@ -31,7 +31,7 @@ function FriendBanner(friendObject) {
                         <div className='opacity-50'>#{friendObject.data.id}</div>
                     </div>
 
-                    <div className='text-xs opacity-75'>{friendObject.data.fullName}</div>
+                    <div className='text-xs'>{friendObject.data.fullName}</div>
                 </div>
             </div>
 
