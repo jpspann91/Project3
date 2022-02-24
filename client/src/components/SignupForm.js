@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import 'antd/dist/antd.css';
 import { Input, Button, Alert, Form } from 'antd'
 
 
@@ -41,6 +42,7 @@ const SignupForm = () => {
         }
 
         try {
+            //Use the mutation here
             const { data } = await addUser({
                 variables: { ...userFormData },
             })
@@ -60,55 +62,58 @@ const SignupForm = () => {
 
     return (
         <>
-            <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+            <Form noValidate
+                validated={validated}
+                onSubmit={handleFormSubmit}>
                 <Alert
                     dismissible
-                    onClose={()=> setShowAlert(false)}
+                    onClose={() => setShowAlert(false)}
                     show={showAlert}
-                    >Soemthing went wrong with your singup!</Alert>
-                <Form.Group>
+                >Soemthing went wrong with your singup!</Alert>
 
-                    {/*Username */}
-                    <Form.Label htmlFor='username'>Username</Form.Label>
+
+                {/*Username */}
+                <Form.Item label='Username'>
                     <Input placeholder='Username'
-                        name='username'
                         onChange={handleInputChange}
                         value={userFormData.username}
                         required />
-                    {/*Email*/}
-                    <Form.Label htmlFor='email'>Email</Form.Label>
+                </Form.Item>
+
+                {/*Email */}
+                <Form.Item label='Email'>
                     <Input placeholder='Email'
-                        name='email'
                         onChange={handleInputChange}
                         value={userFormData.email}
                         required />
-                    {/*Password */}
-                    <Form.Label htmlFor='password'>Password</Form.Label>
+                </Form.Item>
+                {/*Password */}
+                <Form.Item label='Password'>
                     <Input placeholder='Password'
-                        name='password'
                         onChange={handleInputChange}
                         value={userFormData.password}
                         required />
-                    {/*Full Name */}
-                    <Form.Label htmlFor='fullName'>Full Name</Form.Label>
+                </Form.Item>
+                {/*Full Name */}
+                <Form.Item label='Full Name'>
                     <Input placeholder='Full Name'
-                        name='fullName'
                         onChange={handleInputChange}
                         value={userFormData.fullName}
                         required />
-                </Form.Group>
+                </Form.Item>
+
                 <Button
                     disabled={
                         !(
                             userFormData.username &&
                             userFormData.email &&
                             userFormData.password &&
-                            userFormData.fullName 
+                            userFormData.fullName
                         )
                     }
                     type='submit'
                     variant='success'
-                    >Submit</Button>
+                >Submit</Button>
             </Form>
         </>
     );
