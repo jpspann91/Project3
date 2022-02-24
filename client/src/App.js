@@ -9,7 +9,6 @@ import { ApolloClient,
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home.js';
-import Games from './pages/Games.js';
 import Profile from './pages/Profile.js'
 import NavBar from "./components/nav/Navbar";
 
@@ -45,17 +44,12 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <Router>
+      <Router forceRefresh={true}>
         <div style={{height: window.innerHeight}} className="grid content-start text-neutral-700">
-          
-        <NavBar />
-
+          <NavBar />
           <Switch>
-            <Route exact path="/">
+            <Route path="/">
               <Home />
-            </Route>
-            <Route path="/games">
-              <Games />
             </Route>
             <Route exact path="/profile">
               <Profile />
