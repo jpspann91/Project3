@@ -9,10 +9,16 @@ type User {
   friends: [User]
 }
 
+type GameState {
+  status: String
+  winner: User 
+  score: Int
+}
+
 type Game {
-  _id
+  _id: ID
   gameType: String
-  gameState: {isActive: Boolean,winner: User, score: Number}
+  gameState: GameState
   players: [User]
 }
 
@@ -21,17 +27,11 @@ type Auth {
   user: User
 }
 
-input UserInput {
-  username: String
-  email: String
-  friends: [User]
-}
-
 type Query {
   users: [User]
   user(username: String!): User
   games(username: String): [Game] 
-  game(gameId: ID!)
+  game(gameId: ID!): Game
   me: User
 }
 

@@ -25,9 +25,9 @@ const gameSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }
+        },
     ], 
-        maxLength: 2,
+        // maxLength: 2,
 
 });
 
