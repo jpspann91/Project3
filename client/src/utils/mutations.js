@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_FRIEND = gql`
-  mutation addFriend($userData: UserInput!) {
-    addFriend(userData: $userData){
+  mutation addFriend($userId: ID!) {
+    addFriend(userId: $userId){
      _id
       username
       email
@@ -62,6 +62,7 @@ export const ADD_USER_TO_GAME = gql`
         isActive
       }
       players{
+        _id
         username
       }
     }

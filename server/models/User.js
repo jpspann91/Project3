@@ -25,7 +25,19 @@ const userSchema = new Schema({
       ref: 'User'
     },
   ],
-  
+  online: {
+    type: Boolean,
+    required: true
+  },
+  icon: {
+    type: String,
+    minLength: 2,
+  },
+  fullName: {
+    type: String,
+    minLength: 2,
+    required: true
+  },
 });
 
 userSchema.pre('save', async function (next) {
