@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ApolloClient, 
-         ApolloProvider, 
-         InMemoryCache, 
-         createHttpLink 
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  createHttpLink
 } from '@apollo/client';
 
 import { setContext } from '@apollo/client/link/context';
@@ -41,27 +42,52 @@ const client = new ApolloClient({
 
 function App() {
 
+  const [page, setPage] = useState('mt-14')
+  function handlePageState(x) {
+    switch (x) {
+      case 'settings':
+        setPage('mt-14 animate-slideLeft')
+        break;
+      case 'friends':
+        setPage('mt-14 animate-slideRight')
+        break;
+      case 'games':
+        setPage(prevState => {
+          console.log(prevState);
+          if(prevState == 'mt-14 animate-slideLeft'){setPage('mt-14 animate-leftClose')}
+          else {setPage('mt-14 animate-rightClose')}
+        })
+        break;
+
+      default:
+        break;
+    }
+  }
+
 
   return (
     <ApolloProvider client={client}>
       <Router forceRefresh={true}>
-        <div style={{height: window.innerHeight}} className="grid content-start text-neutral-700">
-          <NavBar />
-          <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
-            <Route exact path="/profile">
-              <Profile />
-            </Route>
-            {/* <Route exact path="/friends">
+        <div style={{ height: window.innerHeight }} className="relative grid content-start text-neutral-700 overflow-hidden">
+          <NavBar handlePageState={handlePageState} />
+
+          <div style={{ transform: 'translateX(-100vw)' }} className={page}>
+            <Switch>
+              <Route path="/">
+                <Home />
+              </Route>
+              <Route exact path="/profile">
+                <Profile />
+              </Route>
+              {/* <Route exact path="/friends">
               <Friends />
             </Route> */}
-            {/* <Route exact path="/login">
+              {/* <Route exact path="/login">
               <Login />
             </Route> */}
-          </Switch>
-          
+            </Switch>
+
+          </div>
         </div>
       </Router>
     </ApolloProvider>

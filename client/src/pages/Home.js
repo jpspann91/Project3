@@ -11,6 +11,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
 import Friends from "../components/friends-tab";
 import { Card, Button } from "antd";
+import Settings from "../components/settings-tab";
 
 import TicTacToe from "./games/TicTacToe.js";
 
@@ -27,14 +28,13 @@ const testGamesList = [
   },
 ];
 
-let profileData =  {
-    id: 'EG76J42',
-    icon: 'JD',
-    fullName: 'John Doe',
-    userName: 'JonnyManiac',
-    online: false,
+let profileData = {
+  id: 'EG76J42',
+  icon: 'JD',
+  fullName: 'John Doe',
+  userName: 'JonnyManiac',
+  online: false,
 };
-import Settings from "../components/settings-tab";
 
 // import { useEffect, useState } from 'react';
 
@@ -62,14 +62,17 @@ const Home = () => {
   }
 
   const getGameCards = () => {
-    const cards = testGamesList.map((game) => {
+    const cards = testGamesList.map((game, index) => {
       return (
-        <Card style={{ width: 200, height: 250}} key={game.name}>
-          <h3>{game.name}</h3>
-          <img src={`/gameIcons/${game.icon}`} alt={game.name} style={{ width: 150, height: 150}}/>
-          <Button onClick={() => history.push(`/games/${game.path}`) }>Click Me</Button>
-        </Card>
-        
+        <div className="mb-5 w-full">
+
+          <Card key={index}>
+            <h3>{game.name}</h3>
+            <img src={`/gameIcons/${game.icon}`} alt={game.name} style={{ width: 150, height: 150 }} />
+            <Button onClick={() => history.push(`/games/${game.path}`)}>Click Me</Button>
+          </Card>
+        </div>
+
       );
     });
 
@@ -77,19 +80,14 @@ const Home = () => {
   };
 
   return (
-    <div className="h-full w-full">
-      <h1>THIS IS OUR HOMEPAGE</h1>
-      {/* <Friends /> */}
-      
-      <Friends />
-      {/* <Settings data={profileData} /> */}
+    <div className="h-full w-full flex">
+
+      <Settings data={profileData} />
       <Router>
-        <div>
+        <div className="w-screen grid content-start justify-center mt-5">
           <Switch>
             <Route exact path={`${match.path}`}>
-              <div>
-                <h2>Games Homepage</h2>
-              </div>
+
               {getGameCards()}
             </Route>
             <Route path={`${match.path}games/tictactoe/:gameId`}>
@@ -98,6 +96,7 @@ const Home = () => {
           </Switch>
         </div>
       </Router>
+      <Friends />
     </div>
   );
 };
