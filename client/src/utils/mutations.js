@@ -53,13 +53,30 @@ export const REMOVE_FRIEND = gql`
   }
 `;
 
+export const ADD_GAME = gql`
+  mutation addGame($gameId: ID!, userId: ID!) {
+    addGame(gameId: $gameId, userId: $userId) {
+      _id
+      gameType
+      gameState{
+       status  
+     }
+     players{
+       _id
+       username
+     }
+
+    }
+  }
+`;
+
 export const ADD_USER_TO_GAME = gql`
   mutation addUserToGame($gameId: ID!, $userId: ID!) {
     addUserToGame(gameId: $gameId, userId: $userId) {
       _id
       gameType
       gameState{
-        isActive
+        status
       }
       players{
         _id

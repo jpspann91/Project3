@@ -27,7 +27,6 @@ const gameSchema = new Schema({
             ref: 'User'
         },
     ], 
-        // maxLength: 2,
 
 });
 
