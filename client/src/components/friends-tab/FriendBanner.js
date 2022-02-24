@@ -13,7 +13,15 @@ function FriendBanner(friendObject) {
 
         <div className=' flex justify-between align-center py-2'>
             <div className='flex'>
-                <div className='bg-neutral-500 text-neutral-200 rounded-full w-10 h-10 mr-4  grid content-center justify-center'>
+                <div className='
+                bg-neutral-500 
+                text-neutral-200 
+                rounded-full w-10 
+                h-10 
+                mr-4  
+                grid 
+                content-center 
+                justify-center'>
                     {friendObject.data.icon}
                 </div>
 

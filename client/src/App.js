@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloClient, 
          ApolloProvider, 
@@ -11,6 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './pages/Home.js';
 import Games from './pages/Games.js';
 import Profile from './pages/Profile.js'
+import NavBar from "./components/nav/Navbar";
 
 import 'antd/dist/antd.css';
 
@@ -38,11 +39,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+
 function App() {
+
+
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
+        <div style={{height: window.innerHeight}} className="grid content-start text-neutral-700">
+          
+        <NavBar />
+
           <Switch>
             <Route exact path="/">
               <Home />
@@ -60,6 +67,7 @@ function App() {
               <Login />
             </Route> */}
           </Switch>
+          
         </div>
       </Router>
     </ApolloProvider>
