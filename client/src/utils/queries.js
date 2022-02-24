@@ -83,3 +83,6 @@ export const QUERY_SINGLE_GAME = gql`
   }
 `;
 
+export const QUERY_MATCHES = gql``
+export const QUERY_SINGLE_MATCH = gql``
+

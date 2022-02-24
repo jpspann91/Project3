@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-//USER MUTATIONS
+//USER MUTATIONS ************************
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -60,10 +60,10 @@ export const UPDATE_PASSWORD= gql``
 export const UPDATE_ONLINE = gql``
 export const UPDATE_ICON = gql``
 export const UPDATE_FULL_NAME = gql``
-export const UPDATE_ACTIVE_GAMES = gql``
+export const UPDATE_ACTIVE_MATCHES = gql``
 
 
-//GAME MUTATIONS
+//GAME MUTATIONS ****************************************
 
 export const ADD_GAME = gql`
   mutation addGame($gameId: ID!) {
@@ -76,6 +76,17 @@ export const ADD_GAME = gql`
 
 export const UPDATE_GAME_TYPE = gql``
 export const UPDATE_RULE_SET = gql``
-//MATCH MUTATIONS
+
+//MATCH MUTATIONS ***************************************
+export const UPDATE_MATCH_GAME = gql``
+export const UPDATE_MATCH_STATUS = gql``
+export const UPDATE_MATCH_WINNER = gql``
+export const UPDATE_MATCH_SCORE = gql``
+export const UPDATE_MATCH_GAME_BOARD = gql``
+export const UPDATE_MATCH_ACTIVE_PLAYER = gql``
+export const ADD_MATCH_PLAYER = gql``
+export const REMOVE_MATCH_PLAYER = gql``
+
+
 
 
