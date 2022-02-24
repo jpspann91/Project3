@@ -45,7 +45,7 @@ export const QUERY_GAMES = gql`
 
 export const QUERY_SINGLE_GAME = gql`
   query getSingleGame($gameId: ID!) {
-    game(gameId: $gameId {
+    game(gameId: $gameId) {
       _id
       gameType
       gameState{
