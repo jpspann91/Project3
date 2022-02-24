@@ -7,37 +7,27 @@ const gameSchema = new Schema({
 
     },
     gameState: {
-        isActive: {
-            type: Boolean,
+        status: {
+            type: String,
             required: true,
-            default: true,
         },
         winner: {
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
         score: {
-            type: String,
+            type: Number,
             required: false,
             default: 0
         }
     },
-    players:
-    {
-        player1: {
+    players:  [
+        {
             type: Schema.Types.ObjectId,
-            ref: 'User',
-            maxLength: 1,
-            required: true
-
+            ref: 'User'
         },
-        player2: {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            maxLength: 1,
-            required: true
-        },
-    },
+    ], 
+        // maxLength: 2,
 
 });
 

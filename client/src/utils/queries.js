@@ -37,12 +37,7 @@ export const QUERY_GAMES = gql`
         winner
       }
       players {
-        player1 {
-          username
-        }
-        player2 {
-          username
-        }
+        username
       }
     }
   }
@@ -51,6 +46,7 @@ export const QUERY_GAMES = gql`
 export const QUERY_SINGLE_GAME = gql`
   query getSingleGame($gameId: ID!) {
     game(gameId: $gameId {
+      _id
       gameType
       gameState{
         isActive
@@ -58,12 +54,7 @@ export const QUERY_SINGLE_GAME = gql`
         winner
       }
       players {
-        player1 {
-          username
-        }
-        player2 {
-          username
-        }
+        username
       }
     }
   }
