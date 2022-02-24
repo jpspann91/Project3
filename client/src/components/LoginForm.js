@@ -44,7 +44,7 @@ const LoginForm = () => {
         console.error(e);
       }
   
-      // clear form values
+   
       setUserFormData({
         email: '',
         password: '',
@@ -73,7 +73,7 @@ const LoginForm = () => {
               required
             />
             <Form.Control.Feedback type="invalid">
-              Email is required!
+              What, no Email?
             </Form.Control.Feedback>
           </Form.Group>
   
@@ -88,7 +88,7 @@ const LoginForm = () => {
               required
             />
             <Form.Control.Feedback type="invalid">
-              Password is required!
+              What, no passoword?
             </Form.Control.Feedback>
           </Form.Group>
           <Button
