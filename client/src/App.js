@@ -9,7 +9,6 @@ import { ApolloClient,
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home.js';
-import Games from './pages/Games.js';
 import Profile from './pages/Profile.js'
 
 import 'antd/dist/antd.css';
@@ -41,14 +40,11 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
+      <Router forceRefresh={true}>
         <div className="flex-column justify-center align-center min-100-vh bg-primary">
           <Switch>
-            <Route exact path="/">
+            <Route path="/">
               <Home />
-            </Route>
-            <Route path="/games">
-              <Games />
             </Route>
             <Route exact path="/profile">
               <Profile />
