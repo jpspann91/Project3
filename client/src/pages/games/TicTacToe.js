@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Row, Button } from "antd";
+import { QUERY_SINGLE_GAME } from "../../utils/queries.js";
+import { useQuery } from "@apollo/client";
 
 const DEFAULT_GAME_BOARD = [
   [" ", " ", " "],
@@ -24,12 +26,15 @@ const TicTacToe = () => {
   const [gameBoard, setGameBoard] = useState([[], [], []]);
   const [activeUser, setActiveUser] = useState();
   const [gameState, setGameState] = useState();
-  const { gameId } = useParams();
+  const { matchId } = useParams();
+  const { loading, data } = useQuery(QUERY_SINGLE_GAME, {
+    variables: { matchId: matchId },
+  });
 
   useEffect(() => {
     // Load previous game state if available
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
-    fetchGameState();
+      fetchGameState();
 
     setGameBoard(loadedGameBoard);
     setActiveUser(loadedActiveUser);
@@ -163,11 +168,17 @@ const TicTacToe = () => {
     });
   };
 
+  const getData = () => {
+    console.log(data);
+  };
+
+  if (loading) return <h2>Loading</h2>;
   return (
     <>
-      <Card title={`Tic Tac Toe | Game ${gameId}`} className={styles.board}>
+      <Card title={`Tic Tac Toe | Game ${matchId}`} className={styles.board}>
         {gameState?.winner && <h2>{gameState.winner} Wins</h2>}
         {gameState?.status === "draw" && <h2>Draw</h2>}
+        {getData()}
         <div style={gameState?.status !== "ongoing" ? styles.disabled : {}}>
           {renderGameBoard()}
         </div>

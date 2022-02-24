@@ -63,9 +63,9 @@ const Home = () => {
   }
 
   const getGameCards = () => {
-    const cards = testGamesList.map((game) => {
+    const cards = testGamesList.map((game, index) => {
       return (
-        <Card style={{ width: 200, height: 250}} key={game.name}>
+        <Card style={{ width: 200, height: 250}} key={index}>
           <h3>{game.name}</h3>
           <img src={`/gameIcons/${game.icon}`} alt={game.name} style={{ width: 150, height: 150}}/>
           <Button onClick={() => history.push(`/games/${game.path}`) }>Click Me</Button>
@@ -93,7 +93,7 @@ const Home = () => {
               </div>
               {getGameCards()}
             </Route>
-            <Route path={`${match.path}games/tictactoe/:gameId`}>
+            <Route path={`${match.path}games/tictactoe/:matchId`}>
               <TicTacToe />
             </Route>
           </Switch>
