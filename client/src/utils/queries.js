@@ -17,6 +17,10 @@ export const QUERY_USERS = gql`
         _id
         game
       }
+      pastMatches{
+        _id
+        game
+      }
     }
   }
 `;
@@ -38,6 +42,10 @@ export const QUERY_USER = gql`
         _id
         game
       }
+      pastMatches{
+        _id
+        game
+      }
     }
   }
 `;
@@ -56,6 +64,10 @@ export const QUERY_ME = gql`
       icon
       fullName
       activeMatches {
+        _id
+        game
+      }
+      pastMatches{
         _id
         game
       }
@@ -83,6 +95,37 @@ export const QUERY_SINGLE_GAME = gql`
   }
 `;
 
-export const QUERY_MATCHES = gql``
-export const QUERY_SINGLE_MATCH = gql``
+export const QUERY_MATCHES = gql`
+  query getMatches{
+    matches{
+      _id
+      game
+      status
+      winner
+      score
+      gameBoard
+      activePlayer
+      players{
+       _id
+       username
+      }
+    }
+  }
+`
+export const QUERY_SINGLE_MATCH = gql`
+  query getSingleMatch($matchId: ID!){
+    match(matchId: $matchId){
+      _id
+      game
+      status
+      winner
+      score
+      gameBoard
+      activePlayer
+      players{
+       _id
+       username
+      }
+    }
+  }`
 

@@ -43,6 +43,12 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Match'
     }
+  ],
+  pastMatches: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Match'
+    }
   ]
 });
 
