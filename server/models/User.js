@@ -38,6 +38,12 @@ const userSchema = new Schema({
     minLength: 2,
     required: true
   },
+  activeMatches: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Match'
+    }
+  ]
 });
 
 userSchema.pre('save', async function (next) {

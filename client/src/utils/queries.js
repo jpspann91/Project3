@@ -1,5 +1,26 @@
 import { gql } from '@apollo/client';
 
+export const QUERY_USERS = gql`
+  query users{
+    users{
+      _id
+      username
+      email
+      friends{
+        _id
+        username
+      }
+      online
+      icon
+      fullName
+      activeMatches {
+        _id
+        game
+      }
+    }
+  }
+`;
+
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
@@ -7,7 +28,15 @@ export const QUERY_USER = gql`
       username
       email
       friends{
+        _id
         username
+      }
+      online
+      icon
+      fullName
+      activeMatches {
+        _id
+        game
       }
     }
   }
@@ -20,7 +49,15 @@ export const QUERY_ME = gql`
       username
       email
       friends{
+        _id
         username
+      }
+      online
+      icon
+      fullName
+      activeMatches {
+        _id
+        game
       }
     }
   }
@@ -31,14 +68,7 @@ export const QUERY_GAMES = gql`
     games{
       _id
       gameType
-      gameState{
-        isActive
-        score
-        winner
-      }
-      players {
-        username
-      }
+      ruleSet
     }
   }
 `;
@@ -48,15 +78,11 @@ export const QUERY_SINGLE_GAME = gql`
     game(gameId: $gameId) {
       _id
       gameType
-      gameState{
-        isActive
-        score
-        winner
-      }
-      players {
-        username
-      }
+      ruleSet
     }
   }
 `;
+
+export const QUERY_MATCHES = gql``
+export const QUERY_SINGLE_MATCH = gql``
 
