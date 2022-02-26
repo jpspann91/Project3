@@ -96,15 +96,18 @@ export const QUERY_SINGLE_GAME = gql`
 `;
 
 export const QUERY_MATCHES = gql`
-  query getMatches{
-    matches{
+  query getMatches($username: String!){
+    matches(username: $username){
       _id
       game
       status
       winner
       score
       gameBoard
-      activePlayer
+      activePlayer{
+        _id
+        username
+      }
       players{
        _id
        username
@@ -121,7 +124,10 @@ export const QUERY_SINGLE_MATCH = gql`
       winner
       score
       gameBoard
-      activePlayer
+      activePlayer{
+        _id
+        username
+      }
       players{
        _id
        username
