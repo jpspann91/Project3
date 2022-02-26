@@ -7,19 +7,27 @@ type User {
   email: String
   password: String
   friends: [User]
+  online: Boolean
+  icon: String
+  fullName: String
+  activeMatches: [Match]
+  pastMatches: [Match]
 }
 
-type GameState {
+type Match {
+  game: Game
   status: String
-  winner: User 
-  score: Int
+  winner: User
+  score: String
+  gameBoard: String
+  activePlayer: User
+  player: [User]
 }
 
 type Game {
   _id: ID
   gameType: String
-  gameState: GameState
-  players: [User]
+  ruleSet: String
 }
 
 type Auth {
@@ -33,6 +41,8 @@ type Query {
   games(username: String): [Game] 
   game(gameId: ID!): Game
   me: User
+  matches(username: String!): [Match]
+  match(matchId: ID!): Match
 }
 
 type Mutation {
@@ -40,7 +50,18 @@ type Mutation {
   login(email: String!, password: String!): Auth
   addFriend(userId: ID!): User
   removeFriend(userId: ID!): User
-  addUserToGame(gameId: ID!, userId: ID!): Game
+  addGame(gameType: String!, ruleSet: String!): Game
+  updateGameType(gameId: ID!, gameType: String!): Game
+  updateGameRuleSet(gameId: ID!, ruleSet: String!): Game
+  addMatch: Match
+  updateMatchGame(matchId: ID!, gameId: ID!): Match
+  updateMatchStatus(matchId: ID!, status: String!): Match
+  updateMatchWinner(matchId: ID!, winner: String!): Match
+  updateMatchScore(matchId: ID!, score: String!): Match
+  updateMatchGameBoard(matchId: ID!, gameBoard: String!): Match
+  updateMatchActivePlayer(matchId: ID!, username: String!): Match
+  addMatchPlayer(matchId: ID!, userId: ID!): Match
+  removeMatchPlayer(matchId: ID!, userId: ID!): Match
 }
 `;
 

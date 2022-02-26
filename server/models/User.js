@@ -30,7 +30,7 @@ const userSchema = new Schema({
     required: true
   },
   icon: {
-    type: String,
+    type: String, 
     minLength: 2,
   },
   fullName: {
