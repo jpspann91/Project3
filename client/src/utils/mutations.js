@@ -39,6 +39,7 @@ export const ADD_FRIEND = gql`
     }
   }
 `;
+
 export const REMOVE_FRIEND = gql`
   mutation removeFriend($userId: ID!) {
     removeFriend(userId: $userId) {
@@ -54,10 +55,37 @@ export const REMOVE_FRIEND = gql`
   }
 `;
 
-// export const UPDATE_USERNAME = gql``
-// export const UPDATE_EMAIL = gql``
-// export const UPDATE_PASSWORD= gql``
-// export const UPDATE_ONLINE = gql``
+export const UPDATE_USERNAME = gql`
+  mutation updateUsername($username: String!) {
+    updateUsername(username: $username) {
+      user {
+        username
+      }
+    }
+  } 
+`;
+
+export const UPDATE_EMAIL = gql`
+  mutation updateEmail($email: String!) {
+    updateEmail(email: $email) {
+      user {
+        email
+      }
+    }
+  }
+`;
+
+export const UPDATE_PASSWORD = gql`
+  mutation updatePassword($password: String!) {
+    updatePassword(password: $password) {
+      user{
+        password
+      }
+    }
+  }
+`;
+
+export const UPDATE_ONLINE = gql``
 // export const UPDATE_ICON = gql``
 // export const UPDATE_FULL_NAME = gql``
 // export const UPDATE_ACTIVE_MATCHES = gql``
