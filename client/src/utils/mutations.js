@@ -85,10 +85,44 @@ export const UPDATE_PASSWORD = gql`
   }
 `;
 
-export const UPDATE_ONLINE = gql``
-// export const UPDATE_ICON = gql``
-// export const UPDATE_FULL_NAME = gql``
-// export const UPDATE_ACTIVE_MATCHES = gql``
+export const UPDATE_ONLINE = gql`
+  mutation updateOnline($online: Boolean!) {
+    updateOnline(online: $online) {
+      user {
+        online
+      }
+    }
+  }
+`;
+
+export const UPDATE_ICON = gql`
+  mutation updateIcon($icon: String!) {
+    updateIcon(icon: $icon){
+      user {
+        icon
+      }
+    }
+  }
+`;
+
+export const UPDATE_FULL_NAME = gql`
+  mutation updateFullName($fullName: String!) {
+    updateFullName(fullName: $fullName) {
+      user {
+        fullName
+      }
+    }
+  }
+`;
+
+export const UPDATE_ACTIVE_MATCHES = gql`
+  mutation updateActiveMatches($activeMatches: Schema.Types.ObjectId) {
+    updateActiveMatches(activeMatches: $activeMatches) {
+      match {
+        activePlayer      
+      }
+    }
+  }`
 
 
 //GAME MUTATIONS ****************************************
