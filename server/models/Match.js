@@ -8,13 +8,14 @@ const matchSchema = new Schema({
     status: {
         type: String,
         required: true,
+        default: "In Progress"
     },
     winner: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
     score: {
-        type: Number,
+        type: String,
         required: false,
         default: 0
     },
