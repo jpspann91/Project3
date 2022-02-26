@@ -54,13 +54,13 @@ export const REMOVE_FRIEND = gql`
   }
 `;
 
-export const UPDATE_USERNAME = gql``
-export const UPDATE_EMAIL = gql``
-export const UPDATE_PASSWORD= gql``
-export const UPDATE_ONLINE = gql``
-export const UPDATE_ICON = gql``
-export const UPDATE_FULL_NAME = gql``
-export const UPDATE_ACTIVE_MATCHES = gql``
+// export const UPDATE_USERNAME = gql``
+// export const UPDATE_EMAIL = gql``
+// export const UPDATE_PASSWORD= gql``
+// export const UPDATE_ONLINE = gql``
+// export const UPDATE_ICON = gql``
+// export const UPDATE_FULL_NAME = gql``
+// export const UPDATE_ACTIVE_MATCHES = gql``
 
 
 //GAME MUTATIONS ****************************************
@@ -74,18 +74,18 @@ export const ADD_GAME = gql`
   }
 `;
 
-export const UPDATE_GAME_TYPE = gql``
-export const UPDATE_RULE_SET = gql``
+// export const UPDATE_GAME_TYPE = gql``
+// export const UPDATE_RULE_SET = gql``
 
-//MATCH MUTATIONS ***************************************
-export const UPDATE_MATCH_GAME = gql``
-export const UPDATE_MATCH_STATUS = gql``
-export const UPDATE_MATCH_WINNER = gql``
-export const UPDATE_MATCH_SCORE = gql``
-export const UPDATE_MATCH_GAME_BOARD = gql``
-export const UPDATE_MATCH_ACTIVE_PLAYER = gql``
-export const ADD_MATCH_PLAYER = gql``
-export const REMOVE_MATCH_PLAYER = gql``
+// //MATCH MUTATIONS ***************************************
+// export const UPDATE_MATCH_GAME = gql``
+// export const UPDATE_MATCH_STATUS = gql``
+// export const UPDATE_MATCH_WINNER = gql``
+// export const UPDATE_MATCH_SCORE = gql``
+// export const UPDATE_MATCH_GAME_BOARD = gql``
+// export const UPDATE_MATCH_ACTIVE_PLAYER = gql``
+// export const ADD_MATCH_PLAYER = gql``
+// export const REMOVE_MATCH_PLAYER = gql``
 
 
 
