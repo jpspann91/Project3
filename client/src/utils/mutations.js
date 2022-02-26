@@ -58,9 +58,8 @@ export const REMOVE_FRIEND = gql`
 export const UPDATE_USERNAME = gql`
   mutation updateUsername($username: String!) {
     updateUsername(username: $username) {
-      user {
-        username
-      }
+      _id
+      username
     }
   } 
 `;
@@ -68,9 +67,9 @@ export const UPDATE_USERNAME = gql`
 export const UPDATE_EMAIL = gql`
   mutation updateEmail($email: String!) {
     updateEmail(email: $email) {
-      user {
-        email
-      }
+      _id
+      username
+      email
     }
   }
 `;
@@ -78,9 +77,9 @@ export const UPDATE_EMAIL = gql`
 export const UPDATE_PASSWORD = gql`
   mutation updatePassword($password: String!) {
     updatePassword(password: $password) {
-      user{
-        password
-      }
+      _id
+      username
+      password
     }
   }
 `;
@@ -88,9 +87,9 @@ export const UPDATE_PASSWORD = gql`
 export const UPDATE_ONLINE = gql`
   mutation updateOnline($online: Boolean!) {
     updateOnline(online: $online) {
-      user {
-        online
-      }
+      _id
+      username
+      online
     }
   }
 `;
@@ -98,9 +97,9 @@ export const UPDATE_ONLINE = gql`
 export const UPDATE_ICON = gql`
   mutation updateIcon($icon: String!) {
     updateIcon(icon: $icon){
-      user {
-        icon
-      }
+      _id
+      username
+      icon
     }
   }
 `;
@@ -108,9 +107,9 @@ export const UPDATE_ICON = gql`
 export const UPDATE_FULL_NAME = gql`
   mutation updateFullName($fullName: String!) {
     updateFullName(fullName: $fullName) {
-      user {
-        fullName
-      }
+      _id
+      username
+      icon
     }
   }
 `;
@@ -118,6 +117,8 @@ export const UPDATE_FULL_NAME = gql`
 export const UPDATE_ACTIVE_MATCHES = gql`
   mutation updateActiveMatches($activeMatches: Schema.Types.ObjectId) {
     updateActiveMatches(activeMatches: $activeMatches) {
+      _id
+      username
       match {
         activePlayer      
       }
