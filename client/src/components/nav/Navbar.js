@@ -9,9 +9,8 @@ import { ReactComponent as CloseRightSVG } from './close-right.svg'
 function NavBar(props) {
 
     const [state, setstate] = useState({
-        settings: <SettingsSVG onClick={() => setState('settings')} className="fill-neutral-100 hover:cursor-pointer" />,
-        friends: <FriendsSVG onClick={() => setState('friends')} className="fill-neutral-100 hover:cursor-pointer" />,
-        // close:<CloseSVG onClick={() => setState('friends')} className="fill-red-500 hover:cursor-pointer" />,
+        settings: <SettingsSVG onClick={() => setState('settings')} className="fill-neutral-100 hover:cursor-pointer h-full w-full" />,
+        friends: <FriendsSVG onClick={() => setState('friends')} className="fill-neutral-100 hover:cursor-pointer h-full w-full" />,
     })
 
     function setState(x) {
@@ -19,20 +18,20 @@ function NavBar(props) {
         switch (x) {
             case 'friends':
                 setstate({
-                    settings: <SettingsSVG onClick={() => setState('settings')} className="fill-neutral-100 hover:cursor-pointer" />,
-                    friends: <CloseRightSVG onClick={() => setState('games')} className="fill-neutral-100 hover:cursor-pointer" />
+                    settings: <SettingsSVG onClick={() => setState('settings')} className="fill-neutral-100 hover:cursor-pointer h-full w-full" />,
+                    friends: <CloseRightSVG onClick={() => setState('games')} className="fill-neutral-100 hover:cursor-pointer h-full w-full" />
                 })
                 break;
             case 'settings':
                 setstate({
-                    settings: <CloseLeftSVG onClick={() => setState('games')} className="fill-neutral-100 hover:cursor-pointer" />,
-                    friends: <FriendsSVG onClick={() => setState('friends')} className="fill-neutral-100 hover:cursor-pointer" />
+                    settings: <CloseLeftSVG onClick={() => setState('games')} className="fill-neutral-100 hover:cursor-pointer h-full w-full" />,
+                    friends: <FriendsSVG onClick={() => setState('friends')} className="fill-neutral-100 hover:cursor-pointer h-full w-full" />
                 })
                 break;
             case 'games':
                 setstate({
-                    settings: <SettingsSVG onClick={() => setState('settings')} className="fill-neutral-100 hover:cursor-pointer" />,
-                    friends: <FriendsSVG onClick={() => setState('friends')} className="fill-neutral-100 hover:cursor-pointer" />
+                    settings: <SettingsSVG onClick={() => setState('settings')} className="fill-neutral-100 hover:cursor-pointer h-full w-full" />,
+                    friends: <FriendsSVG onClick={() => setState('friends')} className="fill-neutral-100 hover:cursor-pointer h-full w-full" />
                 })
                 break;
 
