@@ -527,12 +527,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2.5rem;
 }
 
+.h-7 {
+  height: 1.75rem;
+}
+
 .h-14 {
   height: 3.5rem;
 }
 
 .h-6 {
   height: 1.5rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-9 {
+  height: 2.25rem;
 }
 
 .w-screen {
@@ -549,6 +561,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-10 {
   width: 2.5rem;
+}
+
+.w-9 {
+  width: 2.25rem;
 }
 
 .w-12 {
@@ -824,10 +840,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .fill-neutral-100 {
   fill: #f5f5f5;
-}
-
-.fill-red-500 {
-  fill: #ef4444;
 }
 
 .p-1 {
