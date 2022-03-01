@@ -1,57 +1,90 @@
 [
   {
-    "username": "Brian Kernighan",
+    "username": "BriKernighan",
     "email": "bkernighan@techfriends.dev",
-    "password": "password01"
+    "password": "password01",
+    "icon": "BK",
+    "fullName": "Brian Kernighan",
+    "online": true
   },
   {
-    "username": "Max Kanat-Alexander",
+    "username": "MKanat-Alexander",
     "email": "mkanatalexander@techfriends.dev",
-    "password": "password02"
+    "password": "password02",
+    "icon": "MKA",
+    "fullName": "Max Kanat-Alexander",
+    "online": false
   },
   {
     "username": "Why The Lucky Stiff",
     "email": "wtls@techfriends.dev",
-    "password": "password03"
+    "password": "password03",
+    "icon": "WTLS",
+    "fullName": "Lucky Stiff",
+    "online": true
   },
   {
-    "username": "Kent Beck",
+    "username": "KBeck",
     "email": "kbeck@techfriends.dev",
-    "password": "password04"
+    "password": "password04",
+    "icon": "KB",
+    "fullName": "Kent Beck",
+    "online": false
   },
   {
-    "username": "Edward V. Berard",
+    "username": "EdBerard",
     "email": "evberard@techfriends.dev",
-    "password": "password05"
+    "password": "password05",
+    "icon": "EVB",
+    "fullName": "Edward V Berard",
+    "online": true
   },
   {
-    "username": "Alan Kay",
+    "username": "AKay",
     "email": "akay@techfriends.dev",
-    "password": "password06"
+    "password": "password06",
+    "icon": "AK",
+    "fullName": "Alan Kay",
+    "online": false
   },
   {
     "username": "C.A.R. Hoare",
     "email": "choare@techfriends.dev",
-    "password": "password07"
+    "password": "password07",
+    "icon": "CAR.H",
+    "fullName": "Carry Hoare",
+    "online": true
   },
   {
-    "username": "David Thomas",
+    "username": "DThomas619",
     "email": "dthomas@techfriends.dev",
-    "password": "password08"
+    "password": "password08",
+    "icon": "DT",
+    "fullName": "David Thomas",
+    "online": false
   },
   {
-    "username": "Donald Knuth",
+    "username": "DKnuth",
     "email": "dknuth@techfriends.dev",
-    "password": "password09"
+    "password": "password09",
+    "icon": "DK",
+    "fullName": "Donald Knuth",
+    "online": true
   },
   {
     "username": "Lernantino",
     "email": "lernantino@techfriends.dev",
-    "password": "password10"
+    "password": "password10",
+    "icon": "LRN",
+    "fullName": "Larry Lantino",
+    "online": false
   },
   {
     "username": "BrosefBroseidon",
     "email": "brosef@broseidon.com",
-    "password": "password123"
+    "password": "password123",
+    "icon": "BB",
+    "fullName": "Joseph Spann",
+    "online": true
   }
 ]

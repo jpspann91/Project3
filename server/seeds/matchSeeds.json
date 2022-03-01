@@ -1,0 +1,17 @@
+[
+    {
+        "status": "In Progress",
+        "score": "0-0",
+        "gameBoard": "A STRING PLACEHOLDER FOR NOW"
+    },
+    {
+        "status": "Finished",
+        "score": "1-0",
+        "gameBoard": "A STRING PLACEHOLDER FOR NOW"
+    },
+    {
+        "status": "Finished",
+        "score": "0-1",
+        "gameBoard": "A STRING PLACEHOLDER FOR NOW"
+    }
+]

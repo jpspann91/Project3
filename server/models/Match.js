@@ -19,9 +19,9 @@ const matchSchema = new Schema({
         required: false,
         default: 0
     },
-    gameBoard: {
+    gameBoard: [{
         type: String
-    },
+    }],
     activePlayer: {
         type: Schema.Types.ObjectId,
         ref: 'User'
