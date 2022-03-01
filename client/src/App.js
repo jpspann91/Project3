@@ -46,15 +46,32 @@ function App() {
   function handlePageState(x) {
     switch (x) {
       case 'settings':
-        setPage('mt-14 animate-slideLeft')
+        
+        setPage(prevState => {
+          console.log(prevState);
+          if(prevState == 'mt-14 animate-slideRight' || prevState == 'mt-14 animate-slidefarR'){
+            setPage('mt-14 animate-slidefarL')
+          }
+          else {setPage('mt-14 animate-slideLeft')}
+        })
         break;
+        
       case 'friends':
-        setPage('mt-14 animate-slideRight')
+        setPage(prevState => {
+          console.log(prevState);
+          if(prevState == 'mt-14 animate-slideLeft' || prevState == 'mt-14 animate-slidefarL'){
+            setPage('mt-14 animate-slidefarR')
+          }
+          else {setPage('mt-14 animate-slideRight')}
+        })
         break;
+
       case 'games':
         setPage(prevState => {
           console.log(prevState);
-          if(prevState == 'mt-14 animate-slideLeft'){setPage('mt-14 animate-leftClose')}
+          if(prevState == 'mt-14 animate-slideLeft' || prevState == 'mt-14 animate-slidefarL'){
+            setPage('mt-14 animate-leftClose')
+          }
           else {setPage('mt-14 animate-rightClose')}
         })
         break;

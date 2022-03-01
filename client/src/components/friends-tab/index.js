@@ -12,13 +12,13 @@ function Friends() {
 
     return (
 
-        <div style={{height: window.innerHeight}} className='w-screen grid content-start px-4 py-4 bg-neutral-200'>
+        <div style={{height: window.innerHeight}} className='text-dark w-screen grid content-start px-4 py-4 bg-white overflow-y-scroll pb-16'>
             <div className='grid content-between'>
                 <div className='text-4xl font-medium pb-5'>Friends List</div>
                 <div className='relative'>                    
-                    <SearchSVG className="absolute stroke-neutral-500 h-full p-1" />
+                    <SearchSVG className="absolute stroke-dark h-full p-1" />
 
-                    <input className='focus:outline-none py-1 px-10 w-full bg-white rounded-full' placeholder='Find..' type="text"></input>
+                    <input className='placeholder-neutral-700 focus:outline-none py-1 px-10 w-full bg-neutral-200 rounded-full' placeholder='Find..' type="text"></input>
                 </div>
             </div>
 
