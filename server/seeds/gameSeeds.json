@@ -1,14 +1,23 @@
 [
     {
+        "_id": "621d90a76742d2938ffd5a50",
         "gameType": "TicTacToe",
-        "ruleSet": "First to line up 3 wins"
+        "ruleSet": "First to line up 3 wins",
+        "icon": "tictactoe.jpg",
+        "path": "tictactoe/621d90a76742d2938ffd5a9d"
     },
     {
+        "_id": "621d90a76742d2938ffd5a51",
         "gameType": "Scrabble",
-        "ruleSet": "Score more points than your friends using the given board bonuses and letters"
+        "ruleSet": "Score more points than your friends using the given board bonuses and letters",
+        "icon": "tictactoe.jpg",
+        "path": "testgame1/test2"
     },
     {
+        "_id": "621d90a76742d2938ffd5a52",
         "gameType": "Roulette",
-        "ruleSet": "Gamble all your money away by choosing either a number or a color and see what wins"
+        "ruleSet": "Gamble all your money away by choosing either a number or a color and see what wins",
+        "icon": "tictactoe.jpg",
+        "path": "tictactoe/test3"
     }
 ]

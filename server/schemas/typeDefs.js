@@ -15,6 +15,7 @@ type User {
 }
 
 type Match {
+  _id: ID
   game: Game
   status: String
   winner: User
@@ -28,6 +29,8 @@ type Game {
   _id: ID
   gameType: String
   ruleSet: String
+  icon: String
+  path: String
 }
 
 type Auth {

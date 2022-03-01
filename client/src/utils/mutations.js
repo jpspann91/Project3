@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 //USER MUTATIONS ************************
 export const LOGIN_USER = gql`
@@ -27,8 +27,8 @@ export const ADD_USER = gql`
 
 export const ADD_FRIEND = gql`
   mutation addFriend($userId: ID!) {
-    addFriend(userId: $userId){
-     _id
+    addFriend(userId: $userId) {
+      _id
       username
       email
       friends {
@@ -61,7 +61,7 @@ export const UPDATE_USERNAME = gql`
       _id
       username
     }
-  } 
+  }
 `;
 
 export const UPDATE_EMAIL = gql`
@@ -96,7 +96,7 @@ export const UPDATE_ONLINE = gql`
 
 export const UPDATE_ICON = gql`
   mutation updateIcon($icon: String!) {
-    updateIcon(icon: $icon){
+    updateIcon(icon: $icon) {
       _id
       username
       icon
@@ -120,11 +120,11 @@ export const UPDATE_ACTIVE_MATCHES = gql`
       _id
       username
       match {
-        activePlayer      
+        activePlayer
       }
     }
-  }`
-
+  }
+`;
 
 //GAME MUTATIONS ****************************************
 
@@ -138,27 +138,29 @@ export const ADD_GAME = gql`
 }`;
 
 export const UPDATE_GAME_TYPE = gql`
-  mutation updateGameType($gameId: ID!, $gameType: String!){
-    updateGameType(gameId: $gameId gameType: $gameType){
+  mutation updateGameType($gameId: ID!, $gameType: String!) {
+    updateGameType(gameId: $gameId, gameType: $gameType) {
       _id
       gameType
       ruleSet
     }
-  }`
+  }
+`;
 export const UPDATE_GAME_RULE_SET = gql`
-  mutation updateGameRuleSet($gameId: ID!, $ruleSet: String!){
-    updateGameRuleSet(gameId: $gameId ruleSet: $ruleSet){
+  mutation updateGameRuleSet($gameId: ID!, $ruleSet: String!) {
+    updateGameRuleSet(gameId: $gameId, ruleSet: $ruleSet) {
       _id
       gameType
       ruleSet
-   }
-}`
+    }
+  }
+`;
 
 // //MATCH MUTATIONS ***************************************
 export const ADD_MATCH = gql`
-  mutation addMatch{
-    addMatch{
-      game{
+  mutation addMatch {
+    addMatch {
+      game {
         _id
         gameType
         ruleSet
@@ -167,11 +169,11 @@ export const ADD_MATCH = gql`
       winner
       score
       gameBoard
-      activePlayer{
+      activePlayer {
         _id
         username
       }
-      players{
+      players {
         _id
         username
       }
@@ -179,9 +181,9 @@ export const ADD_MATCH = gql`
   }
 `;
 export const UPDATE_MATCH_GAME = gql`
-  mutation updateMatchGame($matchId: ID!, $gameId: ID!){
-    updateMatchGame(matchId: $matchId, gameId: $gameId){
-      game{
+  mutation updateMatchGame($matchId: ID!, $gameId: ID!) {
+    updateMatchGame(matchId: $matchId, gameId: $gameId) {
+      game {
         _id
         gameType
         ruleSet
@@ -190,11 +192,11 @@ export const UPDATE_MATCH_GAME = gql`
       winner
       score
       gameBoard
-      activePlayer{
+      activePlayer {
         _id
         username
       }
-      players{
+      players {
         _id
         username
       }
@@ -202,9 +204,9 @@ export const UPDATE_MATCH_GAME = gql`
   }
 `;
 export const UPDATE_MATCH_STATUS = gql`
-  mutation updateMatchStatus($matchId: ID!, $status: String!){
-    updateMatchStatus(matchId: $matchId, status: $status){
-      game{
+  mutation updateMatchStatus($matchId: ID!, $status: String!) {
+    updateMatchStatus(matchId: $matchId, status: $status) {
+      game {
         _id
         gameType
         ruleSet
@@ -213,11 +215,11 @@ export const UPDATE_MATCH_STATUS = gql`
       winner
       score
       gameBoard
-      activePlayer{
+      activePlayer {
         _id
         username
       }
-      players{
+      players {
         _id
         username
       }
@@ -225,9 +227,9 @@ export const UPDATE_MATCH_STATUS = gql`
   }
 `;
 export const UPDATE_MATCH_WINNER = gql`
-  mutation updateMatchWinner($matchId: ID!, $username: String!){
-    updateMatchWinner(matchId: $matchId, username: $username){
-      game{
+  mutation updateMatchWinner($matchId: ID!, $username: String!) {
+    updateMatchWinner(matchId: $matchId, username: $username) {
+      game {
         _id
         gameType
         ruleSet
@@ -236,11 +238,11 @@ export const UPDATE_MATCH_WINNER = gql`
       winner
       score
       gameBoard
-      activePlayer{
+      activePlayer {
         _id
         username
       }
-      players{
+      players {
         _id
         username
       }
@@ -266,103 +268,86 @@ export const UPDATE_MATCH_SCORE = gql`
       players{
       _id
       username
+      }
     }
   }
-}
 `;
+
 export const UPDATE_MATCH_GAME_BOARD = gql`
-  mutation updateMatchGameBoard($matchId: ID!, $gameBoard: String!){
-    updateMatchGameBoard(matchId: $matchId, gameBoard: $gameBoard){
-      game{
+  mutation updateMatchGameBoard($matchId: ID!, $gameBoard: String!) {
+    updateMatchGameBoard(matchId: $matchId, gameBoard: $gameBoard) {
+      gameBoard
+    }
+  }
+`;
+
+export const UPDATE_MATCH_ACTIVE_PLAYER = gql`
+  mutation updateMatchActivePlayer($matchId: ID!, $username: String!) {
+    updateMatchActivePlayer(matchId: $matchId, username: $username) {
+      game {
         _id
         gameType
+        ruleSet
       }
       status
       winner
       score
       gameBoard
-      activePlayer{
+      activePlayer {
         _id
         username
       }
-      players{
+      players {
         _id
         username
       }
     }
   }
-`;
-export const UPDATE_MATCH_ACTIVE_PLAYER = gql`
-mutation updateMatchActivePlayer($matchId: ID!, $username: String!){
-  updateMatchActivePlayer(matchId: $matchId, username: $username){
-    game{
-      _id
-      gameType
-      ruleSet
-    }
-    status
-    winner
-    score
-    gameBoard
-    activePlayer{
-        _id
-        username
-    }
-    players{
-      _id
-      username
-    }
-  }
-}
 `;
 export const ADD_MATCH_PLAYER = gql`
-mutation addMatchPlayer($matchId: ID!, $userId: ID!){
-  addMatchPlayer(matchId: $matchId, userId: $userId){
-    game{
-      _id
-      gameType
-      ruleSet
-    }
-    status
-    winner
-    score
-    gameBoard
-    activePlayer{
+  mutation addMatchPlayer($matchId: ID!, $userId: ID!) {
+    addMatchPlayer(matchId: $matchId, userId: $userId) {
+      game {
+        _id
+        gameType
+        ruleSet
+      }
+      status
+      winner
+      score
+      gameBoard
+      activePlayer {
         _id
         username
-    }
-    players{
-      _id
-      username
+      }
+      players {
+        _id
+        username
+      }
     }
   }
-}
 `;
 
 export const REMOVE_MATCH_PLAYER = gql`
-mutation removeMatchPlayer($matchId: ID!, $userId: ID!){
-  removeMatchPlayer(matchId: $matchId, userId: $userId){
-    game{
-      _id
-      gameType
-      ruleSet
-    }
-    status
-    winner
-    score
-    gameBoard
-    activePlayer{
+  mutation removeMatchPlayer($matchId: ID!, $userId: ID!) {
+    removeMatchPlayer(matchId: $matchId, userId: $userId) {
+      game {
+        _id
+        gameType
+        ruleSet
+      }
+      status
+      winner
+      score
+      gameBoard
+      activePlayer {
         _id
         username
       }
-    players{
-      _id
-      username
+      players {
+        _id
+        username
+      }
     }
   }
-}
 `;
-
-
-
-
