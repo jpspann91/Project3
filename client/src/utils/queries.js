@@ -81,6 +81,8 @@ export const QUERY_GAMES = gql`
       _id
       gameType
       ruleSet
+      icon
+      path
     }
   }
 `;
@@ -116,22 +118,33 @@ export const QUERY_MATCHES = gql`
   }
 `
 export const QUERY_SINGLE_MATCH = gql`
-  query getSingleMatch($matchId: ID!){
-    match(matchId: $matchId){
+  query getSingleMatch($matchId: ID!) {
+    match(matchId: $matchId) {
       _id
-      game
       status
-      winner
       score
       gameBoard
-      activePlayer{
-        _id
-        username
-      }
-      players{
-       _id
-       username
-      }
+
     }
   }`
 
+
+  // export const QUERY_SINGLE_MATCH = gql`
+  // query getSingleMatch($matchId: ID!) {
+  //   match(matchId: $matchId) {
+  //     _id
+  //     status
+  //     score
+  //     gameBoard
+  //     winner
+  //     activePlayer{
+  //       _id
+  //       username
+  //     }
+  //     players{
+  //      _id
+  //      username
+  //     }
+
+  //   }
+  // }`
