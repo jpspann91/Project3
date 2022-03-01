@@ -28,6 +28,8 @@ type Game {
   _id: ID
   gameType: String
   ruleSet: String
+  icon: String
+  path: String
 }
 
 type Auth {

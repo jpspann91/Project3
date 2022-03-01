@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Row, Button } from "antd";
+import { useQuery } from "@apollo/client";
+import { QUERY_SINGLE_MATCH } from '../../utils/queries'
 
 const DEFAULT_GAME_BOARD = [
   [" ", " ", " "],
@@ -25,9 +27,11 @@ const TicTacToe = () => {
   const [activeUser, setActiveUser] = useState();
   const [gameState, setGameState] = useState();
   const { gameId } = useParams();
+  const initialGameState = useQuery(QUERY_SINGLE_MATCH);
 
   useEffect(() => {
     // Load previous game state if available
+    console.log(initialGameState);
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
     fetchGameState();
 

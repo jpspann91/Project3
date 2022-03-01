@@ -81,6 +81,8 @@ export const QUERY_GAMES = gql`
       _id
       gameType
       ruleSet
+      icon
+      path
     }
   }
 `;
