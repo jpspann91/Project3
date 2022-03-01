@@ -15,6 +15,7 @@ type User {
 }
 
 type Match {
+  _id: ID
   game: Game
   status: String
   winner: User

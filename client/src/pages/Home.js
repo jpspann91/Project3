@@ -65,7 +65,6 @@ const Home = () => {
   const fetchGamesList = async () => {};
 
   const getGameCards = () => {
-    console.log(data.games);
     const cards = data.games.map((game, index) => {
       return (
         <div className="w-screen px-4 mb-5" key={index}>
@@ -116,10 +115,10 @@ const Home = () => {
             <Route exact path={`${match.path}`}>
               {getGameCards()}
             </Route>
-            <Route path={`${match.path}games/tictactoe/:gameId`}>
+            <Route path={`${match.path}games/tictactoe/:matchId`}>
               <TicTacToe />
             </Route>
-            <Route path={`${match.path}games/testgame1/:gameId`}>
+            <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
             </Route>
           </Switch>
