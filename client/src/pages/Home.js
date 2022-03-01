@@ -9,6 +9,7 @@ import {
 // import { Link } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../utils/queries";
+import { QUERY_USERS } from "../utils/queries";
 import Friends from "../components/friends-tab";
 import { Card, Button } from "antd";
 
@@ -45,9 +46,7 @@ let profileData = {
 const Home = () => {
   const history = useHistory();
   const match = useRouteMatch();
-  // const { loading, data } = useQuery(QUERY_ME, {
-  //   fetchPolicy: "no-cache"
-  // });
+  
   // const [matchups ,setMathupsData]= useState([])
   // const matchupList = data?.matchups || [];
 
@@ -56,6 +55,7 @@ const Home = () => {
   //     setMathupsData(data)
   //   }
   // }, [loading])
+  
 
   const fetchActiveGames = async () => {
 
