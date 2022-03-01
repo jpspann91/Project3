@@ -22,25 +22,27 @@ const styles = {
   },
 };
 
-const TicTacToe = () => {
+const TicTacToe = (props) => {
   const [gameBoard, setGameBoard] = useState([[], [], []]);
   const [activeUser, setActiveUser] = useState();
   const [gameState, setGameState] = useState();
   const { gameId } = useParams();
-  const initialGameState = useQuery(QUERY_SINGLE_MATCH);
+  const { loading, error, data } = useQuery(QUERY_SINGLE_MATCH, { gameId });
 
   useEffect(() => {
     // Load previous game state if available
-    console.log(initialGameState);
+    if (loading) return
+
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
-    fetchGameState();
+    fetchGameState(data.match);
 
     setGameBoard(loadedGameBoard);
     setActiveUser(loadedActiveUser);
     setGameState(loadedGameState);
-  }, []);
+  }, [loading, data]);
 
-  const fetchGameState = () => {
+  const fetchGameState = (matchData) => {
+    console.log(matchData)
     // Fetch game data from data base
     // TODO create backend route to fetch
     const loadedGameBoard = "";
@@ -169,13 +171,16 @@ const TicTacToe = () => {
 
   return (
     <>
-      <Card title={`Tic Tac Toe | Game ${gameId}`} className={styles.board}>
-        {gameState?.winner && <h2>{gameState.winner} Wins</h2>}
-        {gameState?.status === "draw" && <h2>Draw</h2>}
-        <div style={gameState?.status !== "ongoing" ? styles.disabled : {}}>
-          {renderGameBoard()}
-        </div>
-      </Card>
+      {loading && <p>Loading</p>}
+      {!loading && 
+        <Card title={`Tic Tac Toe | Game ${gameId}`} className={styles.board}>
+          {gameState?.winner && <h2>{gameState.winner} Wins</h2>}
+          {gameState?.status === "draw" && <h2>Draw</h2>}
+          <div style={gameState?.status !== "ongoing" ? styles.disabled : {}}>
+            {renderGameBoard()}
+          </div>
+        </Card>
+      }
     </>
   );
 };
