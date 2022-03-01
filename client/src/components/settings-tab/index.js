@@ -5,7 +5,7 @@ function Settings(profile) {
 
     return (
 
-        <div className='w-screen grid content-start px-4 py-4 bg-neutral-200'>
+        <div className='text-dark w-screen grid content-start px-4 py-4 bg-white'>
             <div className='grid content-start'>
                 <div className='text-4xl font-medium pb-5'>Profile</div>
                 <div className='flex items-center justify-between text-2xl'>

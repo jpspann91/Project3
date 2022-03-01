@@ -3,12 +3,14 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        fadeIn: 'fadeIn .2s forwards',
-        fadeOut: 'fadeOut .2s forwards',
-        slideLeft: 'slideLeft .2s forwards',
-        slideRight: 'slideRight .2s forwards',
-        leftClose: 'leftClose .2s forwards',
-        rightClose: 'rightClose .2s forwards'
+        fadeIn: 'fadeIn .15s forwards',
+        fadeOut: 'fadeOut .15s forwards',
+        slideLeft: 'slideLeft .15s forwards',
+        slideRight: 'slideRight .15s forwards',
+        leftClose: 'leftClose .15s forwards',
+        rightClose: 'rightClose .15s forwards',
+        slidefarR: 'slidefarR .3s forwards',
+        slidefarL: 'slidefarL .3s forwards',
       },
       keyframes: {
         fadeIn: {
@@ -26,6 +28,14 @@ module.exports = {
         slideRight: {
           from: { transform: 'translateX(-100vw)' },
           to: { transform: 'translateX(-200vw)' },
+        },
+        slidefarR: {
+          from: { transform: 'translateX(0vw)' },
+          to: { transform: 'translateX(-200vw)' },
+        },
+        slidefarL: {
+          from: { transform: 'translateX(-200vw)' },
+          to: { transform: 'translateX(0vw)' },
         },
         leftClose: {
           from: { transform: 'translateX(0vw)' },
