@@ -115,7 +115,7 @@ export const UPDATE_FULL_NAME = gql`
 `;
 
 export const UPDATE_ACTIVE_MATCHES = gql`
-  mutation updateActiveMatches($activeMatches: Schema.Types.ObjectId) {
+  mutation updateActiveMatches($activeMatches: ID!) {
     updateActiveMatches(activeMatches: $activeMatches) {
       _id
       username
@@ -130,12 +130,12 @@ export const UPDATE_ACTIVE_MATCHES = gql`
 
 export const ADD_GAME = gql`
   mutation addGame($gameType: String!, $ruleSet: String!) {
-    addGame(gameType: $gameType, ruleSetL $ruleSet) {
+    addGame(gameType: $gameType, ruleSet: $ruleSet) {
      _id
      gameType
      ruleSet
   }
-`;
+}`;
 
 export const UPDATE_GAME_TYPE = gql`
   mutation updateGameType($gameId: ID!, $gameType: String!){
