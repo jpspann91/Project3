@@ -68,10 +68,8 @@ const Home = () => {
     const cards = data.games.map((game, index) => {
       return (
         <div className="w-screen px-4 mb-5" key={index}>
-          <div
-            className="px-4 pb-4 pt-3  bg-neutral-200 rounded-md flex justify-between"
-            key={index}
-          >
+
+          <div className="px-4 pb-4 pt-3  bg-neutral-200 rounded-md flex justify-between" >
             <div className="grid content-between">
               <div>
                 <div className="text-2xl">{game.gameType}</div>

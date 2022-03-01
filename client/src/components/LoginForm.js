@@ -11,13 +11,13 @@ const LoginForm = () => {
   
     const [login, { error }] = useMutation(LOGIN_USER);
   
-    useEffect(() => {
-      if (error) {
-        setShowAlert(true);
-      } else {
-        setShowAlert(false);
-      }
-    }, [error]);
+    // useEffect(() => {
+    //   if (error) {
+    //     setShowAlert(true);
+    //   } else {
+    //     setShowAlert(false);
+    //   }
+    // }, [error]);
   
     const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -37,8 +37,8 @@ const LoginForm = () => {
         const { data } = await login({
           variables: { ...userFormData },
         });
+        console.log('hey');
   
-        console.log(data);
         Auth.login(data.login.token);
       } catch (e) {
         console.error(e);
@@ -53,18 +53,18 @@ const LoginForm = () => {
   
     return (
       <>
-        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-          <Alert
+        <form  onSubmit={handleFormSubmit}>
+          {/* <Alert
             dismissible
             onClose={() => setShowAlert(false)}
             show={showAlert}
             variant="danger"
           >
             Something went wrong with your login credentials!
-          </Alert>
-          <Form.Group>
-            <Form.Label htmlFor="email">Email</Form.Label>
-            <Form.Control
+          </Alert> */}
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
               type="text"
               placeholder="Your email"
               name="email"
@@ -72,14 +72,14 @@ const LoginForm = () => {
               value={userFormData.email}
               required
             />
-            <Form.Control.Feedback type="invalid">
+            <div type="invalid">
               What, no Email?
-            </Form.Control.Feedback>
-          </Form.Group>
+            </div>
+          </div>
   
-          <Form.Group>
-            <Form.Label htmlFor="password">Password</Form.Label>
-            <Form.Control
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
               type="password"
               placeholder="Your password"
               name="password"
@@ -87,18 +87,18 @@ const LoginForm = () => {
               value={userFormData.password}
               required
             />
-            <Form.Control.Feedback type="invalid">
+            <div type="invalid">
               What, no passoword?
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Button
+            </div>
+          </div>
+          <button
             disabled={!(userFormData.email && userFormData.password)}
             type="submit"
             variant="success"
           >
             Submit
-          </Button>
-        </Form>
+          </button>
+        </form>
       </>
     );
   };

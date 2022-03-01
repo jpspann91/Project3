@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 import 'antd/dist/antd.css';
 import { Input, Button, Alert, Form } from 'antd'
+import Auth from '../utils/auth'
 
 
 
@@ -18,7 +19,7 @@ const SignupForm = () => {
 
     const [showAlert, setShowAlert] = useState(false);
 
-    const [addUser, { error }] = useMutation(ADD_USER);
+    const [addUser, { error, data }] = useMutation(ADD_USER);
 
     useEffect(() => {
         if (error) {
@@ -34,14 +35,14 @@ const SignupForm = () => {
     }
 
     const handleFormSubmit = async (event) => {
-        event.preventDefault();
+        console.log('submit')
 
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
+        // const form = event.currentTarget;
+        // if (form.checkValidity() !== false) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        // }
+        console.log('after')
         try {
             //Use the mutation here
             const { data } = await addUser({
@@ -63,9 +64,9 @@ const SignupForm = () => {
 
     return (
         <>
-            <Form noValidate
-                validated={validated}
-                onSubmit={handleFormSubmit}>
+            <Form noValidate validated={validated}
+                onSubmit={(e) => e.preventDefault() }
+                onFinish={handleFormSubmit}>
                 <Alert
                     dismissible
                     onClose={() => setShowAlert(false)}
@@ -75,45 +76,47 @@ const SignupForm = () => {
 
                 {/*Username */}
                 <Form.Item label='Username'>
-                    <Input placeholder='Username'
+                    <Input type='text' 
+                        placeholder='Username'
                         onChange={handleInputChange}
-                        value={userFormData.username}
+                        defaultValue={userFormData.username}
                         required />
                 </Form.Item>
 
                 {/*Email */}
                 <Form.Item label='Email'>
-                    <Input placeholder='Email'
+                    <Input type='email' 
+                        placeholder='Email'
                         onChange={handleInputChange}
-                        value={userFormData.email}
+                        defaultValue={userFormData.email}
                         required />
                 </Form.Item>
                 {/*Password */}
                 <Form.Item label='Password'>
-                    <Input placeholder='Password'
+                    <Input type='password' 
+                        placeholder='Password'
                         onChange={handleInputChange}
-                        value={userFormData.password}
+                        defaultValue={userFormData.password}
                         required />
                 </Form.Item>
                 {/*Full Name */}
                 <Form.Item label='Full Name'>
-                    <Input placeholder='Full Name'
+                    <Input type='text' 
+                        placeholder='Full Name'
                         onChange={handleInputChange}
-                        value={userFormData.fullName}
+                        defaultValue={userFormData.fullName}
                         required />
                 </Form.Item>
 
-                <Button
-                    disabled={
-                        !(
-                            userFormData.username &&
-                            userFormData.email &&
-                            userFormData.password &&
-                            userFormData.fullName
-                        )
-                    }
-                    type='submit'
-                    variant='success'
+                <Button type="primary" htmlType="submit"
+                    // disabled={
+                    //     !(
+                    //         userFormData.username &&
+                    //         userFormData.email &&
+                    //         userFormData.password &&
+                    //         userFormData.fullName
+                    //     )
+                    // }
                 >Submit</Button>
             </Form>
         </>
