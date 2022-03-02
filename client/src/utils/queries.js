@@ -125,7 +125,10 @@ export const QUERY_SINGLE_MATCH = gql`
       status
       score
       gameBoard
-
+      players {
+        _id
+        username
+      }
     }
   }`
 

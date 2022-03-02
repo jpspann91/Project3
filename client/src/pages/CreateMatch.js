@@ -1,19 +1,21 @@
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { Button, Card } from "antd";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 // import { ADD_MATCH } from "../utils/mutations";
 import { QUERY_USER } from "../utils/queries";
+import { getObjectID } from "../utils/utils";
 
 const ADD_MATCH = gql`
-  mutation addMatch {
-    addMatch {
+  mutation addMatch($params: String) {
+    addMatch(params: $params) {
       _id
     }
   }
 `;
 
 const CreateMatch = (props) => {
+  const history = useHistory();
   const routeParams = useParams();
   const { loading, error, data } = useQuery(QUERY_USER, {
     variables: {
@@ -36,24 +38,34 @@ const CreateMatch = (props) => {
     });
   };
 
-  const startMatch = (opponentId) => {
-    const matchOptions = {
-      variables: { 
-        game: "621d90a76742d2938ffd5a50",
-        players: [
-          data.user._id,
-          opponentId
-        ],
-        activePlayer: data.user._id,
-        gameBoard: '         ',
-        score: '0-0',
-        status: "ongoing"
-      }
-    };
+  const startMatch = async (opponentId) => {
+    try {
+      const matchId = getObjectID();
 
-    console.log(matchOptions);
+      const matchOptions = {
+        variables: { 
+          params: JSON.stringify({
+            _id: matchId,
+            game: "621d90a76742d2938ffd5a50",
+            players: [
+              data.user._id,
+              opponentId
+            ],
+            activePlayer: data.user._id,
+            gameBoard: '         ',
+            score: '0-0',
+            status: "ongoing"
+          })
+        }
+      };
+  
+      await addMatch(matchOptions)
 
-    addMatch(matchOptions)
+      history.push(`/games/tictactoe/${matchId}`)
+    } catch (error) {
+      console.log(JSON.stringify(error, null, 2))
+    }
+    
   }
 
   const getError = () => {

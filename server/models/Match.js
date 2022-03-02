@@ -26,7 +26,6 @@ const matchSchema = new Schema({
   activePlayer: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    default: [],
   },
   players: [
     {
