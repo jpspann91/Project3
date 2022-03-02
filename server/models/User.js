@@ -27,7 +27,7 @@ const userSchema = new Schema({
   ],
   online: {
     type: Boolean,
-    required: true
+    required: false
   },
   icon: {
     type: String, 
@@ -36,7 +36,7 @@ const userSchema = new Schema({
   fullName: {
     type: String,
     minLength: 2,
-    required: true
+    required: false
   },
   activeMatches: [
     {

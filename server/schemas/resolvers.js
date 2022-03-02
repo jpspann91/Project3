@@ -57,14 +57,14 @@ const resolvers = {
     },
     addFriend: async (parent, { userId }, context) => {
       if (context.user) {
-        const friendToAdd = await User.findOne({ userId })
+        const friendToAdd = await User.findOne({ _id: userId })
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { friends: friendToAdd._id } },
+          { $addToSet: { friends: userId } },
           { new: true, runValidators: true }
         );
-
+          console.log(friendToAdd)
         return friendToAdd
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -86,11 +86,12 @@ const resolvers = {
     },
     updateUsername: async (parent, { userId }, context) => {
       if (context.user) {
-        const usernameToUpdate = await User.findOne({ userId });
+        const usernameToUpdate = await User.findOne({ _id: userId });
+        const newName = ''
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { username: usernameToUpdate._id }},
+          { $rename: { userername: usernameToUpdate.newName }},
           { new: true }
         )
 
@@ -98,7 +99,7 @@ const resolvers = {
       }
 
       throw new AuthenticationError('You need to be logged in!');
-    },
+     },
     updateEmail: async (parent, { userId }, context) => {
       if(context.user) {
         const emailToUpdate = await User.findOne({ userId });
