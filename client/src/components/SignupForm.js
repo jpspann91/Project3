@@ -8,6 +8,7 @@ import Auth from '../utils/auth'
 
 
 const SignupForm = () => {
+
     const [userFormData, setUserFormData] = useState({
         username: '',
         email: '',
@@ -19,7 +20,7 @@ const SignupForm = () => {
 
     const [showAlert, setShowAlert] = useState(false);
 
-    const [addUser, { error, data }] = useMutation(ADD_USER);
+    const [addUser, { error,data}] = useMutation(ADD_USER);
 
     useEffect(() => {
         if (error) {
@@ -42,7 +43,6 @@ const SignupForm = () => {
         //     event.preventDefault();
         //     event.stopPropagation();
         // }
-        console.log('after')
         try {
             //Use the mutation here
             const { data } = await addUser({
@@ -64,8 +64,7 @@ const SignupForm = () => {
 
     return (
         <>
-            <Form noValidate validated={validated}
-                onSubmit={(e) => e.preventDefault() }
+            <Form noValidate validated={validated.toString()}
                 onFinish={handleFormSubmit}>
                 <Alert
                     dismissible
@@ -79,7 +78,8 @@ const SignupForm = () => {
                     <Input type='text' 
                         placeholder='Username'
                         onChange={handleInputChange}
-                        defaultValue={userFormData.username}
+                        name='username'
+                        value={userFormData.username}
                         required />
                 </Form.Item>
 
@@ -87,24 +87,27 @@ const SignupForm = () => {
                 <Form.Item label='Email'>
                     <Input type='email' 
                         placeholder='Email'
+                        name='email'
                         onChange={handleInputChange}
-                        defaultValue={userFormData.email}
+                        value={userFormData.email}
                         required />
                 </Form.Item>
                 {/*Password */}
                 <Form.Item label='Password'>
                     <Input type='password' 
                         placeholder='Password'
+                        name='password'
                         onChange={handleInputChange}
-                        defaultValue={userFormData.password}
+                        value={userFormData.password}
                         required />
                 </Form.Item>
                 {/*Full Name */}
                 <Form.Item label='Full Name'>
                     <Input type='text' 
                         placeholder='Full Name'
+                        name='fullName'
                         onChange={handleInputChange}
-                        defaultValue={userFormData.fullName}
+                        value={userFormData.fullName}
                         required />
                 </Form.Item>
 

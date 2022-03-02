@@ -19,7 +19,7 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('friends');
+        return User.findOne({ _id: context.user._id }).populate(['friends', 'activeMatches', 'pastMatches']);
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -32,8 +32,8 @@ const resolvers = {
   },
   //USER MUTATIONS ***************************
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { username, email, password, fullName, online }) => {
+      const user = await User.create({ username, email, password, fullName, online });
       const token = signToken(user);
       return { token, user };
     },
