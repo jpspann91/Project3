@@ -24,7 +24,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     matches: async (parent, {userId}) => {
-      return Match.find({userId}).populate(['game', 'winner','activePlayer','players'])
+      return await Match.find({userId}).populate(['game', 'winner','activePlayer','players'])
     },
     match: async (parent, {matchId}) => {
       return Match.findById(matchId).populate(['game', 'winner','activePlayer','players'])
@@ -113,12 +113,16 @@ const resolvers = {
     },
 
     //MATCH MUTATIONS *********************************
-    addMatch: async()=>{ 
-      const match = await Match.create();
+    addMatch: async (parent, { params })=>{ 
+      console.log(params);
+
+      const extractedParams = JSON.parse(params);
+
+      const match = await Match.create(extractedParams);
 
       return match
     },
-    updateMatchGame: async(parent, {matchId, gameId}) =>{
+    updateMatchGame: async (parent, {matchId, gameId}) =>{
       const matchToUpdate = await Match.findById({matchId})
       
       await Match.updateOne(

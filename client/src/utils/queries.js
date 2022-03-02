@@ -38,17 +38,18 @@ export const QUERY_USER = gql`
       online
       icon
       fullName
-      activeMatches {
-        _id
-        game
-      }
-      pastMatches{
-        _id
-        game
-      }
     }
   }
 `;
+
+// activeMatches {
+//   _id
+//   game
+// }
+// pastMatches{
+//   _id
+//   game
+// }
 
 export const QUERY_ME = gql`
   query me {
@@ -124,9 +125,22 @@ export const QUERY_SINGLE_MATCH = gql`
       status
       score
       gameBoard
-
+      players {
+        _id
+        username
+      }
+      activePlayer {
+        _id
+        username
+      }
+      game {
+        _id
+        gameType
+        ruleSet
+      }
     }
-  }`
+  }
+`;
 
 
   // export const QUERY_SINGLE_MATCH = gql`

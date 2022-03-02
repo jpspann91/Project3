@@ -6,11 +6,17 @@
     "password": "password01",
     "icon": "BK",
     "fullName": "Brian Kernighan",
-    "online": true
+    "online": true,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ],
+    "activeMatches": [],
+    "pastMatches": []
   },
   {
     "_id": "621d90a76742d2938ffd5a01",
-    "username": "MKanat-Alexander",
+    "username": "MKanatAlexander",
     "email": "mkanatalexander@techfriends.dev",
     "password": "password02",
     "icon": "MKA",
