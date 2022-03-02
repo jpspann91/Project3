@@ -18,23 +18,6 @@ import TestGame1 from "./games/TestGame1";
 import CreateMatch from "./CreateMatch";
 import ErrorBoundary from "../components/ErrorBoundary";
 
-const testGamesList = [
-  {
-    name: "Tic Tac Toe",
-    type: "simple",
-    count: "2 Player",
-    icon: "tictactoe.jpg",
-    path: "tictactoe/test1",
-  },
-  {
-    name: "Tic Tac Toe",
-    type: "simple",
-    count: "2 Player",
-    icon: "tictactoe.jpg",
-    path: "tictactoe/test1",
-  },
-];
-
 let profileData = {
   id: "EG76J42",
   icon: "JD",
@@ -84,7 +67,7 @@ const Home = () => {
               <div className="flex justify-between w-full ">
                 <button
                   className="bg-neutral-800 text-xl text-white px-16 py-2 rounded-sm"
-                  onClick={() => history.push(`/games/${game.path}`)}
+                  onClick={() => history.push(`/games/${game._id}/${game.gameType}`)}
                 >
                   Play
                 </button>
@@ -94,7 +77,7 @@ const Home = () => {
               <img
                 className="w-32 h-auto"
                 src={`/gameIcons/${game.icon}`}
-                alt={game.name}
+                alt={game.gameType}
               />
             </div>
           </div>
@@ -122,7 +105,7 @@ const Home = () => {
             <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
             </Route>
-            <Route>
+            <Route path={`${match.path}games/:gameId/:gameName?`}>
               <CreateMatch />
             </Route>
           </Switch>

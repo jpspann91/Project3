@@ -46,7 +46,7 @@ const CreateMatch = (props) => {
         variables: { 
           params: JSON.stringify({
             _id: matchId,
-            game: "621d90a76742d2938ffd5a50",
+            game: routeParams.gameId,
             players: [
               data.user._id,
               opponentId
@@ -84,7 +84,7 @@ const CreateMatch = (props) => {
         {error && (getError())}
         {!loading && !error && (
           <div>
-            <h2>Create new {routeParams.game} match</h2>
+            <h2>Create new {routeParams.gameName} match</h2>
             <p>Select an opponent</p>
             {getOpponents()}
           </div>
