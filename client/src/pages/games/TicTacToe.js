@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Row, Button } from "antd";
-import { gql, useMutation, useQuery } from "@apollo/client";
-// import { QUERY_SINGLE_MATCH } from '../../utils/queries'
+import { useMutation, useQuery } from "@apollo/client";
+import { QUERY_SINGLE_MATCH } from '../../utils/queries'
 import { UPDATE_MATCH_GAME_BOARD } from "../../utils/mutations";
 
 const DEFAULT_GAME_BOARD = [
@@ -23,29 +23,7 @@ const styles = {
   },
 };
 
-const QUERY_SINGLE_MATCH = gql`
-  query getSingleMatch($matchId: ID!) {
-    match(matchId: $matchId) {
-      _id
-      status
-      score
-      gameBoard
-      players {
-        _id
-        username
-      }
-      activePlayer {
-        _id
-        username
-      }
-      game {
-        _id
-        gameType
-        ruleSet
-      }
-    }
-  }
-`;
+
 
 const TicTacToe = (props) => {
   const [gameBoard, setGameBoard] = useState([[], [], []]);

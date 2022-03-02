@@ -129,8 +129,18 @@ export const QUERY_SINGLE_MATCH = gql`
         _id
         username
       }
+      activePlayer {
+        _id
+        username
+      }
+      game {
+        _id
+        gameType
+        ruleSet
+      }
     }
-  }`
+  }
+`;
 
 
   // export const QUERY_SINGLE_MATCH = gql`

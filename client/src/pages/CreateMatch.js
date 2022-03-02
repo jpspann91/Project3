@@ -1,18 +1,10 @@
-import { useQuery, useMutation, gql } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { Button, Card } from "antd";
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
-// import { ADD_MATCH } from "../utils/mutations";
+import { ADD_MATCH } from "../utils/mutations";
 import { QUERY_USER } from "../utils/queries";
 import { getObjectID } from "../utils/utils";
-
-const ADD_MATCH = gql`
-  mutation addMatch($params: String) {
-    addMatch(params: $params) {
-      _id
-    }
-  }
-`;
 
 const CreateMatch = (props) => {
   const history = useHistory();
