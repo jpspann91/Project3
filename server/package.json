@@ -15,6 +15,10 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "graphql": "^15.5.1",
+<<<<<<< HEAD
+=======
+    "jwt-decode": "^3.1.2",
+>>>>>>> 29fefffe8392f92346b5e37094deba6f483c8863
     "mongoose": "^5.11.6"
   },
   "devDependencies": {

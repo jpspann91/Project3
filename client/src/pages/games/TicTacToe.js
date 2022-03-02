@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Row, Button } from "antd";
+import { useMutation, useQuery } from "@apollo/client";
+import { QUERY_SINGLE_MATCH } from '../../utils/queries'
+import { UPDATE_MATCH_GAME_BOARD } from "../../utils/mutations";
 
 const DEFAULT_GAME_BOARD = [
   [" ", " ", " "],
@@ -20,26 +23,39 @@ const styles = {
   },
 };
 
-const TicTacToe = () => {
+
+
+const TicTacToe = (props) => {
   const [gameBoard, setGameBoard] = useState([[], [], []]);
   const [activeUser, setActiveUser] = useState();
   const [gameState, setGameState] = useState();
-  const { gameId } = useParams();
+  const { matchId } = useParams();
+  const { loading, error, data } = useQuery(QUERY_SINGLE_MATCH, {
+    variables: { matchId },
+  });
+  const [updateGameBoard] = useMutation(UPDATE_MATCH_GAME_BOARD);
 
   useEffect(() => {
     // Load previous game state if available
+    if (loading) return;
+    console.log(JSON.stringify(error, null, 2));
+    if (error) return;
+
+    console.log(data);
+
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
-    fetchGameState();
+      fetchGameState(data.match);
 
     setGameBoard(loadedGameBoard);
     setActiveUser(loadedActiveUser);
     setGameState(loadedGameState);
-  }, []);
+  }, [loading, data, error]);
 
-  const fetchGameState = () => {
+  const fetchGameState = (matchData) => {
+    console.log(matchData);
     // Fetch game data from data base
     // TODO create backend route to fetch
-    const loadedGameBoard = "";
+    const loadedGameBoard = readSavedBoard(matchData.gameBoard);
     const loadedActiveUser = "";
     const loadedGameState = "";
 
@@ -50,13 +66,25 @@ const TicTacToe = () => {
     };
   };
 
+  const readSavedBoard = (gameBoard) => {
+    const gameBoardSpaces = [...gameBoard];
+    const formattedBoard = [];
+    while (gameBoardSpaces.length)
+      formattedBoard.push(gameBoardSpaces.splice(0, 3));
+    return formattedBoard;
+  };
+
   const saveGameState = () => {
     // Post game data to data base state
 
-    const gameState = {
-      gameBoard,
-      activeUser,
-    };
+    let stringBoard = "";
+    gameBoard.forEach((row) => {
+      row.forEach((space) => (stringBoard += space));
+    });
+
+    updateGameBoard({
+      variables: { gameBoard: stringBoard, matchId: matchId },
+    });
   };
 
   const checkGameState = () => {
@@ -163,15 +191,37 @@ const TicTacToe = () => {
     });
   };
 
+  const getPlayerCards = () => {
+    return data.match.players.map((player, index) => {
+      return (
+        <Card key={index}>
+          <h3>Player {index + 1}</h3>
+          <p>{player.username}</p>
+          <p>{player._id}</p>
+        </Card>
+      );
+    });
+  };
+
   return (
     <>
-      <Card title={`Tic Tac Toe | Game ${gameId}`} className={styles.board}>
-        {gameState?.winner && <h2>{gameState.winner} Wins</h2>}
-        {gameState?.status === "draw" && <h2>Draw</h2>}
-        <div style={gameState?.status !== "ongoing" ? styles.disabled : {}}>
-          {renderGameBoard()}
+      {loading && <p>Loading</p>}
+      {!loading && (
+        <div>
+          <Card
+            title={`Tic Tac Toe | Game ${matchId}`}
+            className={styles.board}
+          >
+            {gameState?.winner && <h2>{gameState.winner} Wins</h2>}
+            {gameState?.status === "draw" && <h2>Draw</h2>}
+            <div style={gameState?.status !== "ongoing" ? styles.disabled : {}}>
+              {renderGameBoard()}
+            </div>
+            <Button onClick={saveGameState}>Save</Button>
+          </Card>
+          {getPlayerCards()}
         </div>
-      </Card>
+      )}
     </>
   );
 };

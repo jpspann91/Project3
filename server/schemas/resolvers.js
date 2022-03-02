@@ -24,11 +24,11 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    matches: async(parent, {userId}) => {
-      return Match.find({userId}).populate(['game', 'winner','activePlayer','players'])
+    matches: async (parent, {userId}) => {
+      return await Match.find({userId}).populate(['game', 'winner','activePlayer','players'])
     },
-    match: async(parent, {matchId}) => {
-      return Match.findById({matchId}).populate(['game', 'winner','activePlayer','players'])
+    match: async (parent, {matchId}) => {
+      return Match.findById(matchId).populate(['game', 'winner','activePlayer','players'])
     }
   },
   //USER MUTATIONS ***************************
@@ -40,6 +40,7 @@ const resolvers = {
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
+      console.log('hhh')
 
       if (!user) {
         throw new AuthenticationError('No user found with this email address');
@@ -222,12 +223,16 @@ const resolvers = {
     },
 
     //MATCH MUTATIONS *********************************
-    addMatch: async()=>{ 
-      const match = await Match.create();
+    addMatch: async (parent, { params })=>{ 
+      console.log(params);
+
+      const extractedParams = JSON.parse(params);
+
+      const match = await Match.create(extractedParams);
 
       return match
     },
-    updateMatchGame: async(parent, {matchId, gameId}) =>{
+    updateMatchGame: async (parent, {matchId, gameId}) =>{
       const matchToUpdate = await Match.findById({matchId})
       
       await Match.updateOne(
@@ -269,11 +274,11 @@ const resolvers = {
       return matchToUpdate
     },
     updateMatchGameBoard: async(parent, {matchId, gameBoard}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       
       await Match.updateOne(
         {_id: matchToUpdate._id},
-        {$set: {gameBoard: {gameBoard}}},
+        {$set: {gameBoard}},
         {new: true}
       )
       return matchToUpdate

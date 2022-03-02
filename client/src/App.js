@@ -10,6 +10,8 @@ import {
 import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home.js';
+import LoginForm from './components/LoginForm.js';
+import SignupForm from './components/SignupForm.js'
 import Profile from './pages/Profile.js'
 import NavBar from "./components/nav/Navbar";
 
@@ -46,33 +48,33 @@ function App() {
   function handlePageState(x) {
     switch (x) {
       case 'settings':
-        
+
         setPage(prevState => {
           console.log(prevState);
-          if(prevState == 'mt-14 animate-slideRight' || prevState == 'mt-14 animate-slidefarR'){
+          if (prevState == 'mt-14 animate-slideRight' || prevState == 'mt-14 animate-slidefarR') {
             setPage('mt-14 animate-slidefarL')
           }
-          else {setPage('mt-14 animate-slideLeft')}
+          else { setPage('mt-14 animate-slideLeft') }
         })
         break;
-        
+
       case 'friends':
         setPage(prevState => {
           console.log(prevState);
-          if(prevState == 'mt-14 animate-slideLeft' || prevState == 'mt-14 animate-slidefarL'){
+          if (prevState == 'mt-14 animate-slideLeft' || prevState == 'mt-14 animate-slidefarL') {
             setPage('mt-14 animate-slidefarR')
           }
-          else {setPage('mt-14 animate-slideRight')}
+          else { setPage('mt-14 animate-slideRight') }
         })
         break;
 
       case 'games':
         setPage(prevState => {
           console.log(prevState);
-          if(prevState == 'mt-14 animate-slideLeft' || prevState == 'mt-14 animate-slidefarL'){
+          if (prevState == 'mt-14 animate-slideLeft' || prevState == 'mt-14 animate-slidefarL') {
             setPage('mt-14 animate-leftClose')
           }
-          else {setPage('mt-14 animate-rightClose')}
+          else { setPage('mt-14 animate-rightClose') }
         })
         break;
 
@@ -87,11 +89,17 @@ function App() {
       <Router forceRefresh={true}>
         <div style={{ height: window.innerHeight }} className="relative grid content-start text-neutral-700 overflow-hidden">
           <NavBar handlePageState={handlePageState} />
+          <div style={{height: window.innerHeight}} className={page}>
 
-          <div style={{ transform: 'translateX(-100vw)' }} className={page}>
             <Switch>
+              <Route path="/signup">
+                <SignupForm />
+              </Route>
+              <Route path="/login">
+                <LoginForm />
+              </Route>
               <Route path="/">
-                <Home />
+                <Home  />
               </Route>
               <Route exact path="/profile">
                 <Profile />

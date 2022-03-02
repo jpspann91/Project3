@@ -27,7 +27,7 @@ function FriendBanner(friendObject) {
 
                 <div>
                     <div className='flex'>
-                        <div className='mr-2'>{friendObject.data.gamerName}</div>
+                        <div className='mr-2'>{friendObject.data.username}</div>
                         <div className='opacity-50'>#{friendObject.data.id}</div>
                     </div>
 
