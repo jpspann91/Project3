@@ -38,17 +38,18 @@ export const QUERY_USER = gql`
       online
       icon
       fullName
-      activeMatches {
-        _id
-        game
-      }
-      pastMatches{
-        _id
-        game
-      }
     }
   }
 `;
+
+// activeMatches {
+//   _id
+//   game
+// }
+// pastMatches{
+//   _id
+//   game
+// }
 
 export const QUERY_ME = gql`
   query me {

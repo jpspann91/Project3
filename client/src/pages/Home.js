@@ -15,6 +15,7 @@ import Friends from "../components/friends-tab";
 import TicTacToe from "./games/TicTacToe.js";
 import Settings from "../components/settings-tab";
 import TestGame1 from "./games/TestGame1";
+import CreateMatch from "./CreateMatch";
 
 const testGamesList = [
   {
@@ -113,11 +114,14 @@ const Home = () => {
             <Route exact path={`${match.path}`}>
               {getGameCards()}
             </Route>
-            <Route path={`${match.path}games/tictactoe/:matchId`}>
+            <Route path={`${match.path}games/tictactoe/:matchId?`}>
               <TicTacToe />
             </Route>
             <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
+            </Route>
+            <Route>
+              <CreateMatch />
             </Route>
           </Switch>
         </div>

@@ -158,15 +158,14 @@ export const UPDATE_GAME_RULE_SET = gql`
 
 // //MATCH MUTATIONS ***************************************
 export const ADD_MATCH = gql`
-  mutation addMatch {
-    addMatch {
+  mutation addMatch ($game: ID!, $players: [User]) {
+    addMatch (game: $game, players: $players) {
       game {
         _id
         gameType
         ruleSet
       }
       status
-      winner
       score
       gameBoard
       activePlayer {
@@ -180,6 +179,29 @@ export const ADD_MATCH = gql`
     }
   }
 `;
+
+// export const ADD_MATCH = gql`
+//   mutation addMatch ($game: ID!, $players: [User], $activePlayer: User, $gameBoard: String, $score: String, $status: String) {
+//     addMatch (game: $game, players: $players, activePlayer:$activePlayer,gameBoard: $gameBoard, score: $score, status: $status) {
+//       game {
+//         _id
+//         gameType
+//         ruleSet
+//       }
+//       status
+//       score
+//       gameBoard
+//       activePlayer {
+//         _id
+//         username
+//       }
+//       players {
+//         _id
+//         username
+//       }
+//     }
+//   }
+// `;
 export const UPDATE_MATCH_GAME = gql`
   mutation updateMatchGame($matchId: ID!, $gameId: ID!) {
     updateMatchGame(matchId: $matchId, gameId: $gameId) {

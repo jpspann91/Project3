@@ -113,7 +113,8 @@ const resolvers = {
     },
 
     //MATCH MUTATIONS *********************************
-    addMatch: async()=>{ 
+    addMatch: async (parent, params)=>{ 
+      console.log(params);
       const match = await Match.create();
 
       return match
