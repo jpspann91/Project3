@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import{QUERY_ME} from '../../utils/mutations'
 
 
 
@@ -16,11 +15,11 @@ function Settings(profile) {
                 </div>
                 <div className='flex items-center justify-between text-2xl'>
                     <div className='mr-2 font-thin'>User Name</div>
-                    <div className='font-medium'>{profile.data.userName}</div>
+                    <div className='font-medium'>{profile.data.username}</div>
                 </div>
                 <div className='flex items-center justify-between text-2xl'>
                     <div className='mr-2 font-thin'>ID</div>
-                    <div className='font-medium'>{profile.data.id}</div>
+                    <div className='font-medium'>{profile.data._id}</div>
                 </div>
             </div>
             <hr className='my-5'></hr>

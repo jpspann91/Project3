@@ -6,6 +6,7 @@ import { ReactComponent as CloseSVG } from "./close.svg";
 import { ReactComponent as CloseLeftSVG } from "./close-left.svg";
 import { ReactComponent as CloseRightSVG } from "./close-right.svg";
 
+
 function NavBar(props) {
   const [state, setstate] = useState({
     settings: (

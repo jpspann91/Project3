@@ -22,13 +22,13 @@ const SignupForm = () => {
 
     const [addUser, { error}] = useMutation(ADD_USER);
 
-    // useEffect(() => {
-    //     if (error) {
-    //         setShowAlert(true);
-    //     } else {
-    //         setShowAlert(false);
-    //     }
-    // }, [error])
+    useEffect(() => {
+        if (error) {
+            setShowAlert(true);
+        } else {
+            setShowAlert(false);
+        }
+    }, [error])
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -38,7 +38,7 @@ const SignupForm = () => {
     const handleFormSubmit = async (event) => {
         console.log('submit')
 
-        // const form = event.currentTarget;
+        console.log(event.currentTarget);
         // if (form.checkValidity() !== false) {
         //     event.preventDefault();
         //     event.stopPropagation();
@@ -114,14 +114,14 @@ const SignupForm = () => {
                 </Form.Item>
 
                 <Button type="primary" htmlType="submit"
-                    // disabled={
-                    //     !(
-                    //         userFormData.username &&
-                    //         userFormData.email &&
-                    //         userFormData.password &&
-                    //         userFormData.fullName
-                    //     )
-                    // }
+                    disabled={
+                        !(
+                            userFormData.username &&
+                            userFormData.email &&
+                            userFormData.password &&
+                            userFormData.fullName
+                        )
+                    }
                 >Submit</Button>
             </Form>
         </>

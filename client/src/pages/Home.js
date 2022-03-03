@@ -5,6 +5,7 @@ import {
   Switch,
   useRouteMatch,
 } from "react-router-dom";
+
 import Friends from "../components/friends-tab";
 
 import TicTacToe from "./games/TicTacToe.js";
@@ -16,11 +17,13 @@ import MatchList from "../components/match-list";
 import auth from "../utils/auth";
 import { Divider } from "antd";
 
+import Auth from '../utils/auth'
+
 let profileData = {
-  id: "EG76J42",
+  _id: "EG76J42",
   icon: "JD",
   fullName: "John Doe",
-  userName: "JonnyManiac",
+  username: "JonnyManiac",
   online: false,
 };
 
