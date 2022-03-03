@@ -5,7 +5,7 @@ import GameCard from "../GameCard";
 
 const userId = "621d90a76742d2938ffd5a00";
 
-const MatchList = (props) => {
+const MatchList = () => {
   const { loading, error, data } = useQuery(QUERY_MATCHES);
 
   if (loading) return <p>Loading</p>;
@@ -37,6 +37,7 @@ const MatchList = (props) => {
           icon={match.game.icon}
           path={`games/${match.game.path}/${match._id}`}
           opponent={opponent}
+          type="match"
         />
       );
     });

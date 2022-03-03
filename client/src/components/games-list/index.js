@@ -19,6 +19,7 @@ const GamesList = (props) => {
           {...game}
           key={`${index}-gameCard`}
           path={`games/${game._id}/${game.name}`}
+          type="game"
         />
       );
     });

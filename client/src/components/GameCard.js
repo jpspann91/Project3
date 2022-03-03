@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import PendingContext from "../PendingContext";
 
 const GameCard = ({
+  _id,
   gameType,
   ruleSet,
   count = 1,
   icon,
-  path,
+  path = "",
   opponent = "",
+  type,
 }) => {
   const history = useHistory();
+  const { setPendingMatch } = useContext(PendingContext);
+
+
+  const buttonClickHandler = (e) => {
+
+    if (type === "match") {
+      return history.push(path)
+    } else {
+      setPendingMatch(prevState => {
+        return {
+          ...prevState,
+          game: {
+            id: _id,
+            gameType
+          }
+        }
+      })
+    }
+
+  }
 
   console.log(path);
   return (
@@ -27,7 +50,7 @@ const GameCard = ({
           <div className="flex justify-between w-full ">
             <button
               className="bg-neutral-800 text-xl text-white px-16 py-2 rounded-sm"
-              onClick={() => history.push(path)}
+              onClick={buttonClickHandler}
             >
               {opponent ? "Continue" : "Play"}
             </button>
