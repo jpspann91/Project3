@@ -1,5 +1,6 @@
 const { User, Game, Match } = require('../models');
 const { signToken } = require('../utils/auth');
+// const {}
 const { AuthenticationError } = require('apollo-server-express');
 const { ConnectionStates } = require('mongoose');
 // import Auth from '../../client/src/utils/auth'  
@@ -264,7 +265,7 @@ const resolvers = {
       
       await Match.updateOne(
         {_id: matchToUpdate._id},
-        {$set: {game: {gameId}}},
+        {$set: {game}},
         {new: true}
       )
       return matchToUpdate
@@ -295,7 +296,7 @@ const resolvers = {
       
       await Match.updateOne(
         {_id: matchToUpdate._id},
-        {$set: {score: {score}}},
+        {$set: {score}},
         {new: true}
       )
       return matchToUpdate
@@ -323,18 +324,18 @@ const resolvers = {
     },
     addMatchPlayer: async(parent, {matchId, userId}) =>{
       const matchToUpdate = await Match.findById(matchId)
-      const user = await User.findById({userId});
+      const user = await User.findById(userId);
       
       await Match.findOneAndUpdate(
         {_id: matchToUpdate._id},
-        {$addToSet: {players: user}},
+        {$addToSet: {players: {...user}}},
         {new: true}
       )
       return matchToUpdate
     },
     removeMatchPlayer: async(parent, {matchId, userId}) =>{
       const matchToUpdate = await Match.findById(matchId)
-      const user = await User.findById({userId});
+      const user = await User.findById(userId);
       
       await Match.findOneAndUpdate(
         {_id: matchToUpdate._id},

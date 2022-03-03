@@ -66,64 +66,74 @@ const SignupForm = () => {
 
     return (
         <>
-            <Form noValidate validated={validated.toString()}
-                onFinish={handleFormSubmit}>
-                <Alert
-                    dismissible
-                    onClose={() => setShowAlert(false)}
-                    show={showAlert}
-                >Something went wrong with your singup!</Alert>
+            <form className='px-4' noValidate validated={validated.toString()}
+                onSubmit={handleFormSubmit}>
+
 
 
                 {/*Username */}
-                <Form.Item label='Username'>
+                <div className='grid' label='Username'>
+                    <label>Username</label>
                     <Input type='text' 
                         placeholder='Username'
                         onChange={handleInputChange}
                         name='username'
                         value={userFormData.username}
                         required />
-                </Form.Item>
+                </div>
 
                 {/*Email */}
-                <Form.Item label='Email'>
+                <div className='grid' label='Email'>
+                    <label>Email</label>
                     <Input type='email' 
                         placeholder='Email'
                         name='email'
                         onChange={handleInputChange}
                         value={userFormData.email}
                         required />
-                </Form.Item>
+                </div>
                 {/*Password */}
-                <Form.Item label='Password'>
+                <div className='Password' label='Password'>
+                    <label>Password</label>
                     <Input type='password' 
                         placeholder='Password'
                         name='password'
                         onChange={handleInputChange}
                         value={userFormData.password}
                         required />
-                </Form.Item>
+                </div>
                 {/*Full Name */}
-                <Form.Item label='Full Name'>
+                <div className='grid' label='Full Name'>
+                    <label>Name</label>
                     <Input type='text' 
                         placeholder='Full Name'
                         name='fullName'
                         onChange={handleInputChange}
                         value={userFormData.fullName}
                         required />
-                </Form.Item>
 
-                <Button type="primary" htmlType="submit"
-                    disabled={
-                        !(
-                            userFormData.username &&
-                            userFormData.email &&
-                            userFormData.password &&
-                            userFormData.fullName
-                        )
-                    }
-                >Submit</Button>
-            </Form>
+                </div>
+                <div className='w-full grid'>
+                <button className='bg-neutral-700 text-white my-5 px-8 text-md w-full py-2 rounded-lg' type="primary" htmltype="submit"
+                    // disabled={
+                    //     !(
+                        //         userFormData.username &&
+                    //         userFormData.email &&
+                    //         userFormData.password &&
+                    //         userFormData.fullName
+                    //     )
+                    // }
+                >Sign Up</button>
+                        <Alert className=' bg-white  h-8'
+                            dismissible
+                            onClose={() => setShowAlert(false)}
+                            show={showAlert}
+                        >Something went wrong with your singup!</Alert>
+                    
+                </div>
+
+            </form>
+
         </>
     );
 };

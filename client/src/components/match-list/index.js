@@ -44,7 +44,7 @@ const MatchList = (props) => {
 
   return (
     <div>
-      <h2 className="text-2xl text-center">Your Matches</h2>
+      <h2 className="text-2xl text-center text-neutral-700 bg-neutral-100 py-2 mb-5">Your Matches</h2>
       {getMatchCards()}
     </div>
   );

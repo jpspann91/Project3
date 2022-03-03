@@ -7,6 +7,8 @@ const userSchema = new Schema({
     required: true,
     unique: true,
     trim: true,
+    minLength: 4,
+    maxLength: 15
   },
   email: {
     type: String,
@@ -36,7 +38,8 @@ const userSchema = new Schema({
   fullName: {
     type: String,
     minLength: 2,
-    required: false
+    maxLength: 15,
+    required: true
   },
   activeMatches: [
     {
