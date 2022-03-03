@@ -8,7 +8,7 @@ const LoginForm = () => {
     const [userFormData, setUserFormData] = useState({ email: '', password: '' });
     const [validated] = useState(false);
   
-    const [login, { error,data }] = useMutation(LOGIN_USER);
+    const [login, { error }] = useMutation(LOGIN_USER);
   
   
     const handleInputChange = (event) => {
@@ -18,7 +18,7 @@ const LoginForm = () => {
   
     const handleFormSubmit = async (event) => {
       event.preventDefault();
-  
+      console.log('submit')
       // const form = event.currentTarget;
       // if (form.checkValidity() === false) {
       //   event.preventDefault();
@@ -27,10 +27,14 @@ const LoginForm = () => {
   
       try {
         const { data } = await login({
-          variables: { ...userFormData },
+
+          variables: { ...userFormData}
+  
         });
         
         console.log(data)
+        
+        console.log('done')
 
         Auth.login(data.login.token);
       } catch (e) {

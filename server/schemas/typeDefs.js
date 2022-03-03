@@ -49,7 +49,7 @@ type Query {
 }
 
 type Mutation {
-  addUser(username: String!, email: String!, password: String! online: Boolean, fullName: String!): Auth
+  addUser(params: String): Auth
   login(email: String!, password: String!): Auth
   addFriend(userId: ID!): User
   removeFriend(userId: ID!): User

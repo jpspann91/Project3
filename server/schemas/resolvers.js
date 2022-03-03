@@ -32,14 +32,20 @@ const resolvers = {
   },
   //USER MUTATIONS ***************************
   Mutation: {
-    addUser: async (parent, { username, email, password, fullName, online }) => {
-      const user = await User.create({ username, email, password, fullName, online });
+    addUser: async (parent, {params}) => {
+
+      const extractedParams = JSON.parse(params);
+
+      const user = await User.create(extractedParams);
+
       const token = signToken(user);
+
       return { token, user };
     },
     login: async (parent, { email, password }) => {
+
       const user = await User.findOne({ email });
-      console.log('hhh')
+      
 
       if (!user) {
         throw new AuthenticationError('No user found with this email address');
