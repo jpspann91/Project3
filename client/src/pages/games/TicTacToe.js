@@ -238,7 +238,7 @@ const TicTacToe = (props) => {
           <div className="flex justify-between">
             {getPlayerCards()}
           </div>
-          <button className="font-thin w-full bg-emerald-500 text-xl text-white py-2 rounded-sm" onClick={saveGameState}>
+          <button className="font-thin w-full bg-gradient-to-t from-emerald-500  to-emerald-400 text-xl text-white py-2 rounded-sm" onClick={saveGameState}>
             Notify {data.match.activePlayer.username === data.match.players[0].username ? data.match.players[1].username : data.match.players[0].username}
           </button>
 
