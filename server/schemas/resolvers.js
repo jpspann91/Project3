@@ -138,12 +138,12 @@ const resolvers = {
     //   throw new AuthenticationError('You need to be logged in!');
     // },
     updateOnline: async (parent, { userId, online }, context) => {
-      if(context.user) {
-        const onlineToUpdate = await User.findOne({ userId });
+      if(userId) {
+        const onlineToUpdate = await User.findById({ userId });
 
         await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: {online: onlineToUpdate._id }},
+          { _id: onlineToUpdate._id },
+          { $set: { online }},
           { new: true }
         )
 
@@ -152,13 +152,13 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    updateIcon: async (parent, { userId }, context) => {
+    updateIcon: async (parent, { userId, icon }, context) => {
       if(context.user) {
         const iconToUpdate = await User.findOne({ userId });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: {icon: iconToUpdate._id }},
+          { $set: {icon: icon }},
           { new: true }
         )
 

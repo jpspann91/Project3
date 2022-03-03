@@ -96,22 +96,19 @@ export const UPDATE_PASSWORD = gql`
 
 export const UPDATE_ONLINE = gql`
   mutation updateOnline($online: Boolean! $userId: ID!) {
-    updateOnline(online: $online) {
+    updateOnline(userId: $userId, online: $online) {
+      user{
       _id
       username
       online
+      }
     }
   }
 `;
 
 export const UPDATE_ICON = gql`
-<<<<<<< HEAD
   mutation updateIcon($icon: String!, $userId: ID!) {
-    updateIcon(icon: $icon){
-=======
-  mutation updateIcon($icon: String!) {
-    updateIcon(icon: $icon) {
->>>>>>> 29fefffe8392f92346b5e37094deba6f483c8863
+    updateIcon(userId: $userId, icon: $icon){
       _id
       username
       icon
@@ -130,11 +127,7 @@ export const UPDATE_FULL_NAME = gql`
 `;
 
 export const UPDATE_ACTIVE_MATCHES = gql`
-<<<<<<< HEAD
   mutation updateActiveMatches($activeMatches: ID!, $userId: ID!) {
-=======
-  mutation updateActiveMatches($activeMatches: ID!) {
->>>>>>> 29fefffe8392f92346b5e37094deba6f483c8863
     updateActiveMatches(activeMatches: $activeMatches) {
       _id
       username
