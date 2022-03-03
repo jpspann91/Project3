@@ -17,19 +17,19 @@ function Settings(profile) {
             <div className='text-4xl font-medium py-5 px-4'>Settings</div>
             <label className='px-4 text-lg font-semibold h-12 bg-neutral-100 flex items-center uppercase'>profile</label>
             <div className='px-4 grid content-start content-start '>
-                <div className='flex text-2xl h-12 border-b flex justify-between items-center w-full  pr-4'>
+                <div className='flex text-2xl h-12 border-b flex justify-between items-center w-full  '>
                     <div className='mr-2 font-thin uppercase text-lg '>Username</div>
                     <div className='font-normal '>{user.username}</div>
                 </div>
-                <div className='flex text-2xl h-12 border-b flex justify-between items-center w-full  pr-4'>
+                <div className='flex text-2xl h-12 border-b flex justify-between items-center w-full  '>
                     <label className='mr-2 font-thin uppercase text-lg'>Name</label>
                     <div className='font-normal'>{user.fullName}</div>
                 </div>
                 <div className='flex text-2xl h-12 border-b flex justify-between items-center w-full'>
                     <div className='mr-2 font-thin uppercase text-lg'>Email</div>
-                    <div className='font-normal flex justify-center items-center w-full '>{user.email}</div>
+                    <div className='font-normal flex justify-end  items-center w-full '>{user.email}</div>
                 </div>
-                <div className='flex text-2xl h-12 flex justify-between items-center w-full pr-2'>
+                <div className='flex text-2xl h-12 flex justify-between items-center w-full'>
                     <div className='mr-2 font-thin uppercase text-lg'>ID#</div>
                     <div className='font-thin'>{user._id}</div>
 

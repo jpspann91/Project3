@@ -38,59 +38,6 @@ function NavBar(props) {
                 })
                 break;
 
-
-  function setState(x) {
-    props.handlePageState(x);
-    switch (x) {
-      case "friends":
-        setstate({
-          settings: (
-            <SettingsSVG
-              onClick={() => setState("settings")}
-              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
-            />
-          ),
-          friends: (
-            <CloseRightSVG
-              onClick={() => setState("games")}
-              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
-            />
-          ),
-        });
-        break;
-      case "settings":
-        setstate({
-          settings: (
-            <CloseLeftSVG
-              onClick={() => setState("games")}
-              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
-            />
-          ),
-          friends: (
-            <FriendsSVG
-              onClick={() => setState("friends")}
-              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
-            />
-          ),
-        });
-        break;
-      case "games":
-        setstate({
-          settings: (
-            <SettingsSVG
-              onClick={() => setState("settings")}
-              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
-            />
-          ),
-          friends: (
-            <FriendsSVG
-              onClick={() => setState("friends")}
-              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
-            />
-          ),
-        });
-        break;
-
       default:
         break;
     }
@@ -98,7 +45,7 @@ function NavBar(props) {
 
     return (
 
-        <div className='fixed w-screen h-14 bg-neutral-800 px-4 py-3 flex justify-between'>
+        <div className='fixed w-screen h-14 bg-neutral-800 px-4 py-3 flex justify-between  shadow-neutral-500'>
             <div className=' flex'>
                 {Auth.loggedIn && state.settings}
             </div>
@@ -107,8 +54,6 @@ function NavBar(props) {
                 {Auth.loggedIn && state.friends}
             </div>
 
-
-      <div className=" flex">{state.friends}</div>
     </div>
   );
 }
