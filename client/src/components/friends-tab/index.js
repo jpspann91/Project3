@@ -1,6 +1,8 @@
 import React from 'react';
 import FriendBanner from './FriendBanner';
 import { ReactComponent as SearchSVG } from './search.svg'
+import Auth from '../../utils/auth'
+import { QUERY_USER } from '../../utils/queries';
 
 
 // ! temporary seeding
@@ -8,7 +10,11 @@ import seeds from './friend-seed'
 
 function Friends() {
     
-    
+    let friends = Auth.getProfile().data.user.friends
+
+    console.log(friends);
+
+
 
     return (
 
@@ -22,8 +28,7 @@ function Friends() {
                 </div>
             </div>
 
-            <div className='my-5'>
-                <div className='text-2xl font-medium pb-5'>Online</div>
+            <div className='mt-5'>
                 {seeds.filter(data => data.online).map((data, index) => (
 
                     // ! Online Players
@@ -31,11 +36,8 @@ function Friends() {
                 ))}
 
             </div>
-
-            <hr className='mb-5'></hr>
             
-            <div className='opacity-70'>
-                <div className='text-2xl font-medium pb-5'>Offline</div>
+            <div>
                 {seeds.filter(data => !data.online).map((data, index) => (
                     
                     // ! Offline Players

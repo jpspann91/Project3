@@ -87,7 +87,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router forceRefresh={true}>
-        <div style={{ height: window.innerHeight }} className="relative grid content-start text-neutral-700 overflow-hidden">
+        <div style={{ height: window.innerHeight }} className="relative grid content-start text-neutral-700 overflow-hidden ">
           <NavBar handlePageState={handlePageState} />
           <div style={{height: window.innerHeight}} className={page}>
 
