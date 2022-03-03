@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import{QUERY_ME} from '../../utils/mutations'
+
 
 
 function Settings(profile) {

@@ -7,17 +7,9 @@ import Auth from '../utils/auth';
 const LoginForm = () => {
     const [userFormData, setUserFormData] = useState({ email: '', password: '' });
     const [validated] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);
   
     const [login, { error }] = useMutation(LOGIN_USER);
   
-    // useEffect(() => {
-    //   if (error) {
-    //     setShowAlert(true);
-    //   } else {
-    //     setShowAlert(false);
-    //   }
-    // }, [error]);
   
     const handleInputChange = (event) => {
       const { name, value } = event.target;
@@ -26,19 +18,24 @@ const LoginForm = () => {
   
     const handleFormSubmit = async (event) => {
       event.preventDefault();
-  
-      const form = event.currentTarget;
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
+      console.log('submit')
+      // const form = event.currentTarget;
+      // if (form.checkValidity() === false) {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      // }
   
       try {
         const { data } = await login({
-          variables: { ...userFormData },
-        });
-        console.log('hey');
+
+          variables: { ...userFormData}
   
+        });
+        
+        console.log(data)
+        
+        console.log('done')
+
         Auth.login(data.login.token);
       } catch (e) {
         console.error(e);
@@ -53,7 +50,9 @@ const LoginForm = () => {
   
     return (
       <>
-        <form  onSubmit={handleFormSubmit}>
+        <form  noValidate 
+               validated={validated.toString()}
+               onSubmit={handleFormSubmit}>
           {/* <Alert
             dismissible
             onClose={() => setShowAlert(false)}

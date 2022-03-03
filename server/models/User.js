@@ -27,7 +27,7 @@ const userSchema = new Schema({
   ],
   online: {
     type: Boolean,
-    required: false
+    deafult: false
   },
   icon: {
     type: String, 
