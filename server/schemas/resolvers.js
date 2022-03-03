@@ -60,6 +60,11 @@ const resolvers = {
 
       const token = signToken(user);
 
+      await User.findOneAndUpdate(
+        {_id: user._id},
+        {$set: {online: true}},
+        {new: true});
+
       return { token, user };
     },
     addFriend: async (parent, { userId }, context) => {
