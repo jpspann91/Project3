@@ -45,7 +45,7 @@ function NavBar(props) {
 
     return (
 
-        <div className='fixed w-screen h-14 bg-neutral-800 px-4 py-3 flex justify-between  shadow-neutral-500'>
+        <div className='fixed w-screen h-14 bg-gradient-to-t from-neutral-800  to-neutral-700 px-4 py-3 flex justify-between  shadow-neutral-500'>
             <div className=' flex'>
                 {Auth.loggedIn && state.settings}
             </div>

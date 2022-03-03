@@ -15,7 +15,7 @@ function Settings(profile) {
 
         <div className='text-neutral-700 w-screen  grid content-start bg-white'>
             <div className='text-4xl font-medium py-5 px-4'>Settings</div>
-            <label className='px-4 text-lg font-semibold h-12 bg-neutral-100 flex items-center uppercase'>profile</label>
+            <label className='px-4 text-lg font-semibold h-12 bg-gradient-to-bl from-neutral-200 to-neutral-100 flex items-center uppercase'>profile</label>
             <div className='px-4 grid content-start content-start '>
                 <div className='flex text-2xl h-12 border-b flex justify-between items-center w-full  '>
                     <div className='mr-2 font-thin uppercase text-lg '>Username</div>
@@ -37,7 +37,7 @@ function Settings(profile) {
             </div>
             
             <div className='grid content-start'>
-            <label className='px-4 text-lg font-semibold bg-neutral-100 uppercase h-12 flex justify-start items-center'>General</label>
+            <label className='px-4 text-lg font-semibold bg-gradient-to-bl from-neutral-200 to-neutral-100 uppercase h-12 flex justify-start items-center'>General</label>
                 <div className='px-4 flex items-center justify-between text-2xl h-12 border-b text-lg'>
                     <div className='mr-2 font-normal'>Dark Mode</div>
                     <div className=' h-6 w-12 bg-neutral-700 rounded-full hover:cursor-pointer'>
