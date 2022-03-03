@@ -3,6 +3,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { Input } from 'antd';
 
 const LoginForm = () => {
     const [userFormData, setUserFormData] = useState({ email: '', password: '' });
@@ -50,7 +51,8 @@ const LoginForm = () => {
   
     return (
       <>
-        <form  noValidate 
+        <form className='px-4'  
+              noValidate 
                validated={validated.toString()}
                onSubmit={handleFormSubmit}>
           {/* <Alert
@@ -61,9 +63,9 @@ const LoginForm = () => {
           >
             Something went wrong with your login credentials!
           </Alert> */}
-          <div>
+          <div className='grid'>
             <label htmlFor="email">Email</label>
-            <input
+            <Input
               type="text"
               placeholder="Your email"
               name="email"
@@ -71,14 +73,11 @@ const LoginForm = () => {
               value={userFormData.email}
               required
             />
-            <div type="invalid">
-              What, no Email?
-            </div>
           </div>
   
           <div>
             <label htmlFor="password">Password</label>
-            <input
+            <Input
               type="password"
               placeholder="Your password"
               name="password"
@@ -86,16 +85,13 @@ const LoginForm = () => {
               value={userFormData.password}
               required
             />
-            <div type="invalid">
-              What, no passoword?
-            </div>
           </div>
-          <button
+          <button className='w-full mt-5 bg-neutral-700 text-white text-xl py-2 rounded-lg'
             disabled={!(userFormData.email && userFormData.password)}
             type="submit"
             variant="success"
           >
-            Submit
+            Login
           </button>
         </form>
       </>

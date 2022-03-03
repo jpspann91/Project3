@@ -5,12 +5,14 @@ import { ReactComponent as FriendsSVG } from './friends.svg'
 import { ReactComponent as CloseSVG } from './close.svg'
 import { ReactComponent as CloseLeftSVG } from './close-left.svg'
 import { ReactComponent as CloseRightSVG } from './close-right.svg'
+import Auth from '../../utils/auth';
 
 function NavBar(props) {
 
+
     const [state, setstate] = useState({
         settings: <SettingsSVG onClick={() => setState('settings')} className="fill-neutral-100 hover:cursor-pointer h-9 w-9" />,
-        friends: <FriendsSVG onClick={() => setState('friends')} className="fill-neutral-100 hover:cursor-pointer h-9 w-9" />,
+        friends: <FriendsSVG onClick={() => setState('friends')} className="stroke-neutral-100 hover:cursor-pointer h-9 w-9" />,
     })
 
     function setState(x) {
@@ -19,19 +21,19 @@ function NavBar(props) {
             case 'friends':
                 setstate({
                     settings: <SettingsSVG onClick={() => setState('settings')} className="fill-neutral-100 hover:cursor-pointer h-9 w-9" />,
-                    friends: <CloseRightSVG onClick={() => setState('games')} className="fill-neutral-100 hover:cursor-pointer h-9 w-9" />
+                    friends: <CloseLeftSVG onClick={() => setState('games')} className="stroke-neutral-100 hover:cursor-pointer h-9 w-9" />
                 })
                 break;
             case 'settings':
                 setstate({
-                    settings: <CloseLeftSVG onClick={() => setState('games')} className="fill-neutral-100 hover:cursor-pointer h-9 w-9" />,
-                    friends: <FriendsSVG onClick={() => setState('friends')} className="fill-neutral-100 hover:cursor-pointer h-9 w-9" />
+                    settings: <CloseRightSVG onClick={() => setState('games')} className="stroke-neutral-100 hover:cursor-pointer h-9 w-9" />,
+                    friends: <FriendsSVG onClick={() => setState('friends')} className="stroke-neutral-100 hover:cursor-pointer h-9 w-9" />
                 })
                 break;
             case 'games':
                 setstate({
                     settings: <SettingsSVG onClick={() => setState('settings')} className="fill-neutral-100 hover:cursor-pointer h-9 w-9" />,
-                    friends: <FriendsSVG onClick={() => setState('friends')} className="fill-neutral-100 hover:cursor-pointer h-9 w-9" />
+                    friends: <FriendsSVG onClick={() => setState('friends')} className="stroke-neutral-100 hover:cursor-pointer h-9 w-9" />
                 })
                 break;
 
@@ -45,11 +47,11 @@ function NavBar(props) {
 
         <div className='fixed w-screen h-14 bg-neutral-800 px-4 py-3 flex justify-between'>
             <div className=' flex'>
-                {state.settings}
+                {Auth.loggedIn && state.settings}
             </div>
             <p className='flex text-center text-3xl uppercase font-medium text-neutral-100'>Nexus</p>
             <div className=' flex'>
-                {state.friends}
+                {Auth.loggedIn && state.friends}
             </div>
 
         </div>
