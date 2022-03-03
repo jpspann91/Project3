@@ -21,7 +21,11 @@
     "password": "password02",
     "icon": "MKA",
     "fullName": "Max Kanat-Alexander",
-    "online": false
+    "online": false,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   },
   {
     "_id": "621d90a76742d2938ffd5a02",
@@ -30,7 +34,11 @@
     "password": "password03",
     "icon": "WTLS",
     "fullName": "Lucky Stiff",
-    "online": true
+    "online": true,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   },
   {
     "_id": "621d90a76742d2938ffd5a03",
@@ -39,7 +47,11 @@
     "password": "password04",
     "icon": "KB",
     "fullName": "Kent Beck",
-    "online": false
+    "online": false,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   },
   {
     "_id": "621d90a76742d2938ffd5a04",
@@ -48,7 +60,11 @@
     "password": "password05",
     "icon": "EVB",
     "fullName": "Edward V Berard",
-    "online": true
+    "online": true,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   },
   {
     "_id": "621d90a76742d2938ffd5a05",
@@ -57,7 +73,11 @@
     "password": "password06",
     "icon": "AK",
     "fullName": "Alan Kay",
-    "online": false
+    "online": false,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   },
   {
     "_id": "621d90a76742d2938ffd5a06",
@@ -66,7 +86,11 @@
     "password": "password07",
     "icon": "CAR.H",
     "fullName": "Carry Hoare",
-    "online": true
+    "online": true,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   },
   {
     "_id": "621d90a76742d2938ffd5a07",
@@ -75,7 +99,11 @@
     "password": "password08",
     "icon": "DT",
     "fullName": "David Thomas",
-    "online": false
+    "online": false,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   },
   {
     "_id": "621d90a76742d2938ffd5a08",
@@ -84,7 +112,11 @@
     "password": "password09",
     "icon": "DK",
     "fullName": "Donald Knuth",
-    "online": true
+    "online": true,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   },
   {
     "_id": "621d90a76742d2938ffd5a09",
@@ -93,7 +125,11 @@
     "password": "password10",
     "icon": "LRN",
     "fullName": "Larry Lantino",
-    "online": false
+    "online": false,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   },
   {
     "_id": "621d90a76742d2938ffd5a10",
@@ -102,6 +138,10 @@
     "password": "password123",
     "icon": "BB",
     "fullName": "Joseph Spann",
-    "online": true
+    "online": true,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02"
+    ]
   }
 ]
