@@ -126,24 +126,26 @@ export const UPDATE_FULL_NAME = gql`
 `;
 
 export const REMOVE_ACTIVE_MATCHES = gql`
-  mutation removeActiveMatches($activeMatches: ID!, $userId: ID!) {
-    removeActiveMatches(activeMatches: $activeMatches) {
+  mutation removeActiveMatches($activeMatches: String!, $userId: ID!, $matchId: ID!) {
+    removeActiveMatches(activeMatches: $activeMatches, userId: $userId, matchId: $matchId) {
       _id
       username
       match {
         activePlayer
+        matchId
       }
     }
   }
 `;
 
 export const ADD_ACTIVE_MATCHES = gql`
-  mutation addActiveMatches($activeMatches: ID!, $userId: ID!) {
-    addActiveMatches(activeMatches: $activeMatches) {
+  mutation addActiveMatches($activeMatches: String!, $userId: ID!, $matchId: ID!) {
+    addActiveMatches(activeMatches: $activeMatches, userId: $userId, matchId: $matchId) {
       _id
       username
       match {
         activePlayer
+        matchId
       }
     }
   }

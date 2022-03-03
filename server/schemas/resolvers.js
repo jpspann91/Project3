@@ -188,7 +188,7 @@ const resolvers = {
 
     //   throw new AuthenticationError('You need to be logged in!');
     // },
-    removeActiveMatches: async (parent, { userId, activematches }, context) => {
+    removeActiveMatches: async (parent, { userId, activeMatches }, context) => {
       if(userId) {
         const removeMatchesToUpdate = await User.findOne(userId);
 
@@ -203,13 +203,13 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    addActiveMatches: async (parent, { userId, activematches }, context) => {
+    addActiveMatches: async (parent, { userId, activeMatches }, context) => {
       if(userId) {
-        const addMatchesToUpdate = await User.findOne(userId);
+        const addMatchesToUpdate = await User.findById( userId );
 
         await User.updateOne(
           { _id: addMatchesToUpdate._id },
-          { $pull: {activeMatches: { _id: addMatchesToUpdate._id } }},
+          { $addToSet: {activeMatches: { _id: addMatchesToUpdate._id } }},
           { new: true }
         )
         
