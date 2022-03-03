@@ -97,12 +97,11 @@ export const UPDATE_PASSWORD = gql`
 export const UPDATE_ONLINE = gql`
   mutation updateOnline($online: Boolean! $userId: ID!) {
     updateOnline(userId: $userId, online: $online) {
-      user{
+
       _id
       username
       online
       }
-    }
   }
 `;
 
@@ -126,9 +125,21 @@ export const UPDATE_FULL_NAME = gql`
   }
 `;
 
-export const UPDATE_ACTIVE_MATCHES = gql`
-  mutation updateActiveMatches($activeMatches: ID!, $userId: ID!) {
-    updateActiveMatches(activeMatches: $activeMatches) {
+export const REMOVE_ACTIVE_MATCHES = gql`
+  mutation removeActiveMatches($activeMatches: ID!, $userId: ID!) {
+    removeActiveMatches(activeMatches: $activeMatches) {
+      _id
+      username
+      match {
+        activePlayer
+      }
+    }
+  }
+`;
+
+export const ADD_ACTIVE_MATCHES = gql`
+  mutation addActiveMatches($activeMatches: ID!, $userId: ID!) {
+    addActiveMatches(activeMatches: $activeMatches) {
       _id
       username
       match {

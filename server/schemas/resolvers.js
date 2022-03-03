@@ -2,6 +2,7 @@ const { User, Game, Match } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 const { ConnectionStates } = require('mongoose');
+// import Auth from '../../client/src/utils/auth'  
 
 
 const resolvers = {
@@ -144,7 +145,7 @@ const resolvers = {
     // },
     updateOnline: async (parent, { userId, online }, context) => {
       if(userId) {
-        const onlineToUpdate = await User.findById({ userId });
+        const onlineToUpdate = await User.findById( userId );
 
         await User.findOneAndUpdate(
           { _id: onlineToUpdate._id },
@@ -158,11 +159,11 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     updateIcon: async (parent, { userId, icon }, context) => {
-      if(context.user) {
-        const iconToUpdate = await User.findOne({ userId });
+      if(userId) {
+        const iconToUpdate = await User.findById( userId );
 
         await User.findOneAndUpdate(
-          { _id: context.user._id },
+          { _id: iconToUpdate._id },
           { $set: {icon: icon }},
           { new: true }
         )
@@ -187,17 +188,32 @@ const resolvers = {
 
     //   throw new AuthenticationError('You need to be logged in!');
     // },
-    updateActiveMatches: async (parent, { userId }, context) => {
-      if(context.user) {
-        const activeMatchesToUpdate = await User.findOne({ userId });
+    removeActiveMatches: async (parent, { userId, activematches }, context) => {
+      if(userId) {
+        const removeMatchesToUpdate = await User.findOne(userId);
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: {activeMatches: activeMatchesToUpdate._id }},
+        await User.updateOne(
+          { _id: removeMatchesToUpdate._id },
+          { $pull: {activeMatches: { _id: removeMatchesToUpdate._id } }},
           { new: true }
         )
         
-        return activeMatchesToUpdate
+        return removeMatchesToUpdate
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addActiveMatches: async (parent, { userId, activematches }, context) => {
+      if(userId) {
+        const addMatchesToUpdate = await User.findOne(userId);
+
+        await User.updateOne(
+          { _id: addMatchesToUpdate._id },
+          { $pull: {activeMatches: { _id: addMatchesToUpdate._id } }},
+          { new: true }
+        )
+        
+        return addMatchesToUpdate
       }
 
       throw new AuthenticationError('You need to be logged in!');
@@ -244,7 +260,7 @@ const resolvers = {
       return match
     },
     updateMatchGame: async (parent, {matchId, gameId}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       
       await Match.updateOne(
         {_id: matchToUpdate._id},
@@ -254,17 +270,17 @@ const resolvers = {
       return matchToUpdate
     },
     updateMatchStatus: async(parent, {matchId, status}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       
       await Match.updateOne(
         {_id: matchToUpdate._id},
-        {$set: {status: {status}}},
+        {$set: {status}},
         {new: true}
       )
       return matchToUpdate
     },
     updateMatchWinner: async(parent, {matchId, winner}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       const user = await User.findOne({username: winner})
 
       await Match.findOneAndUpdate(
@@ -275,7 +291,7 @@ const resolvers = {
       return matchToUpdate
     },
     updateMatchScore: async(parent, {matchId, score}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       
       await Match.updateOne(
         {_id: matchToUpdate._id},
@@ -295,7 +311,7 @@ const resolvers = {
       return matchToUpdate
     },
     updateMatchActivePlayer: async(parent, {matchId, username}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       const user = await User.findOne({username})
       
       await Match.findOneAndUpdate(
@@ -306,7 +322,7 @@ const resolvers = {
       return matchToUpdate
     },
     addMatchPlayer: async(parent, {matchId, userId}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       const user = await User.findById({userId});
       
       await Match.findOneAndUpdate(
@@ -317,7 +333,7 @@ const resolvers = {
       return matchToUpdate
     },
     removeMatchPlayer: async(parent, {matchId, userId}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       const user = await User.findById({userId});
       
       await Match.findOneAndUpdate(
