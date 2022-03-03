@@ -33,7 +33,7 @@ const LoginForm = () => {
         });
         
         console.log(data)
-        
+
         console.log('done')
 
         Auth.login(data.login.token);
@@ -86,9 +86,6 @@ const LoginForm = () => {
               value={userFormData.password}
               required
             />
-            <div type="invalid">
-              What, no passoword?
-            </div>
           </div>
           <button
             disabled={!(userFormData.email && userFormData.password)}
@@ -97,6 +94,7 @@ const LoginForm = () => {
           >
             Submit
           </button>
+        
         </form>
       </>
     );

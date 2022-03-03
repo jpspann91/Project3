@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 // import { Link } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
-import { QUERY_GAMES } from "../utils/queries";
+import { QUERY_GAMES} from "../utils/queries";
 // import { QUERY_USERS } from "../utils/queries";
 import Friends from "../components/friends-tab";
 
@@ -17,13 +17,15 @@ import Settings from "../components/settings-tab";
 import TestGame1 from "./games/TestGame1";
 import CreateMatch from "./CreateMatch";
 
-let profileData = {
-  id: "EG76J42",
-  icon: "JD",
-  fullName: "John Doe",
-  userName: "JonnyManiac",
-  online: false,
-};
+import Auth from '../utils/auth'
+
+// let profileData = {
+//   id: "EG76J42",
+//   icon: "JD",
+//   fullName: "John Doe",
+//   userName: "JonnyManiac",
+//   online: false,
+// };
 
 // import { useEffect, useState } from 'react';
 
@@ -31,6 +33,10 @@ const Home = () => {
   const history = useHistory();
   const match = useRouteMatch();
   const { loading, error, data } = useQuery(QUERY_GAMES);
+  
+  const profileData = Auth.getProfile().data.user;
+
+  console.log(profileData)
 
   if (loading) return "...loading";
   if (error) return <p>Error</p>;
