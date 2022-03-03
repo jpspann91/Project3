@@ -34,6 +34,8 @@ export const QUERY_USER = gql`
       friends{
         _id
         username
+        icon
+        online
       }
       online
       icon

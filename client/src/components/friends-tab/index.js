@@ -6,9 +6,25 @@ import { ReactComponent as SearchSVG } from "./search.svg";
 import seeds from "./friend-seed";
 import PendingContext from "../../PendingContext";
 import PendingMatchNotice from "../PendingMatchNotice";
+import { useQuery } from "@apollo/client";
+import { QUERY_USER } from "../../utils/queries";
+
+const activeUser = {
+  username: "BriKernighan",
+};
 
 function Friends() {
   const { pendingMatch } = useContext(PendingContext);
+  const { loading, error, data } = useQuery(QUERY_USER, {
+    variables: {
+      username: activeUser.username,
+    },
+  });
+
+  if (error) {
+    console.log(JSON.stringify(error, null, 2));
+    return error;
+  }
 
   console.log(pendingMatch);
 
@@ -19,9 +35,7 @@ function Friends() {
         className="text-dark w-screen grid content-start px-4 py-4 bg-white overflow-y-scroll pb-16"
       >
         <div className="grid content-between">
-          {pendingMatch.game.gameType && (
-            <PendingMatchNotice />
-          )}
+          {pendingMatch.game.gameType && <PendingMatchNotice />}
           <div className="text-4xl font-medium pb-5">Friends List</div>
           <div className="relative">
             <SearchSVG className="absolute stroke-dark h-full p-1" />
@@ -33,28 +47,31 @@ function Friends() {
             ></input>
           </div>
         </div>
+        {!loading && (
+          <>
+            <div className="my-5">
+              <div className="text-2xl font-medium pb-5">Online</div>
+              {data.user.friends
+                .filter((data) => data.online)
+                .map((data, index) => (
+                  // ! Online Players
+                  <FriendBanner data={data} key={index} />
+                ))}
+            </div>
 
-        <div className="my-5">
-          <div className="text-2xl font-medium pb-5">Online</div>
-          {seeds
-            .filter((data) => data.online)
-            .map((data, index) => (
-              // ! Online Players
-              <FriendBanner data={data} key={index} />
-            ))}
-        </div>
+            <hr className="mb-5"></hr>
 
-        <hr className="mb-5"></hr>
-
-        <div className="opacity-70">
-          <div className="text-2xl font-medium pb-5">Offline</div>
-          {seeds
-            .filter((data) => !data.online)
-            .map((data, index) => (
-              // ! Offline Players
-              <FriendBanner data={data} key={index} />
-            ))}
-        </div>
+            <div className="opacity-70">
+              <div className="text-2xl font-medium pb-5">Offline</div>
+              {data.user.friends
+                .filter((data) => !data.online)
+                .map((data, index) => (
+                  // ! Offline Players
+                  <FriendBanner data={data} key={index} />
+                ))}
+            </div>
+          </>
+        )}
       </div>
     </>
   );

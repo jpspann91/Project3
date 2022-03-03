@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PendingContext from '../../PendingContext';
 
 function FriendBanner(friendObject) {
+
+    const { pendingMatch, setPendingMatch } = useContext(PendingContext);
+
+    const startMatchHandler = () => {
+
+        if (pendingMatch.game.id) {
+
+        } else {
+            setPendingMatch(prevState => {
+                return {
+                    ...prevState,
+                    user: {
+                        
+                    }
+                }
+            })
+        }
+
+    }
 
     let inviteButton = undefined
 
 
     if (friendObject.data.online) {
-        inviteButton = <button className='bg-neutral-700 px-4 py-3  rounded-md font-medium text-white text-xs'>INVITE</button>
+        inviteButton = <button onClick={startMatchHandler} className='bg-neutral-700 px-4 py-3  rounded-md font-medium text-white text-xs'>INVITE</button>
     }
 
     return (
