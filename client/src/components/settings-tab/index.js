@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { QUERY_ME } from '../../utils/mutations'
 import Auth from '../../utils/auth'
+
 
 
 
@@ -30,6 +32,7 @@ function Settings(profile) {
                 <div className='flex text-2xl h-12 flex justify-between items-center w-full pr-2'>
                     <div className='mr-2 font-thin uppercase text-lg'>ID#</div>
                     <div className='font-thin'>{user._id}</div>
+
                 </div>
             </div>
             

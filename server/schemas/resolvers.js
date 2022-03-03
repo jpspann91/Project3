@@ -23,8 +23,8 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    matches: async (parent, {userId}) => {
-      return await Match.find({userId}).populate(['game', 'winner','activePlayer','players'])
+    matches: async (parent) => {
+      return await Match.find().populate(['game', 'winner','activePlayer','players'])
     },
     match: async (parent, {matchId}) => {
       return Match.findById(matchId).populate(['game', 'winner','activePlayer','players'])
@@ -58,6 +58,11 @@ const resolvers = {
       }
 
       const token = signToken(user);
+
+      await User.findOneAndUpdate(
+        {_id: user._id},
+        {$set: {online: true}},
+        {new: true});
 
       return { token, user };
     },

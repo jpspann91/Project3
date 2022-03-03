@@ -22,13 +22,13 @@ const SignupForm = () => {
 
     const [addUser, { error}] = useMutation(ADD_USER);
 
-    // useEffect(() => {
-    //     if (error) {
-    //         setShowAlert(true);
-    //     } else {
-    //         setShowAlert(false);
-    //     }
-    // }, [error])
+    useEffect(() => {
+        if (error) {
+            setShowAlert(true);
+        } else {
+            setShowAlert(false);
+        }
+    }, [error])
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -38,7 +38,7 @@ const SignupForm = () => {
     const handleFormSubmit = async (event) => {
         console.log('submit')
 
-        // const form = event.currentTarget;
+        console.log(event.currentTarget);
         // if (form.checkValidity() !== false) {
         //     event.preventDefault();
         //     event.stopPropagation();
@@ -111,6 +111,7 @@ const SignupForm = () => {
                         onChange={handleInputChange}
                         value={userFormData.fullName}
                         required />
+
                 </div>
                 <div className='w-full grid'>
                 <button className='bg-neutral-700 text-white my-5 px-8 text-md w-full py-2 rounded-lg' type="primary" htmltype="submit"
@@ -132,6 +133,7 @@ const SignupForm = () => {
                 </div>
 
             </form>
+
         </>
     );
 };

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ReactComponent as MenuSVG } from './menu.svg'
 import { ReactComponent as SettingsSVG } from './settings.svg'
@@ -37,11 +38,63 @@ function NavBar(props) {
                 })
                 break;
 
-            default:
-                break;
-        }
 
+  function setState(x) {
+    props.handlePageState(x);
+    switch (x) {
+      case "friends":
+        setstate({
+          settings: (
+            <SettingsSVG
+              onClick={() => setState("settings")}
+              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
+            />
+          ),
+          friends: (
+            <CloseRightSVG
+              onClick={() => setState("games")}
+              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
+            />
+          ),
+        });
+        break;
+      case "settings":
+        setstate({
+          settings: (
+            <CloseLeftSVG
+              onClick={() => setState("games")}
+              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
+            />
+          ),
+          friends: (
+            <FriendsSVG
+              onClick={() => setState("friends")}
+              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
+            />
+          ),
+        });
+        break;
+      case "games":
+        setstate({
+          settings: (
+            <SettingsSVG
+              onClick={() => setState("settings")}
+              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
+            />
+          ),
+          friends: (
+            <FriendsSVG
+              onClick={() => setState("friends")}
+              className="fill-neutral-100 hover:cursor-pointer h-9 w-9"
+            />
+          ),
+        });
+        break;
+
+      default:
+        break;
     }
+  }
 
     return (
 
@@ -54,8 +107,10 @@ function NavBar(props) {
                 {Auth.loggedIn && state.friends}
             </div>
 
-        </div>
-    );
+
+      <div className=" flex">{state.friends}</div>
+    </div>
+  );
 }
 
 export default NavBar;

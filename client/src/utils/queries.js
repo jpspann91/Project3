@@ -99,12 +99,17 @@ export const QUERY_SINGLE_GAME = gql`
 `;
 
 export const QUERY_MATCHES = gql`
-  query getMatches($username: String!){
-    matches(username: $username){
+  query getMatches {
+    matches{
       _id
-      game
+      game {
+        _id
+        gameType
+        ruleSet
+        icon
+        path
+      }
       status
-      winner
       score
       gameBoard
       activePlayer{

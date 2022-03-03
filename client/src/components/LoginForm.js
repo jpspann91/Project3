@@ -34,7 +34,7 @@ const LoginForm = () => {
         });
         
         console.log(data)
-        
+
         console.log('done')
 
         Auth.login(data.login.token);
@@ -93,6 +93,7 @@ const LoginForm = () => {
           >
             Login
           </button>
+        
         </form>
       </>
     );
