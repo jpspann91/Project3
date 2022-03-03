@@ -19,13 +19,13 @@ import CreateMatch from "./CreateMatch";
 
 import Auth from '../utils/auth'
 
-// let profileData = {
-//   id: "EG76J42",
-//   icon: "JD",
-//   fullName: "John Doe",
-//   userName: "JonnyManiac",
-//   online: false,
-// };
+let profileData = {
+  _id: "EG76J42",
+  icon: "JD",
+  fullName: "John Doe",
+  username: "JonnyManiac",
+  online: false,
+};
 
 // import { useEffect, useState } from 'react';
 
@@ -34,9 +34,9 @@ const Home = () => {
   const match = useRouteMatch();
   const { loading, error, data } = useQuery(QUERY_GAMES);
   
-  const profileData = Auth.getProfile().data.user;
+  const userData = Auth.getProfile().data;
 
-  console.log(profileData)
+  console.log(userData)
 
   if (loading) return "...loading";
   if (error) return <p>Error</p>;
