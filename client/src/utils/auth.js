@@ -5,6 +5,8 @@ class AuthService {
     return decode(this.getToken());
   }
 
+  
+
   loggedIn() {
     const token = this.getToken();
     // If there is a token and it's not expired, return `true`

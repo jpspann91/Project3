@@ -66,12 +66,11 @@ const Home = () => {
     <div className="h-full w-full flex">
       <Settings data={profileData} />
       <Router>
-        <div className="w-screen grid content-start justify-center mt-5 overflow-y-scroll">
+        <div className="w-screen grid content-start justify-center mt-5 overflow-y-scroll pb-16">
           <PendingMatchNotice />
           <Switch>
             <Route exact path={`${match.path}`}>
               <MatchList />
-              <hr className="my-5" />
               <GamesList />
             </Route>
             <Route path={`${match.path}games/tictactoe/:matchId?`}>

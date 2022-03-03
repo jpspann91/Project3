@@ -1,5 +1,6 @@
 const { User, Game, Match } = require('../models');
 const { signToken } = require('../utils/auth');
+// const {}
 const { AuthenticationError } = require('apollo-server-express');
 
 
@@ -134,27 +135,28 @@ const resolvers = {
       return match
     },
     updateMatchGame: async (parent, {matchId, gameId}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
+      const game = await Game.findById(gameId)
       
       await Match.updateOne(
         {_id: matchToUpdate._id},
-        {$set: {game: {gameId}}},
+        {$set: {game}},
         {new: true}
       )
       return matchToUpdate
     },
     updateMatchStatus: async(parent, {matchId, status}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       
       await Match.updateOne(
         {_id: matchToUpdate._id},
-        {$set: {status: {status}}},
+        {$set: {status}},
         {new: true}
       )
       return matchToUpdate
     },
     updateMatchWinner: async(parent, {matchId, winner}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       const user = await User.findOne({username: winner})
 
       await Match.findOneAndUpdate(
@@ -165,11 +167,11 @@ const resolvers = {
       return matchToUpdate
     },
     updateMatchScore: async(parent, {matchId, score}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       
       await Match.updateOne(
         {_id: matchToUpdate._id},
-        {$set: {score: {score}}},
+        {$set: {score}},
         {new: true}
       )
       return matchToUpdate
@@ -185,7 +187,7 @@ const resolvers = {
       return matchToUpdate
     },
     updateMatchActivePlayer: async(parent, {matchId, username}) =>{
-      const matchToUpdate = await Match.findById({matchId})
+      const matchToUpdate = await Match.findById(matchId)
       const user = await User.findOne({username})
       
       await Match.findOneAndUpdate(
@@ -196,19 +198,19 @@ const resolvers = {
       return matchToUpdate
     },
     addMatchPlayer: async(parent, {matchId, userId}) =>{
-      const matchToUpdate = await Match.findById({matchId})
-      const user = await User.findById({userId});
+      const matchToUpdate = await Match.findById(matchId)
+      const user = await User.findById(userId);
       
       await Match.findOneAndUpdate(
         {_id: matchToUpdate._id},
-        {$addToSet: {players: user}},
+        {$addToSet: {players: {...user}}},
         {new: true}
       )
       return matchToUpdate
     },
     removeMatchPlayer: async(parent, {matchId, userId}) =>{
-      const matchToUpdate = await Match.findById({matchId})
-      const user = await User.findById({userId});
+      const matchToUpdate = await Match.findById(matchId)
+      const user = await User.findById(userId);
       
       await Match.findOneAndUpdate(
         {_id: matchToUpdate._id},

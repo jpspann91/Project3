@@ -15,53 +15,69 @@ const GameCard = ({
   const history = useHistory();
   const { setPendingMatch } = useContext(PendingContext);
 
-
   const buttonClickHandler = (e) => {
-
     if (type === "match") {
-      return history.push(path)
+      return history.push(path);
     } else {
-      setPendingMatch(prevState => {
+      setPendingMatch((prevState) => {
         return {
           ...prevState,
           game: {
             id: _id,
-            gameType
-          }
-        }
-      })
+            gameType,
+          },
+        };
+      });
     }
-
-  }
+  };
 
   console.log(path);
   return (
-    <div className="w-screen px-4 mb-5">
-      <div className="px-4 pb-4 pt-3  bg-neutral-200 rounded-md flex justify-between">
-        <div className="grid content-between">
+    <div>
+      <div className="w-screen px-4 my-2 h-20">
+        <div className=" pb-4 flex justify-between">
           <div>
-            <div className="text-2xl">{gameType}</div>
-            <div className="flex">
-              <div className="text-lg font-thin uppercase mr-2">
-                {opponent ? `Vs. ${opponent}` : ruleSet}
+            <img
+              className="w-20 h-auto"
+              src={`/gameIcons/${icon}`}
+              alt={gameType}
+            />
+          </div>
+          <div className="flex">
+            <div>
+              <div className="text-2xl font-normal text-center">{gameType}</div>
+              <div>
+                <div className="text-sm font-normal uppercase mr-2">
+                  {opponent ? (
+                    <>
+                      <div>
+                        <div className="text-center font-thin">VS.</div>
+                        <div>{opponent}</div>
+                      </div>
+                    </>
+                  ) : (
+                    ruleSet
+                  )}
+                </div>
               </div>
             </div>
+            <div className="flex justify-between w-full ">
+              <button
+                className="bg-neutral-800 text-xl text-white px-16 py-2 rounded-sm"
+                onClick={buttonClickHandler}
+              >
+                {opponent ? "Continue" : "Play"}
+              </button>
+            </div>
           </div>
-          <div className="flex justify-between w-full ">
+          <div className="flex justify-between">
             <button
-              className="bg-neutral-800 text-xl text-white px-16 py-2 rounded-sm"
-              onClick={buttonClickHandler}
+              className="bg-neutral-700 text-md uppercase text-white h-20 w-28 px-4 py-2 rounded-sm"
+              onClick={() => history.push(path)}
             >
-              {opponent ? "Continue" : "Play"}
+              {opponent ? "Continue" : "Start"}
             </button>
           </div>
-        </div>
-        <div>
-          <img
-            className="w-32 h-auto"
-            src={`/gameIcons/${icon}`}
-            alt={gameType}
-          />
         </div>
       </div>
     </div>

@@ -29,7 +29,7 @@ const GamesList = (props) => {
 
   return (
     <div>
-      <h2 className="text-2xl text-center">All Games</h2>
+      <h2 className="text-2xl text-center  text-neutral-700 bg-neutral-100 my-5 py-2">Games</h2>
       {getGameCards()}
     </div>
   );

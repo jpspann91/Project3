@@ -145,7 +145,7 @@ const TicTacToe = (props) => {
     let rows = [];
     for (let i = 0; i < 3; i++) {
       const row = (
-        <Row key={i}>
+        <Row className="w-full grid content-center justify-center" key={i}>
           {gameBoard[i].map((value, j) => getGameSquare(value, i, j))}
         </Row>
       );
@@ -153,26 +153,25 @@ const TicTacToe = (props) => {
       rows.push(row);
     }
 
-    return <Card>{rows}</Card>;
+    return <div className="py-4">{rows}</div>;
   };
 
   const getGameSquare = (value, row, col) => {
     const squareClickHandler = () => {
       if (value !== " " || gameState === "ended") {
-        return () => {};
+        return () => { };
       } else {
         return setSquareValue(row, col);
       }
     };
 
     return (
-      <Button
+      <button className="w-24 h-24 border-2 text-5xl text-neutral-700"
         onClick={squareClickHandler}
         key={row * 3 + col}
-        style={{ width: 50, height: 50 }}
       >
         {value}
-      </Button>
+      </button>
     );
   };
 
@@ -194,32 +193,55 @@ const TicTacToe = (props) => {
   const getPlayerCards = () => {
     return data.match.players.map((player, index) => {
       return (
-        <Card key={index}>
-          <h3>Player {index + 1}</h3>
-          <p>{player.username}</p>
-          <p>{player._id}</p>
-        </Card>
+        <div className="p-5 w-3/6 text-center" key={index}>
+          <div className="text-lg font-semibold">Player {index === 0 ? 'X' : 'O'}</div>
+          <div className="text-xl font-thin">{player.username}</div>
+        </div>
       );
     });
   };
-
   return (
     <>
       {loading && <p>Loading</p>}
       {!loading && (
         <div>
-          <Card
-            title={`Tic Tac Toe | Game ${matchId}`}
-            className={styles.board}
-          >
-            {gameState?.winner && <h2>{gameState.winner} Wins</h2>}
-            {gameState?.status === "draw" && <h2>Draw</h2>}
+          <div title={`Tic Tac Toe`} className={styles.board}>
+            <div className="grid justify-center content-center text-center">
+              <div className="text-4xl">Tic Tac Toe</div>
+              <div className="text-neutral-400">{matchId}</div>
+            </div>
+            {gameState?.winner &&
+              <>
+                <div style={{
+                  height: window.innerHeight,
+                  width: window.innerWidth,
+                  transform: `translateX(${window.innerWidth}px)`,
+                }} className="absolute animate-blur top-0 left-0  z-40 grid content-center justify-center text-5xl pb-24">
+                  {gameState.winner} Wins
+                </div>
+              </>
+            }
+            {gameState?.status === "draw" &&
+              <>
+                <div style={{
+                  height: window.innerHeight,
+                  width: window.innerWidth,
+                  transform: `translateX(${window.innerWidth}px)`,
+                }} className="absolute animate-blur top-0 left-0  z-40 grid content-center justify-center text-5xl pb-24 italic">
+                  Draw
+                </div>
+              </>}
             <div style={gameState?.status !== "ongoing" ? styles.disabled : {}}>
               {renderGameBoard()}
             </div>
-            <Button onClick={saveGameState}>Save</Button>
-          </Card>
-          {getPlayerCards()}
+          </div>
+          <div className="flex justify-between">
+            {getPlayerCards()}
+          </div>
+          <button className="font-thin w-full bg-gradient-to-t from-emerald-500  to-emerald-400 text-xl text-white py-2 rounded-sm" onClick={saveGameState}>
+            Notify {data.match.activePlayer.username === data.match.players[0].username ? data.match.players[1].username : data.match.players[0].username}
+          </button>
+
         </div>
       )}
     </>

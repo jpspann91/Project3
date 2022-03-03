@@ -11,6 +11,7 @@ module.exports = {
         rightClose: 'rightClose .15s forwards',
         slidefarR: 'slidefarR .3s forwards',
         slidefarL: 'slidefarL .3s forwards',
+        blur: 'blur 1s forwards'
       },
       keyframes: {
         fadeIn: {
@@ -44,6 +45,10 @@ module.exports = {
         rightClose: {
           from: { transform: 'translateX(-200vw)' },
           to: { transform: 'translateX(-100vw)' },
+        },
+        blur: {
+          from: { backdropFilter: 'blur(0px)', opacity: '0' },
+          to: { backdropFilter: 'blur(4px)', opacity:'1' },
         },
       },
     },
