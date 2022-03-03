@@ -44,7 +44,7 @@ type Query {
   games(username: String): [Game] 
   game(gameId: ID!): Game
   me: User
-  matches(username: String!): [Match]
+  matches: [Match]
   match(matchId: ID!): Match
 }
 
