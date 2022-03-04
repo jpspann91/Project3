@@ -5,7 +5,7 @@
     "email": "bkernighan@techfriends.dev",
     "password": "password01",
     "icon": "BK",
-    "fullName": "Brian Kernighan",
+    "fullName": "Kernighan",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -16,11 +16,11 @@
   },
   {
     "_id": "621d90a76742d2938ffd5a01",
-    "username": "MKanatAlexander",
+    "username": "Alexander",
     "email": "mkanatalexander@techfriends.dev",
     "password": "password02",
     "icon": "MKA",
-    "fullName": "Max Kanat-Alexander",
+    "fullName": "Alexander",
     "online": false,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -29,7 +29,7 @@
   },
   {
     "_id": "621d90a76742d2938ffd5a02",
-    "username": "Why The Lucky Stiff",
+    "username": "Stiff",
     "email": "wtls@techfriends.dev",
     "password": "password03",
     "icon": "WTLS",
@@ -59,7 +59,7 @@
     "email": "evberard@techfriends.dev",
     "password": "password05",
     "icon": "EVB",
-    "fullName": "Edward V Berard",
+    "fullName": "Berard",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -85,7 +85,7 @@
     "email": "choare@techfriends.dev",
     "password": "password07",
     "icon": "CAR.H",
-    "fullName": "Carry Hoare",
+    "fullName": "Hoare",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -98,7 +98,7 @@
     "email": "dthomas@techfriends.dev",
     "password": "password08",
     "icon": "DT",
-    "fullName": "David Thomas",
+    "fullName": "Thomas",
     "online": false,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -111,7 +111,7 @@
     "email": "dknuth@techfriends.dev",
     "password": "password09",
     "icon": "DK",
-    "fullName": "Donald Knuth",
+    "fullName": "Knuth",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -124,7 +124,7 @@
     "email": "lernantino@techfriends.dev",
     "password": "password10",
     "icon": "LRN",
-    "fullName": "Larry Lantino",
+    "fullName": "Lantino",
     "online": false,
     "friends": [
       "621d90a76742d2938ffd5a01",
