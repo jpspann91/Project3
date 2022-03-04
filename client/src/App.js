@@ -14,6 +14,7 @@ import LoginForm from './components/LoginForm.js';
 import SignupForm from './components/SignupForm.js'
 import Profile from './pages/Profile.js'
 import NavBar from "./components/nav/Navbar";
+import Logo from './components/logo';
 
 import 'antd/dist/antd.css';
 
@@ -98,6 +99,9 @@ function App() {
               </Route>
               <Route path="/login">
                 <LoginForm />
+              </Route>
+              <Route path="/logo">
+                <Logo  />
               </Route>
               <Route path="/">
                 <Home  />

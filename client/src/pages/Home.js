@@ -66,8 +66,7 @@ const Home = () => {
     <div className="h-full w-full flex">
       <Settings data={profileData} />
       <Router>
-        <div className="w-screen grid content-start justify-center mt-5 overflow-y-scroll pb-16">
-          <PendingMatchNotice />
+        <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
           <Switch>
             <Route exact path={`${match.path}`}>
               <MatchList />
