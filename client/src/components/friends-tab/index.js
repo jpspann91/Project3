@@ -1,16 +1,10 @@
 import React, { useContext } from "react";
 import FriendBanner from "./FriendBanner";
 import { ReactComponent as SearchSVG } from "./search.svg";
-import FriendBanner from './FriendBanner';
-import { ReactComponent as SearchSVG } from './search.svg'
 import Auth from '../../utils/auth'
 import { useQuery } from "@apollo/client";
-
-
-// ! temporary seeding
 import PendingContext from "../../PendingContext";
 import PendingMatchNotice from "../PendingMatchNotice";
-import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../../utils/queries";
 
 const activeUser = {
