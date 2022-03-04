@@ -11,7 +11,11 @@ module.exports = {
         rightClose: 'rightClose .15s forwards',
         slidefarR: 'slidefarR .3s forwards',
         slidefarL: 'slidefarL .3s forwards',
-        blur: 'blur 1s forwards'
+        blur: 'blur 1s forwards',
+        xup: 'xup 1s forwards',
+        xdown: 'xdown 1s forwards',
+        neSlide: 'neSlide 1s forwards',
+        usSlide: 'usSlide 1s forwards',
       },
       keyframes: {
         fadeIn: {
@@ -50,6 +54,23 @@ module.exports = {
           from: { backdropFilter: 'blur(0px)', opacity: '0' },
           to: { backdropFilter: 'blur(4px)', opacity:'1' },
         },
+        xup: {
+          from: {transform: 'translateY(1em) rotate(180deg) scale(0)',},
+          to: { transform: 'translateY(0em) rotate(180deg) scale(1)' },
+        },
+        xdown: {
+          from: {transform: 'translateY(-1em) rotate(0deg) scale(0)'},
+          to: { transform: 'translateY(0em) rotate(0deg) scale(1)' },
+        },
+        neSlide: {
+          from: {transform: 'translateX(-1em)', opacity: 0},
+          to: { transform: 'translateX(0em)', opacity: 1 },
+        },
+        usSlide: {
+          from: {transform: 'translateX(1em)', opacity: 0},
+          to: { transform: 'translateX(0em)', opacity: 1 },
+        },
+
       },
     },
   },
