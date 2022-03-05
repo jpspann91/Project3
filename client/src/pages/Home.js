@@ -33,27 +33,8 @@ const Home = () => {
   
   const contextValue = useMemo(
     () => ({ pendingMatch, setPendingMatch }), 
-    [pendingMatch]
-  )
-  // const [pendingGame, setPendingGame] = useState({
-  //   id: '',
-  //   name: '',
-  // });
-  // const [pendingOpponent, setPendingOpponent] = useState({
-  //   id: '',
-  //   username: '',
-  // });
+    [pendingMatch])
 
-  // const handlePendingGame = (game) => {
-  //   setPendingMatch(prevState => {
-  //     return {
-  //       ...prevState,
-  //       id: game._id,
-  //       name: game.gameType,
-  //     }
-  //   })
-  // }
-  }
   return (
     <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
