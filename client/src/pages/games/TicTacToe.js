@@ -55,7 +55,11 @@ const TicTacToe = (props) => {
     console.log(matchData);
     // Fetch game data from data base
     // TODO create backend route to fetch
-    const loadedGameBoard = readSavedBoard(matchData.gameBoard);
+    let loadedGameBoard;
+    if (matchData.gameBoard !== "") {
+      loadedGameBoard = readSavedBoard(matchData.gameBoard);
+    }
+    
     const loadedActiveUser = "";
     const loadedGameState = "";
 
@@ -195,7 +199,7 @@ const TicTacToe = (props) => {
       return (
         <div className="p-5 w-3/6 text-center" key={index}>
           <div className="text-lg font-semibold">Player {index === 0 ? 'X' : 'O'}</div>
-          <div className="text-xl font-thin">{player.username}</div>
+          <div className="text-xl font-thin">{player?.username}</div>
         </div>
       );
     });
@@ -219,6 +223,7 @@ const TicTacToe = (props) => {
                 }} className="absolute animate-blur top-0 left-0  z-40 grid content-center justify-center text-5xl pb-24">
                   {gameState.winner} Wins
                 </div>
+                 {/* <a className="w-12 h-8 bg-green-500" href='/'>Return</a> */}
               </>
             }
             {gameState?.status === "draw" &&
@@ -239,7 +244,7 @@ const TicTacToe = (props) => {
             {getPlayerCards()}
           </div>
           <button className="font-thin w-full bg-gradient-to-t from-emerald-500  to-emerald-400 text-xl text-white py-2 rounded-sm" onClick={saveGameState}>
-            Notify {data.match.activePlayer.username === data.match.players[0].username ? data.match.players[1].username : data.match.players[0].username}
+            Notify {data.match.activePlayer?.username === data.match.players[0]?.username ? data.match.players[1]?.username : data.match.players[0]?.username}
           </button>
 
         </div>

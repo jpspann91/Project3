@@ -9,7 +9,9 @@
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
-      "621d90a76742d2938ffd5a02"
+      "621d90a76742d2938ffd5a02",
+      "621d90a76742d2938ffd5a09",
+      "621d90a76742d2938ffd5a10"
     ],
     "activeMatches": [],
     "pastMatches": []
@@ -142,6 +144,22 @@
     "friends": [
       "621d90a76742d2938ffd5a01",
       "621d90a76742d2938ffd5a02"
+    ]
+  },
+  {
+    "_id": "621d90a76742d2938ffd5a11",
+    "username": "tester1",
+    "email": "test@test.com",
+    "password": "12341234",
+    "icon": "TT",
+    "fullName": "Tester Testson",
+    "online": true,
+    "friends": [
+      "621d90a76742d2938ffd5a01",
+      "621d90a76742d2938ffd5a02",
+      "621d90a76742d2938ffd5a03",
+      "621d90a76742d2938ffd5a04",
+      "621d90a76742d2938ffd5a05"
     ]
   }
 ]

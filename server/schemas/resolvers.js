@@ -2,6 +2,8 @@ const { User, Game, Match } = require('../models');
 const { signToken } = require('../utils/auth');
 // const {}
 const { AuthenticationError } = require('apollo-server-express');
+const { ConnectionStates } = require('mongoose');
+// import Auth from '../../client/src/utils/auth'  
 
 
 const resolvers = {
@@ -80,14 +82,14 @@ const resolvers = {
     },
     addFriend: async (parent, { userId }, context) => {
       if (context.user) {
-        const friendToAdd = await User.findOne({ userId })
+        const friendToAdd = await User.findOne({ _id: userId })
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { friends: friendToAdd._id } },
+          { $addToSet: { friends: userId } },
           { new: true, runValidators: true }
         );
-
+          console.log(friendToAdd)
         return friendToAdd
       }
       throw new AuthenticationError('You need to be logged in!');
@@ -107,6 +109,130 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+    // updateUsername: async (parent, { userId }, context) => {
+    //   if (context.user) {
+    //     const usernameToUpdate = await User.findOne({ _id: userId });
+    //     const newName = ''
+
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $rename: { userername: usernameToUpdate.newName }},
+    //       { new: true }
+    //     )
+
+    //     return usernameToUpdate 
+    //   }
+
+    //   throw new AuthenticationError('You need to be logged in!');
+    //  },
+    // updateEmail: async (parent, { userId }, context) => {
+    //   if(context.user) {
+    //     const emailToUpdate = await User.findOne({ userId });
+
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: {email: emailToUpdate._id }},
+    //       { new: true }
+    //     )
+
+    //     return emailToUpdate 
+    //   }
+
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
+    // updatePassword: async (parent, { userId }, context) => {
+    //   if(context.user) {
+    //     const passwordToUpdate = await User.findOne({ userId });
+
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: {passord: passwordToUpdate._id }},
+    //       { new: true }
+    //     )
+
+    //     return passwordToUpdate
+    //   }
+
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
+    updateOnline: async (parent, { userId, online }, context) => {
+      if(userId) {
+        const onlineToUpdate = await User.findById( userId );
+
+        await User.findOneAndUpdate(
+          { _id: onlineToUpdate._id },
+          { $set: { online }},
+          { new: true }
+        )
+
+        return onlineToUpdate
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateIcon: async (parent, { userId, icon }, context) => {
+      if(userId) {
+        const iconToUpdate = await User.findById( userId );
+
+        await User.findOneAndUpdate(
+          { _id: iconToUpdate._id },
+          { $set: {icon: icon }},
+          { new: true }
+        )
+
+        return iconToUpdate
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    // updateFullName: async (parent, { userId }, context) => {
+    //   if(context.user) {
+    //     const fullNameToUpdate = await User.findOne({ userId });
+
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: {icon: fullNameToUpdate._id }},
+    //       { new: true }
+    //     )
+
+    //     return fullNameToUpdate
+    //   }
+
+    //   throw new AuthenticationError('You need to be logged in!');
+    // },
+    removeActiveMatches: async (parent, { userId, activeMatches }, context) => {
+      if(userId) {
+        const removeMatchesToUpdate = await User.findOne(userId);
+
+        await User.updateOne(
+          { _id: removeMatchesToUpdate._id },
+          { $pull: {activeMatches: { _id: removeMatchesToUpdate._id } }},
+          { new: true }
+        )
+        
+        return removeMatchesToUpdate
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addActiveMatches: async (parent, { userId, activeMatches }, context) => {
+      if(userId) {
+        const addMatchesToUpdate = await User.findById( userId );
+
+        await User.updateOne(
+          { _id: addMatchesToUpdate._id },
+          { $addToSet: {activeMatches: { _id: addMatchesToUpdate._id } }},
+          { new: true }
+        )
+        
+        return addMatchesToUpdate
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    
+
+
 
     //GAME MUTATIONS ******************
     addGame: async (parent, {gameType, ruleSet}) => {
@@ -141,13 +267,14 @@ const resolvers = {
 
       const extractedParams = JSON.parse(params);
 
+      console.log(extractedParams)
+
       const match = await Match.create(extractedParams);
 
       return match
     },
     updateMatchGame: async (parent, {matchId, gameId}) =>{
       const matchToUpdate = await Match.findById(matchId)
-      const game = await Game.findById(gameId)
       
       await Match.updateOne(
         {_id: matchToUpdate._id},

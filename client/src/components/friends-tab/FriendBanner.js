@@ -1,8 +1,65 @@
-import React from 'react';
+import { useMutation } from '@apollo/client';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import PendingContext from '../../PendingContext';
+import Auth from '../../utils/auth';
+import { ADD_MATCH } from '../../utils/mutations';
+import { getObjectID } from '../../utils/utils';
 
 function FriendBanner(friendObject) {
+    let currentUser = Auth.getProfile().data;
+    const history = useHistory();
+    const { pendingMatch, setPendingMatch } = useContext(PendingContext);
+    const [ startMatch ] = useMutation(ADD_MATCH);
+
+    const startMatchHandler =  async () => {
+
+        if (pendingMatch.game.id) {
+
+            const matchId = getObjectID();
+            console.log(matchId);
+
+            await startMatch({
+                variables: {
+                params: JSON.stringify({
+                    _id: matchId,
+                    game: pendingMatch.game.id,
+                    status: "ongoing",
+                    winner: null,
+                    score: "0-0",
+                    gameBoard: "",
+                    players: [currentUser._id, friendObject.data._id],
+                    activePlayer: currentUser._id,
+                }),
+                },
+            });
+
+            history.push(`${pendingMatch.game.path}/${matchId}`);
+
+            setPendingMatch({
+                user: {},
+                game: {},
+            });
+
+        } else {
+            setPendingMatch(prevState => {
+                return {
+                    ...prevState,
+                    user: {
+                        ...friendObject.data,
+                    }
+                }
+            })
+        }
+
+    }
+
+    let inviteButton;
 
 
+    if (friendObject.data.online) {
+        inviteButton = <button onClick={startMatchHandler} className='bg-neutral-700 px-4 py-3  rounded-md font-medium text-white text-xs'>INVITE</button>
+    }
 
     return (
 
@@ -26,11 +83,11 @@ function FriendBanner(friendObject) {
                     <div className='text-xs'>{friendObject.data.fullName}</div>
                     </div>
 
-                        <div className='opacity-50 text-sm'>#{friendObject.data.id}</div>
+                        <div className='opacity-50 text-sm'>#{friendObject.data._id}</div>
                 </div>
             </div>
 
-            <button className='bg-gradient-to-t from-blue-500  to-blue-400 px-4 py-3  rounded-md font-medium text-white text-xs'>Challenge</button>
+            <button onClick={startMatchHandler} className='bg-gradient-to-t from-blue-500  to-blue-400 px-4 py-3  rounded-md font-medium text-white text-xs'>Challenge</button>
 
         </div>
     );
