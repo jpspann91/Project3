@@ -1,15 +1,27 @@
 
 import React, { useState, useEffect } from 'react';
-import { QUERY_ME } from '../../utils/mutations'
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_USER } from '../../utils/queries'
 import Auth from '../../utils/auth'
 
 
 
 
-function Settings(profile) {
+function Settings() {
 
-    let user = Auth.getProfile().data.user
+    let user = Auth.getProfile().data
+
     console.log(user);
+
+    const { loading, error, data } = useQuery(QUERY_USER, {
+        variables: {
+          username: user.username
+        }
+      });
+
+    let x = {...data};
+    console.log({...x})
+
 
     return (
 
