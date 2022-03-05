@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { QUERY_GAMES } from "../../utils/queries";
 import GameCard from "../GameCard";
+import {ReactComponent as Arrow} from '../arrow.svg'
 
 const GamesList = (props) => {
   const { loading, error, data } = useQuery(QUERY_GAMES);
@@ -28,7 +29,10 @@ const GamesList = (props) => {
 
   return (
     <div>
-      <h2 className="text-2xl text-center  text-neutral-700 bg-neutral-100 my-5 py-2">Games</h2>
+      <h2 className="text-2xl flex justify-start items-center px-4 font-thin text-neutral-700 bg-gradient-to-t from-neutral-200 to-neutral-100 mb-5 py-2">
+      <Arrow className='mr-2 h-4 w-4 mt-1' />
+        Games
+        </h2>
       {getGameCards()}
     </div>
   );

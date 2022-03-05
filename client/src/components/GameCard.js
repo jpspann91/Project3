@@ -13,42 +13,36 @@ const GameCard = ({
 
   console.log(path);
   return (
-    <div>
 
-    <div className="w-screen px-4 my-2 h-20">
+      <div className="w-screen px-4 py-2 border-b">
 
-      <div className=" pb-4 flex justify-between">
-        <div><img className="w-20 h-auto" src={`/gameIcons/${icon}`} alt={gameType} /></div>
-        <div className="flex">
-          <div>
-            <div className="text-2xl font-normal text-center">{gameType}</div>
+        <div className="flex justify-between items-center">
+          <div><img className="w-14 h-auto" src={`/gameIcons/${icon}`} alt={gameType} /></div>
+          <div className="flex">
             <div>
-              <div className="text-sm font-normal uppercase mr-2">
-                {opponent ?
-                  <>
-                    <div>
-                      <div className="text-center font-thin">VS.</div>
-                      <div>{opponent}</div>
-
-                    </div>
-                  </>
-                  : ruleSet}
+              <div className="text-2xl font-normal text-center">{gameType}</div>
+              <div>
+                <div className="text-sm font-normal uppercase mr-2">
+                  {opponent ?
+                    <>
+                      <div className="text-center font-thin">You VS. {opponent}</div>
+                    </>
+                    : ruleSet}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="flex justify-between">
-          <button
-            className="bg-neutral-700 text-md uppercase text-white h-20 w-28 px-4 py-2 rounded-sm"
-            onClick={() => history.push(path)}
+          <div className="flex justify-between items-center">
+            <button
+              className="bg-gradient-to-t from-neutral-700 to-neutral-600 text-md uppercase h-10 text-white px-4 py-2 rounded-sm"
+              onClick={() => history.push(path)}
             >
-            {opponent ? "Continue" : "Start"}
-          </button>
-        </div>
+              {opponent ? "Continue" : "Start"}
+            </button>
+          </div>
 
+        </div>
       </div>
-    </div>
-            </div>
   );
 };
 
