@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   ApolloClient,
@@ -43,9 +43,16 @@ const client = new ApolloClient({
 });
 
 
+
+
 function App() {
 
+
+  
+
+
   const [page, setPage] = useState('mt-14')
+  const style = {height: window.innerHeight, transform: 'translateX(-100vw)'}
   function handlePageState(x) {
     switch (x) {
       case 'settings':
@@ -78,11 +85,18 @@ function App() {
           else { setPage('mt-14 animate-rightClose') }
         })
         break;
+        case 'default':
+          setPage('mt-14 animate-default')
+          break;
 
       default:
         break;
     }
   }
+
+  useEffect(() => {
+    handlePageState('default')
+  },[])
 
 
   return (
@@ -91,7 +105,7 @@ function App() {
         <div style={{ height: window.innerHeight }} className="relative grid content-start text-neutral-700 overflow-hidden ">
           <div className='fixed scroll-shadow h-80 w-full bg-gradient-to-t from-black  to-transparent z-50 bottom-0 opacity-40 pointer-events-none'></div>
           <NavBar handlePageState={handlePageState} />
-          <div style={{height: window.innerHeight}} className={page}>
+          <div style={style} className={page}>
 
             <Switch>
               <Route path="/signup">

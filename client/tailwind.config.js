@@ -16,6 +16,7 @@ module.exports = {
         xdown: 'xdown 1s forwards',
         neSlide: 'neSlide 1s forwards',
         usSlide: 'usSlide 1s forwards',
+        default: 'default 1s forwards'
       },
       keyframes: {
         fadeIn: {
@@ -69,6 +70,10 @@ module.exports = {
         usSlide: {
           from: {transform: 'translateX(1em)', opacity: 0},
           to: { transform: 'translateX(0em)', opacity: 1 },
+        },
+        default: {
+          from: {opacity: 0},
+          to: { opacity: 1 },
         },
 
       },
