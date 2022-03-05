@@ -41,7 +41,7 @@ const GameCard = ({
               winner: null,
               score: "0-0",
               gameBoard: "",
-              players: [pendingMatch.user._id, currentUser._id],
+              players: [currentUser._id, pendingMatch.user._id],
               activePlayer: currentUser._id,
             }),
           },
