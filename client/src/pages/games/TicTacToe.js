@@ -21,7 +21,7 @@ const DEFAULT_GAME_BOARD = [
 ];
 const DEFAULT_ACTIVE_USER = "";
 const DEFAULT_GAME_STATE = {
-  winner: "",
+  winner: null,
   status: "ongoing",
 };
 
@@ -75,7 +75,7 @@ const TicTacToe = (props) => {
           params: JSON.stringify({
             gameBoard: stringBoard,
             activePlayer: activeUser,
-            status: gameState.status,
+            ...gameState
           }),
         },
       });
@@ -93,7 +93,10 @@ const TicTacToe = (props) => {
     }
 
     const loadedActiveUser = matchData.activePlayer._id;
-    const loadedGameState = matchData.gameState;
+    const loadedGameState = {
+      status: matchData.status,
+      winner: matchData.winner,
+    };
 
     return {
       loadedGameBoard: loadedGameBoard || DEFAULT_GAME_BOARD,
@@ -137,7 +140,7 @@ const TicTacToe = (props) => {
   const checkGameState = () => {
     // Logic to check for winner
     // Row and column Checks
-    let winner = "";
+    let winner = null;
     let status = "";
     for (let i = 0; i < 3; i++) {
       if (
@@ -190,7 +193,7 @@ const TicTacToe = (props) => {
       [...gameBoard[0], ...gameBoard[1], ...gameBoard[2]].every(
         (el) => el !== " "
       ) &&
-      winner === ""
+      winner === null
     ) {
       status = "draw";
     } else {
