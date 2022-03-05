@@ -1,6 +1,15 @@
+import { useMutation } from "@apollo/client";
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import PendingContext from "../PendingContext";
+import { ADD_MATCH } from "../utils/mutations";
+import { getObjectID } from "../utils/utils";
+
+
+const currentUser = {
+  _id: "621d90a76742d2938ffd5a00",
+  username: "BriKernighan",
+}
 
 const GameCard = ({
   _id,
@@ -13,18 +22,38 @@ const GameCard = ({
   type,
 }) => {
   const history = useHistory();
-  const { setPendingMatch } = useContext(PendingContext);
+  const { pendingMatch, setPendingMatch } = useContext(PendingContext);
+  const [ startMatch ] = useMutation(ADD_MATCH);
 
   const buttonClickHandler = (e) => {
     if (type === "match") {
       return history.push(path);
     } else {
+      if (pendingMatch.user.id) {
+        startMatch(JSON.stringify({
+          _id: getObjectID(),
+          game: pendingMatch.game.id,
+          status: "ongoing",
+          winner: null,
+          score: '0-0',
+          gameBoard: '',
+          players: [
+            pendingMatch.user.id,
+            currentUser._id,
+          ],
+          activePlayer: currentUser._id,
+        }))
+      } 
+
       setPendingMatch((prevState) => {
         return {
           ...prevState,
           game: {
             id: _id,
             gameType,
+            ruleSet,
+            icon,
+            path,
           },
         };
       });
