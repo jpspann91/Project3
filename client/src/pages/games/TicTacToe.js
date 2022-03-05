@@ -223,6 +223,7 @@ const TicTacToe = (props) => {
                 }} className="absolute animate-blur top-0 left-0  z-40 grid content-center justify-center text-5xl pb-24">
                   {gameState.winner} Wins
                 </div>
+                 {/* <a className="w-12 h-8 bg-green-500" href='/'>Return</a> */}
               </>
             }
             {gameState?.status === "draw" &&

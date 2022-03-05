@@ -6,7 +6,7 @@ import { QUERY_USERS } from '../../utils/queries';
 function SearchBar() {
 
     const {loading, error, data} = useQuery(QUERY_USERS)
-    // if(loading) return
+    // if(loading) return <p>loading...</p>
     // if(error) return console.log(error);
     // console.log(data);
 
