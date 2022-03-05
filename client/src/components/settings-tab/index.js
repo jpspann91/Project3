@@ -1,8 +1,7 @@
 import Auth from "../../utils/auth";
 
 function Settings(profile) {
-  //   let user = Auth.getProfile().data.user;
-  const user = "";
+    let user = Auth.getProfile().data;
   console.log(user);
 
   return (
