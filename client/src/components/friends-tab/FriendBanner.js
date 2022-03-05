@@ -1,13 +1,12 @@
 import { useMutation } from '@apollo/client';
 import React, { useContext } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PendingContext from '../../PendingContext';
 import Auth from '../../utils/auth';
 import { ADD_MATCH } from '../../utils/mutations';
 import { getObjectID } from '../../utils/utils';
 
 function FriendBanner(friendObject) {
-    const params = useParams()
     let currentUser = Auth.getProfile().data;
     const history = useHistory();
     const { pendingMatch, setPendingMatch } = useContext(PendingContext);
@@ -51,6 +50,8 @@ function FriendBanner(friendObject) {
                 }
             })
 
+            // Add slide-right closeRight
+
             // history.push('/')
         }
 
@@ -89,10 +90,10 @@ function FriendBanner(friendObject) {
                 </div>
             </div>
 
-            {
+            {!window.location.href.includes('games') &&
+                <button onClick={startMatchHandler} className='bg-gradient-to-t from-blue-500  to-blue-400 px-4 py-3  rounded-md font-medium text-white text-xs'>Challenge</button>
 
             }
-            <button onClick={startMatchHandler} className='bg-gradient-to-t from-blue-500  to-blue-400 px-4 py-3  rounded-md font-medium text-white text-xs'>Challenge</button>
 
         </div>
     );
