@@ -9,7 +9,6 @@ const getObjectID = (size = 24) => {
   return id
 }
 
-
 module.exports = {
-  getObjectID
+  getObjectID,
 };

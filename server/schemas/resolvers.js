@@ -256,6 +256,8 @@ const resolvers = {
 
       const extractedParams = JSON.parse(params);
 
+      console.log(extractedParams)
+
       const match = await Match.create(extractedParams);
 
       return match
