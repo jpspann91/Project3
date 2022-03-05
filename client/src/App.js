@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   ApolloClient,
@@ -16,7 +16,10 @@ import Profile from './pages/Profile.js'
 import NavBar from "./components/nav/Navbar";
 import Logo from './components/logo';
 
+
+
 import 'antd/dist/antd.css';
+import Auth from './utils/auth.js';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -84,6 +87,13 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    handlePageState('games');
+  },[])
+
+  let user = Auth.getProfile()?.data;
+
+
 
   return (
     <ApolloProvider client={client}>
@@ -103,12 +113,19 @@ function App() {
               <Route path="/logo">
                 <Logo  />
               </Route>
-              <Route path="/">
-                <Home  />
-              </Route>
-              <Route exact path="/profile">
+              {!user?._id && (
+                <Route path="/">
+                  <LoginForm />
+                </Route>
+              )}
+              {user?._id && (
+                <Route path="/">
+                  <Home  />
+                </Route>
+              )}
+              {/* <Route exact path="/profile">
                 <Profile />
-              </Route>
+              </Route> */}
               {/* <Route exact path="/friends">
               <Friends />
             </Route> */}

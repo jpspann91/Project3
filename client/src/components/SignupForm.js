@@ -4,10 +4,12 @@ import { ADD_USER } from '../utils/mutations';
 import 'antd/dist/antd.css';
 import { Input, Button, Alert, Form } from 'antd'
 import Auth from '../utils/auth'
+import { useHistory } from 'react-router-dom';
 
 
 
 const SignupForm = () => {
+    const history = useHistory();
 
     const [userFormData, setUserFormData] = useState({
         username: '',
@@ -53,7 +55,7 @@ const SignupForm = () => {
             console.log(data)
             Auth.login(data.addUser.token)
         } catch (err) {
-            console.log(err)
+            console.log(JSON.stringify(error, null, 2));
         }
 
         setUserFormData({
@@ -62,6 +64,8 @@ const SignupForm = () => {
             password: '',
             fullName: '',
         });
+
+        history.push('/login')
     }
 
     return (
