@@ -86,7 +86,9 @@ function FriendBanner(friendObject) {
                     <div className='text-xs'>{friendObject.data.fullName}</div>
                     </div>
 
-                        <div className='opacity-50 text-sm'>#{friendObject.data._id}</div>
+                        <div className='opacity-50 text-sm'>#{
+                        friendObject.data._id.substring(friendObject.data._id.length - 7,friendObject.data._id.length).toUpperCase()
+                        }</div>
                 </div>
             </div>
 
