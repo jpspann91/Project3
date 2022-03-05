@@ -21,6 +21,7 @@ const GameCard = ({
   path = "",
   opponent = "",
   type,
+  isTurn = false,
 }) => {
   let currentUser = Auth.getProfile().data;
   const history = useHistory();
@@ -94,6 +95,9 @@ const GameCard = ({
                     <div className="text-center font-thin">
                       You VS. {opponent}
                     </div>
+                    <div className="text-center font-thin">
+                      {isTurn ? "Your turn" : "Their turn"}
+                    </div>
                   </>
                 ) : (
                   ruleSet
@@ -104,7 +108,7 @@ const GameCard = ({
         </div>
         <div className="flex justify-between items-center">
           <button
-            className="bg-gradient-to-t from-neutral-700 to-neutral-600 text-md uppercase h-10 text-white px-4 py-2 rounded-sm"
+            className='bg-gradient-to-t from-neutral-700 to-neutral-600 text-md uppercase h-10 text-white px-4 py-2 rounded-sm'
             onClick={buttonClickHandler}
           >
             {opponent ? "Continue" : "Start"}

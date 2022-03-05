@@ -26,6 +26,8 @@ const MatchList = () => {
           ? match.players[1]?.username
           : match.players[0]?.username;
 
+      const isTurn = match.activePlayer._id === activeUser._id;
+
       return (
         <GameCard
           key={`${index}-matchCard`}
@@ -37,6 +39,7 @@ const MatchList = () => {
           path={`games/${match.game.path}/${match._id}`}
           opponent={opponent}
           type="match"
+          isTurn={isTurn}
         />
       );
     });
