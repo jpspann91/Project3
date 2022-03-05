@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import FriendBanner from './FriendBanner';
-import { ReactComponent as SearchSVG } from './search.svg'
+import SearchBar from './SearchBar';
+
 import Auth from '../../utils/auth'
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_USERS } from '../../utils/queries';
@@ -9,8 +10,10 @@ import { QUERY_USERS } from '../../utils/queries';
 
 // ! temporary seeding
 import seeds from './friend-seed'
+import CheckableTag from 'antd/lib/tag/CheckableTag';
 
 function Friends() {
+
 
     return (
 
@@ -18,9 +21,7 @@ function Friends() {
             <div className='grid content-between'>
                 <div className='text-4xl font-medium pb-5'>Friends List</div>
                 <div className='relative'>                    
-                    <SearchSVG className="absolute stroke-dark h-full p-1" />
-
-                    <input className='placeholder-neutral-800 text-lg focus:outline-none py-1 px-10 w-full bg-gradient-to-b from-neutral-300  to-neutral-200 rounded-full' placeholder='Find..' type="text"></input>
+                    <SearchBar />
                 </div>
             </div>
 
