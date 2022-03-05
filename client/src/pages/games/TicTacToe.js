@@ -75,7 +75,8 @@ const TicTacToe = (props) => {
           params: JSON.stringify({
             gameBoard: stringBoard,
             activePlayer: activeUser,
-            ...gameState
+            status: gameState.status,
+            winner: gameState.winner,
           }),
         },
       });
@@ -128,7 +129,7 @@ const TicTacToe = (props) => {
           params: JSON.stringify({
             gameBoard: stringBoard,
             activePlayer: activeUser,
-            status: gameState.status,
+            ...gameState,
           }),
         },
       });
@@ -257,7 +258,6 @@ const TicTacToe = (props) => {
         ...checkGameState(),
       };
     });
-    // await saveGameState();
   };
 
   const getPlayerCards = () => {

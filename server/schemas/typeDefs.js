@@ -18,7 +18,7 @@ type Match {
   _id: ID
   game: Game
   status: String
-  winner: User
+  winner: String
   score: String
   gameBoard: String
   activePlayer: User

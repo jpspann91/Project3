@@ -27,10 +27,10 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     matches: async (parent) => {
-      return await Match.find().populate(['game', 'winner','activePlayer','players'])
+      return await Match.find().populate(['game','activePlayer','players'])
     },
     match: async (parent, {matchId}) => {
-      return Match.findById(matchId).populate(['game', 'winner','activePlayer','players'])
+      return Match.findById(matchId).populate(['game','activePlayer','players'])
     }
   },
   //USER MUTATIONS ***************************
