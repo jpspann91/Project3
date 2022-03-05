@@ -69,6 +69,17 @@ const resolvers = {
 
       return { token, user };
     },
+    logout: async (parent, { userId }) => {
+      request = userId.context["request"]
+      
+      if (request.user.is_authenticated){
+         
+      auth.logout(request)
+          
+          return True}
+      
+      return False
+    },
     addFriend: async (parent, { userId }, context) => {
       if (context.user) {
         const friendToAdd = await User.findOne({ _id: userId })

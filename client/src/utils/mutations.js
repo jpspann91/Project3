@@ -17,6 +17,14 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const LOGOUT_USER = gql`
+  mutation logout($userId: ID!) {
+    logout(userId: $userId) {
+      _id
+    }
+  }`
+
+
 export const ADD_USER = gql`
   mutation addUser($params: String) {
     addUser(params: $params) {
