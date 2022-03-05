@@ -19,24 +19,17 @@ import { Divider } from "antd";
 
 import Auth from '../utils/auth'
 
-let profileData = {
-  _id: "EG76J42",
-  icon: "JD",
-  fullName: "John Doe",
-  username: "JonnyManiac",
-  online: false,
-};
 
 // import { useEffect, useState } from 'react';
 
 const Home = () => {
   const match = useRouteMatch();
 
-  // console.log(auth.loggedIn())
+  console.log(Auth.loggedIn())
 
   return (
     <div className="h-full w-full flex">
-      <Settings />
+      <Settings/>
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
           <Switch>

@@ -9,18 +9,24 @@ import Auth from '../../utils/auth'
 
 function Settings() {
 
-    let user = Auth.getProfile().data
+    let x = Auth.getProfile().data
 
-    console.log(user);
+    console.log(x);
 
     const { loading, error, data } = useQuery(QUERY_USER, {
         variables: {
-          username: user.username
+            username: x.username
         }
-      });
+    });
+    
+    if (loading) return
 
-    let x = {...data};
-    console.log({...x})
+    if (error) return console.log(error)
+
+    let user = { ...data };
+
+
+    console.log(user)
 
 
     return (
@@ -31,25 +37,25 @@ function Settings() {
             <div className='px-4 grid content-start content-start '>
                 <div className='flex text-2xl h-12 border-b flex justify-between items-center w-full  '>
                     <div className='mr-2 font-thin uppercase text-lg '>Username</div>
-                    <div className='font-normal '>{user.username}</div>
+                    <div className='font-normal '>{user.user.username}</div>
                 </div>
                 <div className='flex text-2xl h-12 border-b flex justify-between items-center w-full  '>
                     <label className='mr-2 font-thin uppercase text-lg'>Name</label>
-                    <div className='font-normal'>{user.fullName}</div>
+                    <div className='font-normal'>{user.user.fullName}</div>
                 </div>
                 <div className='flex text-2xl h-12 border-b flex justify-between items-center w-full'>
                     <div className='mr-2 font-thin uppercase text-lg'>Email</div>
-                    <div className='font-normal flex justify-end  items-center w-full '>{user.email}</div>
+                    <div className='font-normal flex justify-end  items-center w-full '>{user.user.email}</div>
                 </div>
                 <div className='flex text-2xl h-12 flex justify-between items-center w-full'>
                     <div className='mr-2 font-thin uppercase text-lg'>ID#</div>
-                    <div className='font-thin'>{user._id}</div>
+                    <div className='font-thin'>{`# ${user.user._id}`.substring(0, 8)} </div>
 
                 </div>
             </div>
-            
+
             <div className='grid content-start'>
-            <label className='px-4 text-lg font-semibold bg-gradient-to-bl from-neutral-200 to-neutral-100 uppercase h-12 flex justify-start items-center'>General</label>
+                <label className='px-4 text-lg font-semibold bg-gradient-to-bl from-neutral-200 to-neutral-100 uppercase h-12 flex justify-start items-center'>General</label>
                 <div className='px-4 flex items-center justify-between text-2xl h-12 border-b text-lg'>
                     <div className='mr-2 font-normal'>Dark Mode</div>
                     <div className=' h-6 w-12 bg-neutral-700 rounded-full hover:cursor-pointer'>
