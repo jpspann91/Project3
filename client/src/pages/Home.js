@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -14,10 +14,8 @@ import TestGame1 from "./games/TestGame1";
 import CreateMatch from "./CreateMatch";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
-import auth from "../utils/auth";
-import { Divider } from "antd";
-
-import Auth from '../utils/auth'
+import PendingContext from "../PendingContext";
+import PendingMatchNotice from "../components/PendingMatchNotice";
 
 let profileData = {
   _id: "EG76J42",
@@ -27,21 +25,54 @@ let profileData = {
   online: false,
 };
 
-// import { useEffect, useState } from 'react';
-
 const Home = () => {
   const match = useRouteMatch();
+  const [pendingMatch, setPendingMatch] = useState({
+    game: {
+      id: '',
+      gameType: '',
+    },
+    user: {
+      id: '',
+      username: '',
+    }
+  })
+  
+  const contextValue = useMemo(
+    () => ({ pendingMatch, setPendingMatch }), 
+    [pendingMatch]
+  )
+  // const [pendingGame, setPendingGame] = useState({
+  //   id: '',
+  //   name: '',
+  // });
+  // const [pendingOpponent, setPendingOpponent] = useState({
+  //   id: '',
+  //   username: '',
+  // });
 
-  // console.log(auth.loggedIn())
+  // const handlePendingGame = (game) => {
+  //   setPendingMatch(prevState => {
+  //     return {
+  //       ...prevState,
+  //       id: game._id,
+  //       name: game.gameType,
+  //     }
+  //   })
+  // }
 
   return (
+    <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
       <Settings data={profileData} />
+      
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
           <Switch>
             <Route exact path={`${match.path}`}>
-              <MatchList />
+              {!pendingMatch.user._id &&
+                <MatchList />
+              }
               <GamesList />
             </Route>
             <Route path={`${match.path}games/tictactoe/:matchId?`}>
@@ -56,8 +87,9 @@ const Home = () => {
           </Switch>
         </div>
       </Router>
-      <Friends />
+      <Friends/>
     </div>
+    </PendingContext.Provider>
   );
 };
 
