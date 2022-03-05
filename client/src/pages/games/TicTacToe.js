@@ -41,8 +41,6 @@ const TicTacToe = (props) => {
     console.log(JSON.stringify(error, null, 2));
     if (error) return;
 
-    console.log(data);
-
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
       fetchGameState(data.match);
 
@@ -52,7 +50,6 @@ const TicTacToe = (props) => {
   }, [loading, data, error]);
 
   const fetchGameState = (matchData) => {
-    console.log(matchData);
     // Fetch game data from data base
     // TODO create backend route to fetch
     let loadedGameBoard;

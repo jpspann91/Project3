@@ -68,9 +68,10 @@ const Home = () => {
             <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
             </Route>
-            <Route path={`${match.path}games/:gameId/:gameName?`}>
+            
+            {/* <Route path={`${match.path}games/:gameId/:gameName?`}>
               <CreateMatch />
-            </Route>
+            </Route> */}
           </Switch>
         </div>
       </Router>
