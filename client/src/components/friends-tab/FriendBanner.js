@@ -17,7 +17,6 @@ function FriendBanner(friendObject) {
         if (pendingMatch.game.id) {
 
             const matchId = getObjectID();
-            console.log(matchId);
 
             await startMatch({
                 variables: {
@@ -42,7 +41,7 @@ function FriendBanner(friendObject) {
             });
 
         } else {
-            setPendingMatch(prevState => {
+            await setPendingMatch(prevState => {
                 return {
                     ...prevState,
                     user: {
@@ -50,6 +49,10 @@ function FriendBanner(friendObject) {
                     }
                 }
             })
+
+            // Add slide-right closeRight
+
+            // history.push('/')
         }
 
     }
@@ -87,7 +90,10 @@ function FriendBanner(friendObject) {
                 </div>
             </div>
 
-            <button onClick={startMatchHandler} className='bg-gradient-to-t from-blue-500  to-blue-400 px-4 py-3  rounded-md font-medium text-white text-xs'>Challenge</button>
+            {!window.location.href.includes('games') &&
+                <button onClick={startMatchHandler} className='bg-gradient-to-t from-blue-500  to-blue-400 px-4 py-3  rounded-md font-medium text-white text-xs'>Challenge</button>
+
+            }
 
         </div>
     );

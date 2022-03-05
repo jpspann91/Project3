@@ -32,8 +32,6 @@ const LoginForm = () => {
           variables: { ...userFormData}
   
         });
-        
-        console.log(data)
 
         console.log('done')
 
