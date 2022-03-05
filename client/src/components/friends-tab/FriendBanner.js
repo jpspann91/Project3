@@ -31,7 +31,7 @@ function FriendBanner(friendObject) {
                     winner: null,
                     score: "0-0",
                     gameBoard: "",
-                    players: [friendObject.data._id, currentUser._id],
+                    players: [currentUser._id, friendObject.data._id],
                     activePlayer: currentUser._id,
                 }),
                 },
