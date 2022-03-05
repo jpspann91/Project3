@@ -15,7 +15,8 @@ import CreateMatch from "./CreateMatch";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
 import PendingContext from "../PendingContext";
-import PendingMatchNotice from "../components/PendingMatchNotice";
+import { useQuery } from "@apollo/client";
+import { QUERY_USER } from "../utils/queries";
 
 let profileData = {
   _id: "EG76J42",
@@ -37,29 +38,15 @@ const Home = () => {
       username: '',
     }
   })
+
+  // const { loading, error, data } = useQuery(QUERY_USER, {
+
+  // })
   
   const contextValue = useMemo(
     () => ({ pendingMatch, setPendingMatch }), 
     [pendingMatch]
   )
-  // const [pendingGame, setPendingGame] = useState({
-  //   id: '',
-  //   name: '',
-  // });
-  // const [pendingOpponent, setPendingOpponent] = useState({
-  //   id: '',
-  //   username: '',
-  // });
-
-  // const handlePendingGame = (game) => {
-  //   setPendingMatch(prevState => {
-  //     return {
-  //       ...prevState,
-  //       id: game._id,
-  //       name: game.gameType,
-  //     }
-  //   })
-  // }
 
   return (
     <PendingContext.Provider value={contextValue} >
