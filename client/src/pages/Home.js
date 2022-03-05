@@ -11,20 +11,9 @@ import Friends from "../components/friends-tab";
 import TicTacToe from "./games/TicTacToe.js";
 import Settings from "../components/settings-tab";
 import TestGame1 from "./games/TestGame1";
-import CreateMatch from "./CreateMatch";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
 import PendingContext from "../PendingContext";
-import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
-
-let profileData = {
-  _id: "EG76J42",
-  icon: "JD",
-  fullName: "John Doe",
-  username: "JonnyManiac",
-  online: false,
-};
 
 const Home = () => {
   const match = useRouteMatch();
@@ -38,10 +27,6 @@ const Home = () => {
       username: '',
     }
   })
-
-  // const { loading, error, data } = useQuery(QUERY_USER, {
-
-  // })
   
   const contextValue = useMemo(
     () => ({ pendingMatch, setPendingMatch }), 
@@ -68,10 +53,9 @@ const Home = () => {
             <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
             </Route>
-            
-            {/* <Route path={`${match.path}games/:gameId/:gameName?`}>
-              <CreateMatch />
-            </Route> */}
+            <Route>
+              <p>Route not found</p>
+            </Route>
           </Switch>
         </div>
       </Router>

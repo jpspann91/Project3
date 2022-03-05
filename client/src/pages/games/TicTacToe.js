@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Card, Row, Button } from "antd";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { QUERY_SINGLE_MATCH } from "../../utils/queries";
@@ -33,6 +33,7 @@ const styles = {
 };
 
 const TicTacToe = (props) => {
+  const history = useHistory();
   let user = Auth.getProfile().data;
   const [gameBoard, setGameBoard] = useState([[], [], []]);
   const [activeUser, setActiveUser] = useState();
@@ -47,7 +48,9 @@ const TicTacToe = (props) => {
     // Load previous game state if available
     if (loading) return;
     console.log(JSON.stringify(error, null, 2));
-    if (error) return;
+    if (error) {
+      history.push('/')
+    };
 
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
       fetchGameState(data.match);
@@ -260,6 +263,11 @@ const TicTacToe = (props) => {
     });
   };
 
+  const handleError = () => {
+    history.push('/')
+    return <></>
+  }
+
   const getPlayerCards = () => {
     return data.match.players.map((player, index) => {
       return (
@@ -274,8 +282,9 @@ const TicTacToe = (props) => {
   };
   return (
     <>
-      {loading && <p>Loading</p>}
-      {!loading && (
+      {error && handleError()}
+      {loading && !error && <p>Loading</p>}
+      {!loading && !error && (
         <div>
           <div title={`Tic Tac Toe`} className={styles.board}>
             <div className="grid justify-center content-center text-center">
@@ -334,6 +343,8 @@ const TicTacToe = (props) => {
           </button>
         </div>
       )}
+      
+       
     </>
   );
 };
