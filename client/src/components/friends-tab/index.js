@@ -11,6 +11,12 @@ const activeUser = {
   username: "BriKernighan",
 };
 
+// const activeUser = {
+//     ...Auth.getProfile()
+// }
+
+// Auth.getProfile()
+
 function Friends() {
   const { pendingMatch } = useContext(PendingContext);
   const { loading, error, data } = useQuery(QUERY_USER, {

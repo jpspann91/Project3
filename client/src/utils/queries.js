@@ -36,6 +36,7 @@ export const QUERY_USER = gql`
         username
         icon
         online
+        fullName
       }
       online
       icon

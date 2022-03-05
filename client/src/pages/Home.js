@@ -65,11 +65,14 @@ const Home = () => {
     <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
       <Settings data={profileData} />
+      
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
           <Switch>
             <Route exact path={`${match.path}`}>
-              <MatchList />
+              {!pendingMatch.user._id &&
+                <MatchList />
+              }
               <GamesList />
             </Route>
             <Route path={`${match.path}games/tictactoe/:matchId?`}>

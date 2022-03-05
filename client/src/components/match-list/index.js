@@ -25,8 +25,8 @@ const MatchList = () => {
     return userMatchData.map((match, index) => {
       const opponent =
         match.players[0]._id === userId
-          ? match.players[1].username
-          : match.players[0].username;
+          ? match.players[1]?.username
+          : match.players[0]?.username;
 
       return (
         <GameCard

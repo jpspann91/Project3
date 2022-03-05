@@ -5,7 +5,7 @@ import PendingContext from "../PendingContext";
 const PendingMatchNotice = () => {
   const { pendingMatch, setPendingMatch } = useContext(PendingContext);
 
-  if (!pendingMatch.game.id && !pendingMatch.user.id) return <></>;
+  if (!pendingMatch.game.id && !pendingMatch.user._id) return <></>;
 
   const closeNoticeHandler = () => {
     setPendingMatch({
@@ -23,7 +23,7 @@ const PendingMatchNotice = () => {
   const getMessage = () => {
     if (pendingMatch.game.id) {
       return `Select an opponent for ${pendingMatch.game.gameType}`;
-    } else if (pendingMatch.user.id) {
+    } else if (pendingMatch.user._id) {
       return `Select game type to play against ${pendingMatch.user.username}`;
     }
     return "";
