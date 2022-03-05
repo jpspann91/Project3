@@ -2,7 +2,7 @@
     {
         "_id": "621d90a76742d2938ffd5a9d",
         "game": "621d90a76742d2938ffd5a50",
-        "status": "In Progress",
+        "status": "ongoing",
         "score": "0-0",
         "gameBoard": "  OX O    ",
         "winner": "621d90a76742d2938ffd5a00",
@@ -15,7 +15,7 @@
     {
         "_id": "621d90a76742d2923ffd5a9d",
         "game": "621d90a76742d2938ffd5a50",
-        "status": "In Progress",
+        "status": "ongoing",
         "score": "0-0",
         "gameBoard": "  OX O    ",
         "winner": "621d90a76742d2938ffd5a00",
@@ -28,7 +28,7 @@
     {
         "_id": "621d90a75742d2938ffd5a9d",
         "game": "621d90a76742d2938ffd5a50",
-        "status": "In Progress",
+        "status": "ongoing",
         "score": "0-0",
         "gameBoard": "  OX O    ",
         "winner": "621d90a76742d2938ffd5a00",
@@ -40,7 +40,7 @@
     },
     {
         "_id": "621d90a76742d2938ffd5a9e",
-        "status": "Finished",
+        "status": "ongoing",
         "game": "621d90a76742d2938ffd5a50",
         "score": "1-0",
         "gameBoard": "A STRING PLACEHOLDER FOR NOW",

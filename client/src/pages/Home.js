@@ -51,7 +51,7 @@ const Home = () => {
   return (
     <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
-      <Settings data={profileData} />
+      <Settings />
       
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">

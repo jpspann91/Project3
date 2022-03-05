@@ -262,6 +262,19 @@ const resolvers = {
 
       return match
     },
+    updateMatch: async (parent, {matchId, params}) =>{
+
+      const matchToUpdate = await Match.findById(matchId);
+
+      extractedParams = JSON.parse(params);
+      
+      await Match.updateOne(
+        {_id: matchToUpdate._id},
+        {$set: extractedParams},
+        {new: true}
+      )
+      return matchToUpdate
+    },
     updateMatchGame: async (parent, {matchId, gameId}) =>{
       const matchToUpdate = await Match.findById(matchId)
       

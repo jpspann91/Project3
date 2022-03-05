@@ -313,6 +313,14 @@ export const UPDATE_MATCH_GAME_BOARD = gql`
   }
 `;
 
+export const UPDATE_MATCH = gql`
+  mutation updateMatch($matchId: ID! $params: String!) {
+    updateMatch(matchId: $matchId, params: $params) {
+      gameBoard
+    }
+  }
+`;
+
 export const UPDATE_MATCH_ACTIVE_PLAYER = gql`
   mutation updateMatchActivePlayer($matchId: ID!, $username: String!) {
     updateMatchActivePlayer(matchId: $matchId, username: $username) {
