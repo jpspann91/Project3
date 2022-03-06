@@ -1,8 +1,22 @@
 import Auth from "../../utils/auth";
+import { useMutation, useQuery } from "@apollo/client";
+import { LOGOUT_USER } from '../../utils/mutations'
 
-function Settings(profile) {
-    let user = Auth.getProfile().data.user;
+function Settings() {
+    let user = Auth.getProfile().data;
+    const [logout] = useMutation(LOGOUT_USER);
     console.log(user);
+
+    const handleLogout = async () => {
+        try {
+            await logout({
+                variables: { userId: user._id }
+            })
+        } catch(error) { console.log(JSON.stringify(error, null, 2));}
+
+        Auth.logout();
+    }
+
 
     return (
         <div className="text-neutral-700 w-screen  grid content-start bg-white">
@@ -29,6 +43,10 @@ function Settings(profile) {
                     <div className="mr-2 font-thin uppercase text-lg">ID#</div>
                     <div className="font-thin">{user._id}</div>
                 </div>
+                <div className="pb-5 w-full flex justify-end">
+                    <button onClick={handleLogout} className="bg-blue-500 text-white text-lg py-2 px-4 rounded-lg font-semibold w-full">Sign Out</button>
+                </div>
+
             </div>
 
             <div className="grid content-start">

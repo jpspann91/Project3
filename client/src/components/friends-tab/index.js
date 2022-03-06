@@ -7,10 +7,6 @@ import PendingContext from "../../PendingContext";
 import PendingMatchNotice from "../PendingMatchNotice";
 import { QUERY_USER } from "../../utils/queries";
 
-const activeUser = {
-  username: "BriKernighan",
-};
-
 // const activeUser = {
 //     ...Auth.getProfile()
 // }
@@ -18,6 +14,7 @@ const activeUser = {
 // Auth.getProfile()
 
 function Friends() {
+  let activeUser = Auth.getProfile().data
   const { pendingMatch } = useContext(PendingContext);
   const { loading, error, data } = useQuery(QUERY_USER, {
     variables: {
@@ -29,8 +26,6 @@ function Friends() {
     console.log(JSON.stringify(error, null, 2));
     return error;
   }
-
-  console.log(pendingMatch);
 
   return (
     <div style={{height: window.innerHeight}} className='text-neutral-700 w-screen grid content-start px-4 py-5 overflow-y-scroll pb-16'>
@@ -45,7 +40,9 @@ function Friends() {
     </div>
     {!loading && (
         <>
-        
+        {!data.user.friends.length && 
+          <div className=" text-center mt-20 text-lg font-thin">You have no friends...</div>
+        }
     <div className='mt-5'>
         {data.user.friends.filter(data => data.online).map((data, index) => (
 

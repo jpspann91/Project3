@@ -18,7 +18,7 @@ type Match {
   _id: ID
   game: Game
   status: String
-  winner: User
+  winner: String
   score: String
   gameBoard: String
   activePlayer: User
@@ -51,12 +51,21 @@ type Query {
 type Mutation {
   addUser(params: String): Auth
   login(email: String!, password: String!): Auth
+  logout(userId: ID!): User
   addFriend(userId: ID!): User
   removeFriend(userId: ID!): User
+  updateUsername(userId: ID!, username: String!): User
+  updateEmail(userId: ID!, email: String!): User
+  updatePassword(userId: ID!, password: String!): User
+  updateOnline(userId: ID!, online: Boolean!): User
+  updateIcon(userId: ID!, icon: String!): User
+  removeActiveMatches(userId: ID!, activeMatches: String!): User
+  addActiveMatches(userId: ID!, activeMatches: String!): User
   addGame(gameType: String!, ruleSet: String!): Game
   updateGameType(gameId: ID!, gameType: String!): Game
   updateGameRuleSet(gameId: ID!, ruleSet: String!): Game
   addMatch(params: String): Match
+  updateMatch(matchId: ID!, params: String!): Match
   updateMatchGame(matchId: ID!, gameId: ID!): Match
   updateMatchStatus(matchId: ID!, status: String!): Match
   updateMatchWinner(matchId: ID!, winner: String!): Match

@@ -11,19 +11,10 @@ import Friends from "../components/friends-tab";
 import TicTacToe from "./games/TicTacToe.js";
 import Settings from "../components/settings-tab";
 import TestGame1 from "./games/TestGame1";
-import CreateMatch from "./CreateMatch";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
+import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
-import PendingMatchNotice from "../components/PendingMatchNotice";
-
-let profileData = {
-  _id: "EG76J42",
-  icon: "JD",
-  fullName: "John Doe",
-  username: "JonnyManiac",
-  online: false,
-};
 
 const Home = () => {
   const match = useRouteMatch();
@@ -42,29 +33,11 @@ const Home = () => {
     () => ({ pendingMatch, setPendingMatch }), 
     [pendingMatch]
   )
-  // const [pendingGame, setPendingGame] = useState({
-  //   id: '',
-  //   name: '',
-  // });
-  // const [pendingOpponent, setPendingOpponent] = useState({
-  //   id: '',
-  //   username: '',
-  // });
-
-  // const handlePendingGame = (game) => {
-  //   setPendingMatch(prevState => {
-  //     return {
-  //       ...prevState,
-  //       id: game._id,
-  //       name: game.gameType,
-  //     }
-  //   })
-  // }
 
   return (
     <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
-      <Settings data={profileData} />
+      <Settings />
       
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
@@ -81,8 +54,8 @@ const Home = () => {
             <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
             </Route>
-            <Route path={`${match.path}games/:gameId/:gameName?`}>
-              <CreateMatch />
+            <Route>
+              <p>Route not found</p>
             </Route>
           </Switch>
         </div>

@@ -2,15 +2,12 @@ import { useMutation } from '@apollo/client';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PendingContext from '../../PendingContext';
+import Auth from '../../utils/auth';
 import { ADD_MATCH } from '../../utils/mutations';
 import { getObjectID } from '../../utils/utils';
 
-const currentUser = {
-    _id: "621d90a76742d2938ffd5a00",
-    username: "BriKernighan",
-  };
-
 function FriendBanner(friendObject) {
+    let currentUser = Auth.getProfile().data;
     const history = useHistory();
     const { pendingMatch, setPendingMatch } = useContext(PendingContext);
     const [ startMatch ] = useMutation(ADD_MATCH);
@@ -20,7 +17,6 @@ function FriendBanner(friendObject) {
         if (pendingMatch.game.id) {
 
             const matchId = getObjectID();
-            console.log(matchId);
 
             await startMatch({
                 variables: {
@@ -45,7 +41,7 @@ function FriendBanner(friendObject) {
             });
 
         } else {
-            setPendingMatch(prevState => {
+            await setPendingMatch(prevState => {
                 return {
                     ...prevState,
                     user: {
@@ -53,6 +49,10 @@ function FriendBanner(friendObject) {
                     }
                 }
             })
+
+            // Add slide-right closeRight
+
+            // history.push('/')
         }
 
     }
@@ -86,11 +86,16 @@ function FriendBanner(friendObject) {
                     <div className='text-xs'>{friendObject.data.fullName}</div>
                     </div>
 
-                        <div className='opacity-50 text-sm'>#{friendObject.data._id}</div>
+                        <div className='opacity-50 text-sm'>#{
+                        friendObject.data._id.substring(friendObject.data._id.length - 7,friendObject.data._id.length).toUpperCase()
+                        }</div>
                 </div>
             </div>
 
-            <button onClick={startMatchHandler} className='bg-gradient-to-t from-blue-500  to-blue-400 px-4 py-3  rounded-md font-medium text-white text-xs'>Challenge</button>
+            {!window.location.href.includes('games') &&
+                <button onClick={startMatchHandler} className='bg-gradient-to-t from-blue-500  to-blue-400 px-4 py-3  rounded-md font-medium text-white text-xs'>Challenge</button>
+
+            }
 
         </div>
     );
