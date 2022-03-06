@@ -81,7 +81,7 @@ function FriendBanner(friendObject) {
                 </div>
 
                 <div className='flex justify-between' >
-                    <div className='flex flex-col'>
+                    <div className='flex flex-row'>
                         <div className='mr-2'>{friendObject.data.username}</div>
                     <div className='text-xs'>{friendObject.data.fullName}</div>
                     </div>
