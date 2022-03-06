@@ -5,7 +5,6 @@ import FindFriend from './FindFriend';
 const CLOSE_SEARCH_DELAY = 400;
 
 function SearchBar({ data }) {
-    let isFound = false
     const [username, setusername] = useState('');
     const [list, setList] = useState(data.users)
     const [hasFocus, setFocus] = useState(false);
@@ -14,17 +13,13 @@ function SearchBar({ data }) {
 
     userList.length = Math.min(userList.length, 12);
 
-    console.log(data);
-
 
     const handleInputChange = (event) => {
         const { value } = event.target;
+        
         setusername(value);
-        // setList(data.users.slice(0,10))
-        if (userList.filter(person => person.toLowerCase().includes(value))) {
-            setList(data.users.filter(person => person.username.toLowerCase().includes(value)))
-        }
-        // console.log(people);
+
+        setList(data.users.filter(person => person.username.toLowerCase().includes(value)))
     };
 
     const handleBlur = (e) => {
