@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Card, Row, Button } from "antd";
+import { Row } from "antd";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { QUERY_SINGLE_MATCH } from "../../utils/queries";
 // import { UPDATE_MATCH } from "../../utils/mutations";
@@ -15,10 +15,14 @@ const UPDATE_MATCH = gql`
 `;
 
 const DEFAULT_GAME_BOARD = [
-  [" ", " ", " "],
-  [" ", " ", " "],
-  [" ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " "],
+  [" ", " ", " ", " ", " ", " ", " "],
 ];
+
 const DEFAULT_ACTIVE_USER = "";
 const DEFAULT_GAME_STATE = {
   winner: null,
@@ -32,7 +36,7 @@ const styles = {
   },
 };
 
-const TicTacToe = (props) => {
+const FourScore = () => {
   const history = useHistory();
   let user = Auth.getProfile().data;
   const [gameBoard, setGameBoard] = useState([[], [], []]);
@@ -50,8 +54,8 @@ const TicTacToe = (props) => {
     if (loading) return;
     console.log(JSON.stringify(error, null, 2));
     if (error) {
-      history.push('/')
-    };
+      history.push("/");
+    }
 
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
       fetchGameState(data.match);
@@ -87,7 +91,7 @@ const TicTacToe = (props) => {
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
-  }, [gameBoard, activeUser, gameState, matchId, updateMatch])
+  }, [gameBoard, activeUser, gameState, matchId, updateMatch]);
 
   const fetchGameState = (matchData) => {
     // Fetch game data from data base
@@ -114,7 +118,7 @@ const TicTacToe = (props) => {
     const gameBoardSpaces = [...gameBoard];
     const formattedBoard = [];
     while (gameBoardSpaces.length)
-      formattedBoard.push(gameBoardSpaces.splice(0, 3));
+      formattedBoard.push(gameBoardSpaces.splice(0, 7));
     return formattedBoard;
   };
 
@@ -142,75 +146,90 @@ const TicTacToe = (props) => {
     }
   };
 
+  const getWinner = () => {
+    const sliceCheck = (slice) => {
+      if (slice.every((piece) => piece === slice[0])) {
+        return slice[0] === "X"
+          ? data.match.players[0].username
+          : data.match.players[1].username;
+      }
+      return null;
+    };
+
+    //Horizontal Checks
+    for (let i = 0; i < gameBoard.length; i++) {
+      for (let j = 0; j < gameBoard[i].length - 3; j++) {
+        const currentPiece = gameBoard[i][j];
+        if (currentPiece === " ") {
+          continue;
+        }
+
+        const slice = gameBoard[i].slice(j, j + 4);
+        const winner = sliceCheck(slice);
+
+        if (winner) return winner;
+      }
+    }
+
+    //Vertical Checks
+    for (let i = 0; i < gameBoard.length - 3; i++) {
+      for (let j = 0; j < gameBoard[i].length; j++) {
+        const currentPiece = gameBoard[i][j];
+        if (currentPiece === " ") {
+          continue;
+        }
+
+        const slice = gameBoard.slice(i, i + 4).map((row) => row[j]);
+        const winner = sliceCheck(slice);
+
+        if (winner) return winner;
+      }
+    }
+
+    //Diagonal Checks
+    for (let i = 0; i < gameBoard.length - 3; i++) {
+      for (let j = 0; j < gameBoard[i].length - 3; j++) {
+        const currentPiece = gameBoard[i][j];
+        if (currentPiece === " ") {
+          continue;
+        }
+
+        let slice = gameBoard.slice(i, i + 4).map((row, idx) => row[j + idx]);
+        let winner = sliceCheck(slice);
+
+        if (winner) return winner;
+
+        slice = gameBoard.slice(i, i + 4).map((row, idx) => row[j + 3 - idx]);
+        winner = sliceCheck(slice);
+
+        if (winner) return winner;
+      }
+    }
+
+    return "";
+  };
+
+  const checkDraw = () => {
+    return gameBoard.every((row) => row.every((el) => el !== " "));
+  };
+
   const checkGameState = () => {
-    // Logic to check for winner
-    // Row and column Checks
-    let winner = null;
-    let status = "";
-    for (let i = 0; i < 3; i++) {
-      if (
-        gameBoard[i][0] !== " " &&
-        gameBoard[i][0] === gameBoard[i][1] &&
-        gameBoard[i][0] === gameBoard[i][2]
-      ) {
-        winner =
-          gameBoard[i][0] === "X"
-            ? data.match.players[0].username
-            : data.match.players[1].username;
-      }
+    let winner = getWinner();
 
-      if (
-        gameBoard[0][i] !== " " &&
-        gameBoard[0][i] === gameBoard[1][i] &&
-        gameBoard[0][i] === gameBoard[2][i]
-      ) {
-        winner =
-          gameBoard[0][i] === "X"
-            ? data.match.players[0].username
-            : data.match.players[1].username;
-      }
+    if (winner) {
+      return { status: "ended", winner };
     }
 
-    // Diagonal checks
-    if (
-      gameBoard[0][0] !== " " &&
-      gameBoard[0][0] === gameBoard[1][1] &&
-      gameBoard[0][0] === gameBoard[2][2]
-    ) {
-      winner =
-        gameBoard[0][0] === "X"
-          ? data.match.players[0].username
-          : data.match.players[1].username;
-    }
-    if (
-      gameBoard[2][0] !== " " &&
-      gameBoard[2][0] === gameBoard[1][1] &&
-      gameBoard[2][0] === gameBoard[0][2]
-    ) {
-      winner =
-        gameBoard[2][0] === "X"
-          ? data.match.players[0].username
-          : data.match.players[1].username;
-    }
+    let isDraw = checkDraw();
 
-    // Check draw
-    if (
-      [...gameBoard[0], ...gameBoard[1], ...gameBoard[2]].every(
-        (el) => el !== " "
-      ) &&
-      winner === null
-    ) {
-      status = "draw";
-    } else {
-      status = winner ? "ended" : "ongoing";
-    }
+    let status = isDraw ? "draw" : "ongoing";
 
-    return { winner, status };
+    return { status, winner };
   };
 
   const renderGameBoard = () => {
     let rows = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < gameBoard.length; i++) {
       const row = (
         <Row className="w-full grid content-center justify-center" key={i}>
           {gameBoard[i].map((value, j) => getGameSquare(value, i, j))}
@@ -226,7 +245,7 @@ const TicTacToe = (props) => {
   const getGameSquare = (value, row, col) => {
     const squareClickHandler = async () => {
       if (value !== " " || gameState === "ended") {
-        return () => { };
+        return () => {};
       } else {
         return await setSquareValue(row, col);
       }
@@ -234,23 +253,49 @@ const TicTacToe = (props) => {
 
     return (
       <button
-        className="w-24 h-24 border-2 text-5xl text-neutral-700"
+        className="w-12 h-12 border-2 text-5xl text-neutral-700 flex justify-center align-center"
         onClick={squareClickHandler}
         key={row * 3 + col}
       >
-        {value}
+        {value === "X" && (
+          <div className="w-10 h-10 rounded-full bg-red-400"></div>
+        )}
+        {value === "O" && (
+          <div className="w-10 h-10 rounded-full bg-black"></div>
+        )}
+        {value === "" && <div>' '</div>}
       </button>
     );
   };
 
-  const setSquareValue = async (row, col) => {
-    console.log(data.match.players);
+  const getActivePiece = () => {
+    const activePiece = activeUser === data.match.players[0]._id ? "X" : "O";
 
-    setGameBoard((prevGameBoard) => {
-      let newBoard = [...prevGameBoard];
-      newBoard[row][col] = activeUser === data.match.players[0]._id ? "X" : "O";
-      return newBoard;
-    });
+    return activePiece;
+  };
+
+  const addPieceToColumn = (col) => {
+    for (let i = gameBoard.length - 1; i >= 0; i--) {
+      if (gameBoard[i][col] === " ") {
+        setGameBoard((prevBoard) => {
+          prevBoard[i][col] = getActivePiece();
+          return prevBoard;
+        });
+        return 1;
+      }
+    }
+
+    return -1;
+  };
+
+  const setSquareValue = async (row, col) => {
+    const status = addPieceToColumn(col);
+
+    // Invalid move detected
+    if (status === -1) {
+      return;
+    }
+
     setActiveUser((prevUser) => {
       return prevUser === data.match.players[0]._id
         ? data.match.players[1]._id
@@ -265,16 +310,21 @@ const TicTacToe = (props) => {
   };
 
   const handleError = () => {
-    history.push('/')
-    return <></>
-  }
+    history.push("/");
+    return <></>;
+  };
 
   const getPlayerCards = () => {
     return data.match.players.map((player, index) => {
       return (
         <div className="p-5 w-3/6 text-center" key={index}>
-          <div className="text-lg font-semibold">
-            Player {index === 0 ? "X" : "O"}
+          <div className="text-lg font-semibold flex justify-center align-center">
+            Player{" "}
+            {index === 0 ? (
+              <div className="ml-2 w-4 h-4 rounded-full bg-red-400"></div>
+            ) : (
+              <div className="ml-2 w-4 h-4 rounded-full bg-black"></div>
+            )}
           </div>
           <div className="text-xl font-thin">{player?.username}</div>
         </div>
@@ -287,9 +337,9 @@ const TicTacToe = (props) => {
       {loading && !error && <p>Loading</p>}
       {!loading && !error && (
         <div>
-          <div title={`Tic Tac Toe`} className={styles.board}>
+          <div title={`Four Score`} className={styles.board}>
             <div className="grid justify-center content-center text-center">
-              <div className="text-4xl">Tic Tac Toe</div>
+              <div className="text-4xl">Four Score</div>
               <div className="text-neutral-400">{matchId}</div>
             </div>
             {gameState?.winner && (
@@ -299,11 +349,10 @@ const TicTacToe = (props) => {
                     height: window.innerHeight,
                     width: window.innerWidth,
                     transform: `translateX(${window.innerWidth}px)`,
-                  }} className="absolute text-white italic animate-blur bg-neutral-800 top-0 left-0  z-50 grid w-screen content-center justify-center text-5xl pb-24">
-                  <div className="w-full text-center mb-2 font-thin">
-                    {gameState.winner}
-                  </div>
-                  <div className="w-full text-center font-semibold animate-pulse">Wins</div>
+                  }}
+                  className="absolute animate-blur top-0 left-0  z-40 grid content-center justify-center text-5xl pb-24"
+                >
+                  {gameState.winner} Wins
                 </div>
                 {/* <a className="w-12 h-8 bg-green-500" href='/'>Return</a> */}
               </>
@@ -339,16 +388,14 @@ const TicTacToe = (props) => {
           >
             Notify{" "}
             {data.match.activePlayer?.username ===
-              data.match.players[0]?.username
+            data.match.players[0]?.username
               ? data.match.players[1]?.username
               : data.match.players[0]?.username}
           </button>
         </div>
       )}
-
-
     </>
   );
 };
 
-export default TicTacToe;
+export default FourScore;

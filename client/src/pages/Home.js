@@ -15,6 +15,11 @@ import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
 import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
+import FourScore from "./games/FourScore";
+
+import { useQuery } from "@apollo/client";
+import { QUERY_USER} from "../utils/queries";
+import Auth from "../utils/auth";
 
 const Home = () => {
   const match = useRouteMatch();
@@ -28,16 +33,31 @@ const Home = () => {
       username: '',
     }
   })
+
+  
   
   const contextValue = useMemo(
     () => ({ pendingMatch, setPendingMatch }), 
     [pendingMatch]
   )
+  let activeUser = Auth.getProfile().data
+  const { loading, error, data } = useQuery(QUERY_USER, {
+    variables: {
+      username: activeUser.username,
+    },
+    pollInterval: 300,
+  });
+
+  if (loading) return <p>Loading</p>;
+  if (error) {
+    console.log(JSON.stringify(error, null, 2));
+    return error;
+  }
 
   return (
     <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
-      <Settings />
+      <Settings data={data} />
       
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
@@ -51,6 +71,9 @@ const Home = () => {
             <Route path={`${match.path}games/tictactoe/:matchId?`}>
               <TicTacToe />
             </Route>
+            <Route path={`${match.path}games/fourscore/:matchId?`}>
+              <FourScore />
+            </Route>
             <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
             </Route>
@@ -60,7 +83,7 @@ const Home = () => {
           </Switch>
         </div>
       </Router>
-      <Friends/>
+      <Friends data={data}/>
     </div>
     </PendingContext.Provider>
   );

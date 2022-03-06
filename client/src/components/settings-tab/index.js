@@ -2,15 +2,14 @@ import Auth from "../../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
 import { LOGOUT_USER } from '../../utils/mutations'
 
-function Settings() {
-    let user = Auth.getProfile().data;
+function Settings({data}) {
     const [logout] = useMutation(LOGOUT_USER);
-    console.log(user);
+    console.log(data.user);
 
     const handleLogout = async () => {
         try {
             await logout({
-                variables: { userId: user._id }
+                variables: { userId: data.user._id }
             })
         } catch(error) { console.log(JSON.stringify(error, null, 2));}
 
@@ -27,7 +26,7 @@ function Settings() {
             <div className="px-4 grid content-start content-start ">
                 <div className="flex text-2xl h-12 border-b flex justify-between items-center w-full  ">
                     <div className="mr-2 font-thin uppercase text-lg ">Username</div>
-                    <div className="font-normal ">{user.username}</div>
+                    <div className="font-normal ">{data.user.username}</div>
                 </div>
                 <div className="flex text-2xl h-12 border-b flex justify-between items-center w-full  ">
                     <label className="mr-2 font-thin uppercase text-lg">Name</label>
@@ -36,12 +35,12 @@ function Settings() {
                 <div className="flex text-2xl h-12 border-b flex justify-between items-center w-full">
                     <div className="mr-2 font-thin uppercase text-lg">Email</div>
                     <div className="font-normal flex justify-end  items-center w-full ">
-                        {user.email}
+                        {data.user.email}
                     </div>
                 </div>
                 <div className="flex text-2xl h-12 flex justify-between items-center w-full">
                     <div className="mr-2 font-thin uppercase text-lg">ID#</div>
-                    <div className="font-thin">{user._id}</div>
+                    <div className="font-thin">{data.user._id}</div>
                 </div>
                 <div className="pb-5 w-full flex justify-end">
                     <button onClick={handleLogout} className="bg-blue-500 text-white text-lg py-2 px-4 rounded-lg font-semibold w-full">Sign Out</button>

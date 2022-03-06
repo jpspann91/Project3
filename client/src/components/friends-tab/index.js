@@ -1,65 +1,58 @@
 import React, { useContext } from "react";
 import FriendBanner from "./FriendBanner";
-import { ReactComponent as SearchSVG } from "./search.svg";
-import Auth from '../../utils/auth'
 import { useQuery } from "@apollo/client";
 import PendingContext from "../../PendingContext";
 import PendingMatchNotice from "../PendingMatchNotice";
-import { QUERY_USER} from "../../utils/queries";
-import SearchBar from './SearchBar'
+import { QUERY_USERS } from "../../utils/queries";
 
-// const activeUser = {
-//     ...Auth.getProfile()
-// }
+import SearchBar from "./search";
 
-// Auth.getProfile()
 
-function Friends() {
-  let activeUser = Auth.getProfile().data
+function Friends({data: user}) {
   const { pendingMatch } = useContext(PendingContext);
-  const { loading, error, data } = useQuery(QUERY_USER, {
-    variables: {
-      username: activeUser.username,
-    },
-  });
 
+  const { loading, error, data } = useQuery(QUERY_USERS)
+  if (loading) return <p>loading...</p>;
   if (error) {
-    console.log(JSON.stringify(error, null, 2));
-    return error;
-  }
+    console.log(JSON.stringify(error, null, 2)); 
+  };
+
 
   return (
-    <div style={{height: window.innerHeight}} className='text-neutral-700 w-screen grid content-start px-4 py-5 overflow-y-scroll pb-16'>
-    <div className='grid content-between'>
-    {pendingMatch.game.gameType && <PendingMatchNotice />}
+    <div style={{ height: window.innerHeight }} className='text-neutral-700 w-screen grid content-start px-4 py-5 overflow-y-scroll pb-16'>
+      <div className='grid content-between'>
+        
         <div className='text-4xl font-medium pb-5'>Friends List</div>
-        <div className='relative'>                    
-            <SearchBar/>
+        <div className='relative'>
+          <SearchBar data={data} />
+
         </div>
-    </div>
-    {!loading && (
+      </div>
+      {pendingMatch.game.gameType && <PendingMatchNotice />}
         <>
-        {!data.user.friends.length && 
-          <div className=" text-center mt-20 text-lg font-thin">You have no friends...</div>
-        }
-    <div className='mt-5'>
-        {data.user.friends.filter(data => data.online).map((data, index) => (
+          {!user.user.friends.length &&
 
-            // ! Online Players
-            <FriendBanner data={data} key={index} />
-        ))}
+            <div className=" text-center mt-20 text-lg font-thin">
+              You have no friends...
+            </div>
+          }
+          <div className='mt-5'>
+            {user.user.friends.filter(data => data.online).map((data, index) => (
 
-    </div>
-    
-    <div>
-        {data.user.friends.filter(data => !data.online).map((data, index) => (
-            
-            // ! Offline Players
-            <FriendBanner data={data} key={index} />
-        ))}
-    </div>
-    </>
-    )}
+              // ! Online Players
+              <FriendBanner data={data} key={index} />
+            ))}
+
+          </div>
+
+          <div>
+            {user.user.friends.filter(data => !data.online).map((data, index) => (
+
+              // ! Offline Players
+              <FriendBanner data={data} key={index} />
+            ))}
+          </div>
+        </>
     </div>
   )
 }
