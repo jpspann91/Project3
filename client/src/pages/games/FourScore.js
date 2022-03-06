@@ -22,6 +22,7 @@ const DEFAULT_GAME_BOARD = [
   [" ", " ", " ", " ", " ", " ", " "],
   [" ", " ", " ", " ", " ", " ", " "],
 ];
+
 const DEFAULT_ACTIVE_USER = "";
 const DEFAULT_GAME_STATE = {
   winner: null,
@@ -35,7 +36,7 @@ const styles = {
   },
 };
 
-const ConnectFour = () => {
+const FourScore = () => {
   const history = useHistory();
   let user = Auth.getProfile().data;
   const [gameBoard, setGameBoard] = useState([[], [], []]);
@@ -52,8 +53,8 @@ const ConnectFour = () => {
     if (loading) return;
     console.log(JSON.stringify(error, null, 2));
     if (error) {
-      history.push('/')
-    };
+      history.push("/");
+    }
 
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
       fetchGameState(data.match);
@@ -89,7 +90,7 @@ const ConnectFour = () => {
     } catch (err) {
       console.log(JSON.stringify(err, null, 2));
     }
-  }, [gameBoard, activeUser, gameState, matchId, updateMatch])
+  }, [gameBoard, activeUser, gameState, matchId, updateMatch]);
 
   const fetchGameState = (matchData) => {
     // Fetch game data from data base
@@ -144,73 +145,85 @@ const ConnectFour = () => {
     }
   };
 
+  const getWinner = () => {
+    const sliceCheck = (slice) => {
+      if (slice.every((piece) => piece === slice[0])) {
+        return slice[0] === "X"
+          ? data.match.players[0].username
+          : data.match.players[1].username;
+      }
+      return null;
+    };
+
+    //Horizontal Checks
+    for (let i = 0; i < gameBoard.length; i++) {
+      for (let j = 0; j < gameBoard[i].length - 3; j++) {
+        const currentPiece = gameBoard[i][j];
+        if (currentPiece === " ") {
+          continue;
+        }
+
+        const slice = gameBoard[i].slice(j, j + 4);
+        const winner = sliceCheck(slice);
+
+        if (winner) return winner;
+      }
+    }
+
+    //Vertical Checks
+    for (let i = 0; i < gameBoard.length - 3; i++) {
+      for (let j = 0; j < gameBoard[i].length; j++) {
+        const currentPiece = gameBoard[i][j];
+        if (currentPiece === " ") {
+          continue;
+        }
+
+        const slice = gameBoard.slice(i, i + 4).map((row) => row[j]);
+        const winner = sliceCheck(slice);
+
+        if (winner) return winner;
+      }
+    }
+
+    //Diagonal Checks
+    for (let i = 0; i < gameBoard.length - 3; i++) {
+      for (let j = 0; j < gameBoard[i].length - 3; j++) {
+        const currentPiece = gameBoard[i][j];
+        if (currentPiece === " ") {
+          continue;
+        }
+
+        let slice = gameBoard.slice(i, i + 4).map((row, idx) => row[j + idx]);
+        let winner = sliceCheck(slice);
+
+        if (winner) return winner;
+
+        slice = gameBoard.slice(i, i + 4).map((row, idx) => row[j + 3 - idx]);
+        winner = sliceCheck(slice);
+
+        if (winner) return winner;
+      }
+    }
+
+    return "";
+  };
+
+  const checkDraw = () => {
+    return gameBoard.every((row) => row.every((el) => el !== " "));
+  };
+
   const checkGameState = () => {
-    //todo: add win logic for connectfour
-    // Double loop index locations
+    let winner = getWinner();
 
-    // Logic to check for winner
-    // Row and column Checks
-    let winner = null;
-    let status = "";
-    for (let i = 0; i < 3; i++) {
-      if (
-        gameBoard[i][0] !== " " &&
-        gameBoard[i][0] === gameBoard[i][1] &&
-        gameBoard[i][0] === gameBoard[i][2]
-      ) {
-        winner =
-          gameBoard[i][0] === "X"
-            ? data.match.players[0].username
-            : data.match.players[1].username;
-      }
-
-      if (
-        gameBoard[0][i] !== " " &&
-        gameBoard[0][i] === gameBoard[1][i] &&
-        gameBoard[0][i] === gameBoard[2][i]
-      ) {
-        winner =
-          gameBoard[0][i] === "X"
-            ? data.match.players[0].username
-            : data.match.players[1].username;
-      }
+    if (winner) {
+      return { status: "ended", winner };
     }
 
-    // Diagonal checks
-    if (
-      gameBoard[0][0] !== " " &&
-      gameBoard[0][0] === gameBoard[1][1] &&
-      gameBoard[0][0] === gameBoard[2][2]
-    ) {
-      winner =
-        gameBoard[0][0] === "X"
-          ? data.match.players[0].username
-          : data.match.players[1].username;
-    }
-    if (
-      gameBoard[2][0] !== " " &&
-      gameBoard[2][0] === gameBoard[1][1] &&
-      gameBoard[2][0] === gameBoard[0][2]
-    ) {
-      winner =
-        gameBoard[2][0] === "X"
-          ? data.match.players[0].username
-          : data.match.players[1].username;
-    }
+    let isDraw = checkDraw();
 
-    // Check draw
-    if (
-      [...gameBoard[0], ...gameBoard[1], ...gameBoard[2]].every(
-        (el) => el !== " "
-      ) &&
-      winner === null
-    ) {
-      status = "draw";
-    } else {
-      status = winner ? "ended" : "ongoing";
-    }
+    let status = isDraw ? "draw" : "ongoing";
 
-    return { winner, status };
+    return { status, winner };
   };
 
   const renderGameBoard = () => {
@@ -243,15 +256,13 @@ const ConnectFour = () => {
         onClick={squareClickHandler}
         key={row * 3 + col}
       >
-        {value === 'X' &&
+        {value === "X" && (
           <div className="w-10 h-10 rounded-full bg-red-400"></div>
-        }
-        {value === 'O' &&
+        )}
+        {value === "O" && (
           <div className="w-10 h-10 rounded-full bg-black"></div>
-        }
-        {value === '' &&
-          <div>' '</div>
-        }
+        )}
+        {value === "" && <div>' '</div>}
       </button>
     );
   };
@@ -259,32 +270,31 @@ const ConnectFour = () => {
   const getActivePiece = () => {
     const activePiece = activeUser === data.match.players[0]._id ? "X" : "O";
 
-    return activePiece
-  }
+    return activePiece;
+  };
 
   const addPieceToColumn = (col) => {
-    for (let i = gameBoard.length-1; i >= 0; i--) {
-      if (gameBoard[i][col] === ' ') {
-        setGameBoard(prevBoard => {
+    for (let i = gameBoard.length - 1; i >= 0; i--) {
+      if (gameBoard[i][col] === " ") {
+        setGameBoard((prevBoard) => {
           prevBoard[i][col] = getActivePiece();
           return prevBoard;
-        })
+        });
         return 1;
       }
     }
 
     return -1;
-  }
+  };
 
   const setSquareValue = async (row, col) => {
-
     const status = addPieceToColumn(col);
 
     // Invalid move detected
     if (status === -1) {
-      return
+      return;
     }
-    
+
     setActiveUser((prevUser) => {
       return prevUser === data.match.players[0]._id
         ? data.match.players[1]._id
@@ -299,18 +309,21 @@ const ConnectFour = () => {
   };
 
   const handleError = () => {
-    history.push('/')
-    return <></>
-  }
+    history.push("/");
+    return <></>;
+  };
 
   const getPlayerCards = () => {
     return data.match.players.map((player, index) => {
       return (
         <div className="p-5 w-3/6 text-center" key={index}>
           <div className="text-lg font-semibold flex justify-center align-center">
-            Player {index === 0 ? 
-            <div className="ml-2 w-4 h-4 rounded-full bg-red-400"></div> : 
-            <div className="ml-2 w-4 h-4 rounded-full bg-black"></div>}
+            Player{" "}
+            {index === 0 ? (
+              <div className="ml-2 w-4 h-4 rounded-full bg-red-400"></div>
+            ) : (
+              <div className="ml-2 w-4 h-4 rounded-full bg-black"></div>
+            )}
           </div>
           <div className="text-xl font-thin">{player?.username}</div>
         </div>
@@ -323,9 +336,9 @@ const ConnectFour = () => {
       {loading && !error && <p>Loading</p>}
       {!loading && !error && (
         <div>
-          <div title={`Connect Four`} className={styles.board}>
+          <div title={`Four Score`} className={styles.board}>
             <div className="grid justify-center content-center text-center">
-              <div className="text-4xl">Connect Four</div>
+              <div className="text-4xl">Four Score</div>
               <div className="text-neutral-400">{matchId}</div>
             </div>
             {gameState?.winner && (
@@ -380,10 +393,8 @@ const ConnectFour = () => {
           </button>
         </div>
       )}
-      
-       
     </>
   );
 };
 
-export default ConnectFour;
+export default FourScore;

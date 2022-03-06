@@ -8,23 +8,9 @@
   },
   {
     "_id": "621d90a76742d2938ffd5a51",
-    "gameType": "Connect Four",
-    "ruleSet": "First to line up 3 wins",
-    "icon": "connectfour.png",
-    "path": "connectfour"
-  },
-  {
-    "_id": "621d90a76742d2938ffd5a52",
-    "gameType": "Scrabble",
-    "ruleSet": "Score more points than your friends using the given board bonuses and letters",
-    "icon": "tictactoe.png",
-    "path": "testgame1"
-  },
-  {
-    "_id": "621d90a76742d2938ffd5a53",
-    "gameType": "Roulette",
-    "ruleSet": "Gamble all your money away by choosing either a number or a color and see what wins",
-    "icon": "tictactoe.png",
-    "path": "tictactoe"
+    "gameType": "Four Score",
+    "ruleSet": "First to line up 4 wins",
+    "icon": "fourscore.png",
+    "path": "fourscore"
   }
 ]
