@@ -12,6 +12,8 @@ function Settings({data}) {
                 variables: { userId: data.user._id }
             })
         } catch(error) { console.log(JSON.stringify(error, null, 2));}
+
+        Auth.logout();
     }
 
 

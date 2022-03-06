@@ -6,12 +6,6 @@ import Auth from "../utils/auth";
 import { ADD_MATCH } from "../utils/mutations";
 import { getObjectID } from "../utils/utils";
 
-
-// const currentUser = {
-//   _id: "621d90a76742d2938ffd5a00",
-//   username: "BriKernighan",
-// };
-
 const GameCard = ({
   _id,
   gameType,
@@ -21,6 +15,8 @@ const GameCard = ({
   path = "",
   opponent = "",
   type,
+  isTurn = false,
+  winner = "",
 }) => {
   let currentUser = Auth.getProfile().data;
   const history = useHistory();
@@ -74,6 +70,26 @@ const GameCard = ({
     }
   };
 
+  const getGameStatus = () => {
+    if (type === "game") {
+      return "";
+    }
+  
+    if (winner) {
+      if (winner === currentUser.username) {
+        return "You won";
+      } else {
+        return "You lost";
+      }
+    } else {
+      if (isTurn) {
+        return "Your turn";
+      } else {
+        return "Their turn";
+      }
+    }
+  };
+
   return (
     <div className="w-screen px-4 py-2 border-b">
       <div className="flex justify-between items-center">
@@ -93,6 +109,9 @@ const GameCard = ({
                   <>
                     <div className="text-center font-thin">
                       You VS. {opponent}
+                    </div>
+                    <div className="text-center font-thin">
+                      {getGameStatus()}
                     </div>
                   </>
                 ) : (

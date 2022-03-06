@@ -39,11 +39,8 @@ const SignupForm = ({handleformslide}) => {
 
     const handleFormSubmit = async (event) => {
 
-        console.log(event.currentTarget);
-        // if (form.checkValidity() !== false) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // }
+        event.preventDefault();
+
         try {
             //Use the mutation here
             const { data } = await addUser({
@@ -51,8 +48,11 @@ const SignupForm = ({handleformslide}) => {
                     params: JSON.stringify({ ...userFormData })
                 }
             })
+
             console.log(data)
             Auth.login(data.addUser.token)
+
+            window.location.assign('/')
         } catch (err) {
             console.log(JSON.stringify(error, null, 2));
         }
