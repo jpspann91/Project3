@@ -16,7 +16,8 @@ const SignupForm = ({ handleformslide }) => {
         email: '',
         password: '',
         firstName: '',
-        lastName: ''
+        lastName: '',
+        icon:'',
     })
 
     const [validated] = useState(false)
@@ -41,6 +42,7 @@ const SignupForm = ({ handleformslide }) => {
     const handleFormSubmit = async (event) => {
 
         event.preventDefault();
+        setUserFormData({ ...userFormData, icon: userFormData.firstName.substring(0,1) + userFormData.lastName.substring(0,1) })
 
         try {
             //Use the mutation here
