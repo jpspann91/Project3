@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Card, Row, Button } from "antd";
+import { Card, Row, Button, Col } from "antd";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { QUERY_SINGLE_MATCH } from "../../utils/queries";
 // import { UPDATE_MATCH } from "../../utils/mutations";
@@ -212,7 +212,7 @@ const TicTacToe = (props) => {
     let rows = [];
     for (let i = 0; i < 3; i++) {
       const row = (
-        <Row className="w-full grid content-center justify-center" key={i}>
+        <Row className="w-full grid content-center justify-center" key={i} gutter={[6,6]}>
           {gameBoard[i].map((value, j) => getGameSquare(value, i, j))}
         </Row>
       );
@@ -233,13 +233,16 @@ const TicTacToe = (props) => {
     };
 
     return (
-      <button
-        className="w-24 h-24 border-2 text-5xl text-neutral-700"
-        onClick={squareClickHandler}
-        key={row * 3 + col}
-      >
-        {value}
-      </button>
+      <Col span={8}>
+        <button
+          className="w-24 h-24 border-2 text-5xl text-neutral-700"
+          onClick={squareClickHandler}
+          key={row * 3 + col}
+        >
+          {value}
+        </button>
+      </Col>
+      
     );
   };
 
