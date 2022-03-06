@@ -18,7 +18,6 @@ const CreateMatch = (props) => {
   const [ addMatch ] = useMutation(ADD_MATCH);
 
   const getOpponents = () => {
-    console.log(data)
     return data.user.friends.map((friend, index) => {
       return (
         <Card key={index}>

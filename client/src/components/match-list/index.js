@@ -17,11 +17,9 @@ const MatchList = () => {
 
   const getMatchCards = () => {
     const userMatchData = data.matches.filter((match) => {
-      console.log(match);
       return match.players.some((player) => player._id === activeUser._id);
     });
 
-    console.log(data.matches);
     return userMatchData.map((match, index) => {
       const opponent =
         match.players[0]._id === activeUser._id

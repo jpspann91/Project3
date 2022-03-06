@@ -11,21 +11,10 @@ import Friends from "../components/friends-tab";
 import TicTacToe from "./games/TicTacToe.js";
 import Settings from "../components/settings-tab";
 import TestGame1 from "./games/TestGame1";
-import CreateMatch from "./CreateMatch";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
 import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
-import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
-
-let profileData = {
-  _id: "EG76J42",
-  icon: "JD",
-  fullName: "John Doe",
-  username: "JonnyManiac",
-  online: false,
-};
 
 const Home = () => {
   const match = useRouteMatch();
@@ -39,10 +28,6 @@ const Home = () => {
       username: '',
     }
   })
-
-  // const { loading, error, data } = useQuery(QUERY_USER, {
-
-  // })
   
   const contextValue = useMemo(
     () => ({ pendingMatch, setPendingMatch }), 
@@ -52,7 +37,8 @@ const Home = () => {
   return (
     <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
-      <Settings data={profileData} />
+      <Settings />
+      
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
           <Switch>
@@ -68,8 +54,8 @@ const Home = () => {
             <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
             </Route>
-            <Route path={`${match.path}games/:gameId/:gameName?`}>
-              <CreateMatch />
+            <Route>
+              <p>Route not found</p>
             </Route>
           </Switch>
         </div>

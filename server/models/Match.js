@@ -11,8 +11,7 @@ const matchSchema = new Schema({
     default: "In Progress",
   },
   winner: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
   },
   score: {
     type: String,

@@ -33,7 +33,6 @@ const GameCard = ({
     } else {
       if (pendingMatch.user._id) {
         const matchId = getObjectID();
-        console.log(matchId);
 
         await startMatch({
           variables: {
@@ -49,8 +48,6 @@ const GameCard = ({
             }),
           },
         });
-        console.log(path)
-        console.log(matchId)
 
         history.push(`${path}/${matchId}`);
 
@@ -77,7 +74,6 @@ const GameCard = ({
     }
   };
 
-  console.log(path);
   return (
     <div className="w-screen px-4 py-2 border-b">
       <div className="flex justify-between items-center">

@@ -133,6 +133,7 @@ export const QUERY_SINGLE_MATCH = gql`
       status
       score
       gameBoard
+      winner
       players {
         _id
         username

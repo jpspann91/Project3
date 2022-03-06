@@ -18,7 +18,7 @@ type Match {
   _id: ID
   game: Game
   status: String
-  winner: User
+  winner: String
   score: String
   gameBoard: String
   activePlayer: User
@@ -65,6 +65,7 @@ type Mutation {
   updateGameType(gameId: ID!, gameType: String!): Game
   updateGameRuleSet(gameId: ID!, ruleSet: String!): Game
   addMatch(params: String): Match
+  updateMatch(matchId: ID!, params: String!): Match
   updateMatchGame(matchId: ID!, gameId: ID!): Match
   updateMatchStatus(matchId: ID!, status: String!): Match
   updateMatchWinner(matchId: ID!, winner: String!): Match

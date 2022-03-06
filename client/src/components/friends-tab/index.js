@@ -27,9 +27,6 @@ function Friends() {
     return error;
   }
 
-  console.log(pendingMatch);
-  console.log(data);
-
   return (
     <div style={{height: window.innerHeight}} className='text-neutral-700 w-screen grid content-start px-4 py-5 overflow-y-scroll pb-16'>
     <div className='grid content-between'>
