@@ -235,6 +235,7 @@ const FourScore = () => {
           className="w-full grid content-center justify-center"
           key={i}
           gutter={[6, 6]}
+          style={{ display: 'flex'}}
         >
           {gameBoard[i].map((value, j) => getGameSquare(value, i, j))}
         </Row>
@@ -393,8 +394,8 @@ const FourScore = () => {
             onClick={saveGameState}
           >
             Notify{" "}
-            {data.match.activePlayer?.username ===
-            data.match.players[0]?.username
+            {user.username ===
+              data.match.players[0]?.username
               ? data.match.players[1]?.username
               : data.match.players[0]?.username}
           </button>

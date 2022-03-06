@@ -118,7 +118,6 @@ const SignupForm = ({ handleformslide }) => {
                         required />
                 </div>
 
-
                 <div className='w-full flex justify-between text-lg'>
 
                     <button

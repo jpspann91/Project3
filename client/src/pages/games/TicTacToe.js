@@ -212,7 +212,11 @@ const TicTacToe = (props) => {
     let rows = [];
     for (let i = 0; i < 3; i++) {
       const row = (
-        <Row className="w-full grid content-center justify-center" key={i} gutter={[6,6]}>
+        <Row className="w-full grid content-center justify-center"
+             key={i} 
+             gutter={[6,6]}
+             style={{ display: 'flex'}}
+        >
           {gameBoard[i].map((value, j) => getGameSquare(value, i, j))}
         </Row>
       );
@@ -341,7 +345,7 @@ const TicTacToe = (props) => {
             onClick={saveGameState}
           >
             Notify{" "}
-            {data.match.activePlayer?.username ===
+            {user.username ===
               data.match.players[0]?.username
               ? data.match.players[1]?.username
               : data.match.players[0]?.username}
