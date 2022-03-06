@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const SignupForm = () => {
+const SignupForm = ({handleformslide}) => {
     const history = useHistory();
 
     const [userFormData, setUserFormData] = useState({
@@ -22,7 +22,7 @@ const SignupForm = () => {
 
     const [showAlert, setShowAlert] = useState(false);
 
-    const [addUser, { error}] = useMutation(ADD_USER);
+    const [addUser, { error }] = useMutation(ADD_USER);
 
     useEffect(() => {
         if (error) {
@@ -38,39 +38,30 @@ const SignupForm = () => {
     }
 
     const handleFormSubmit = async (event) => {
-        console.log('submit')
 
-        console.log(event.currentTarget);
-        // if (form.checkValidity() !== false) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // }
+        event.preventDefault();
+
         try {
             //Use the mutation here
             const { data } = await addUser({
-                variables: { 
-                    params: JSON.stringify({...userFormData})
+                variables: {
+                    params: JSON.stringify({ ...userFormData })
                 }
             })
+
             console.log(data)
             Auth.login(data.addUser.token)
+
+            window.location.assign('/')
         } catch (err) {
             console.log(JSON.stringify(error, null, 2));
         }
-
-        setUserFormData({
-            username: '',
-            email: '',
-            password: '',
-            fullName: '',
-        });
-
-        history.push('/login')
     }
+
 
     return (
         <>
-            <form className='px-4' noValidate validated={validated.toString()}
+            <form style={{ transform: 'translateX(100vw)' }} className={'w-screen px-4'} noValidate validated={validated.toString()}
                 onSubmit={handleFormSubmit}>
 
 
@@ -78,7 +69,7 @@ const SignupForm = () => {
                 {/*Username */}
                 <div className='grid' label='Username'>
                     <label>Username</label>
-                    <Input type='text' 
+                    <Input type='text'
                         placeholder='Username'
                         onChange={handleInputChange}
                         name='username'
@@ -89,7 +80,7 @@ const SignupForm = () => {
                 {/*Email */}
                 <div className='grid' label='Email'>
                     <label>Email</label>
-                    <Input type='email' 
+                    <Input type='email'
                         placeholder='Email'
                         name='email'
                         onChange={handleInputChange}
@@ -99,7 +90,7 @@ const SignupForm = () => {
                 {/*Password */}
                 <div className='Password' label='Password'>
                     <label>Password</label>
-                    <Input type='password' 
+                    <Input type='password'
                         placeholder='Password'
                         name='password'
                         onChange={handleInputChange}
@@ -109,7 +100,7 @@ const SignupForm = () => {
                 {/*Full Name */}
                 <div className='grid' label='Full Name'>
                     <label>Name</label>
-                    <Input type='text' 
+                    <Input type='text'
                         placeholder='Full Name'
                         name='fullName'
                         onChange={handleInputChange}
@@ -117,23 +108,26 @@ const SignupForm = () => {
                         required />
 
                 </div>
-                <div className='w-full grid'>
-                <button className='bg-neutral-700 text-white my-5 px-8 text-md w-full py-2 rounded-lg' type="primary" htmltype="submit"
-                    // disabled={
-                    //     !(
-                        //         userFormData.username &&
-                    //         userFormData.email &&
-                    //         userFormData.password &&
-                    //         userFormData.fullName
-                    //     )
-                    // }
-                >Sign Up</button>
-                        <Alert className=' bg-white  h-8'
-                            dismissible
-                            onClose={() => setShowAlert(false)}
-                            show={showAlert}
-                        >Something went wrong with your singup!</Alert>
-                    
+                <div className='w-full flex justify-between text-lg'>
+
+                    <button 
+                    onClick={() => handleformslide('signup')}
+                    className='bg-gradient-to-t from-neutral-700  to-neutral-600 text-white my-5 px-8 text-md w-4/12 py-2 rounded-lg' type='button'>
+                        Login
+                    </button>
+
+                    <button 
+                    className=' bg-gradient-to-t from-blue-500  to-blue-400 text-white my-5 px-8 w-7/12 py-2 rounded-lg' 
+                    type="submit" >
+                        Create Account
+                    </button>
+
+                    {/* <Alert className='opacity-0  h-8'
+                        dismissible
+                        onClose={() => setShowAlert(false)}
+                        show={showAlert}
+                    >Something went wrong with your singup!</Alert> */}
+
                 </div>
 
             </form>

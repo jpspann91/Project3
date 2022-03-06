@@ -13,6 +13,7 @@ import Settings from "../components/settings-tab";
 import TestGame1 from "./games/TestGame1";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
+import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
 
 const Home = () => {
