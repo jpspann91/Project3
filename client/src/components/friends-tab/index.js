@@ -40,7 +40,9 @@ function Friends() {
     </div>
     {!loading && (
         <>
-        
+        {!data.user.friends.length && 
+          <div className=" text-center mt-20 text-lg font-thin">You have no friends...</div>
+        }
     <div className='mt-5'>
         {data.user.friends.filter(data => data.online).map((data, index) => (
 

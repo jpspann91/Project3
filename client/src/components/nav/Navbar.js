@@ -38,10 +38,10 @@ function NavBar(props) {
                 })
                 break;
 
-      default:
-        break;
+            default:
+                break;
+        }
     }
-  }
 
     return (
 
@@ -49,13 +49,15 @@ function NavBar(props) {
             <div className=' flex'>
                 {Auth.loggedIn && state.settings}
             </div>
-            <a href="/"><p className='flex text-center text-3xl uppercase font-medium text-neutral-100'>Nexus</p></a>
+            <p className='flex text-center text-3xl uppercase font-medium text-neutral-100'>
+                Nexus
+            </p>
             <div className=' flex'>
                 {Auth.loggedIn && state.friends}
             </div>
 
-    </div>
-  );
+        </div>
+    );
 }
 
 export default NavBar;

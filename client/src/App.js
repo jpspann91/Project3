@@ -18,6 +18,7 @@ import Logo from './components/logo';
 
 
 
+
 import 'antd/dist/antd.css';
 import Auth from './utils/auth.js';
 
@@ -51,11 +52,8 @@ const client = new ApolloClient({
 function App() {
 
 
-  
-
-
   const [page, setPage] = useState('mt-14')
-  const style = {height: window.innerHeight, transform: 'translateX(-100vw)'}
+  const style = { height: window.innerHeight, transform: 'translateX(-100vw)' }
   function handlePageState(x) {
     switch (x) {
       case 'settings':
@@ -85,18 +83,23 @@ function App() {
           else { setPage('mt-14 animate-rightClose') }
         })
         break;
-        case 'default':
-          setPage('mt-14 animate-default')
-          break;
+      case 'default':
+        setPage('mt-14 animate-default')
+        break;
 
       default:
         break;
     }
   }
+  const [formslide,setformslide] = useState('flex animate-loginSlideUp')
+  const handleformslide = (x) => {
+    if(x === 'login'){setformslide('flex animate-shiftleft')}
+    else {setformslide('flex animate-shiftright')}
+  }
 
   useEffect(() => {
     handlePageState('default')
-  },[]);
+  }, []);
   let user = Auth.getProfile()?.data;
 
   return (
@@ -104,7 +107,7 @@ function App() {
       <Router forceRefresh={true}>
         <div style={{ height: window.innerHeight }} className="relative grid content-start text-neutral-700 overflow-hidden ">
           <div className='fixed scroll-shadow h-80 w-full bg-gradient-to-t from-black  to-transparent z-50 bottom-0 opacity-40 pointer-events-none'></div>
-          <NavBar handlePageState={handlePageState} />
+          {user?._id && (<NavBar handlePageState={handlePageState} />)}
           <div style={style} className={page}>
 
             <Switch>
@@ -115,16 +118,24 @@ function App() {
                 <LoginForm />
               </Route>
               <Route path="/logo">
-                <Logo  />
+                <Logo />
               </Route>
               {!user?._id && (
                 <Route path="/">
-                  <LoginForm />
+                  <div className='flex justify-start'>
+                    <Logo />
+                  </div>
+                  <div className={formslide}>
+                      <LoginForm handleformslide={handleformslide} />
+                      <SignupForm handleformslide={handleformslide} />
+                  </div>
+
                 </Route>
               )}
               {user?._id && (
+
                 <Route path="/">
-                  <Home  />
+                  <Home />
                 </Route>
               )}
               {/* <Route exact path="/profile">
