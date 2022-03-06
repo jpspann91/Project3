@@ -1,5 +1,5 @@
-import { useQuery } from "@apollo/client";
 import React from "react";
+import { useQuery } from "@apollo/client";
 import { QUERY_MATCHES } from "../../utils/queries";
 import GameCard from "../GameCard";
 import { ReactComponent as Arrow } from '../arrow.svg'

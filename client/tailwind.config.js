@@ -55,8 +55,8 @@ module.exports = {
           to: { transform: 'translateX(-100vw)' },
         },
         blur: {
-          from: { backdropFilter: 'blur(0px)', opacity: '0' },
-          to: { backdropFilter: 'blur(4px)', opacity:'1' },
+          from: { opacity: 0},
+          to: { opacity: .8},
         },
         xup: {
           from: {transform: 'translateY(1em) rotate(180deg) scale(0)',},
