@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_USERS = gql`
-  query users{
+  query {
     users{
       _id
       username
@@ -12,7 +12,22 @@ export const QUERY_USERS = gql`
       }
       online
       icon
-      fullName
+      firstName
+      lastName
+      activeMatches {
+        _id
+        game{
+          gameType
+          ruleSet
+        }
+      }
+      pastMatches{
+        _id
+        game{
+          gameType
+          ruleSet
+        }
+      }
     }
   }
 `;
@@ -28,11 +43,13 @@ export const QUERY_USER = gql`
         username
         icon
         online
-        fullName
+        firstName
+        lastName
       }
       online
       icon
-      fullName
+      firstName
+      lastName
     }
   }
 `;

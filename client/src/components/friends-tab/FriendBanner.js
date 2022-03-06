@@ -1,12 +1,18 @@
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PendingContext from '../../PendingContext';
 import Auth from '../../utils/auth';
 import { ADD_MATCH } from '../../utils/mutations';
+import {QUERY_USERS} from '../../utils/queries'
 import { getObjectID } from '../../utils/utils';
 
 function FriendBanner(friendObject) {
+    // const { loading, data } = useQuery(QUERY_USERS);
+    // const users = data?.users || [];
+    // console.log(users);
+
+
     let currentUser = Auth.getProfile().data;
     const history = useHistory();
     const { pendingMatch, setPendingMatch } = useContext(PendingContext);
@@ -83,7 +89,7 @@ function FriendBanner(friendObject) {
                 <div className='flex justify-between' >
                     <div className='flex flex-col'>
                         <div className='mr-2'>{friendObject.data.username}</div>
-                    <div className='text-xs'>{friendObject.data.fullName}</div>
+                    <div className='text-xs'>{friendObject.data.firstName}</div>
                     </div>
 
                         <div className='opacity-50 text-sm'>#{
