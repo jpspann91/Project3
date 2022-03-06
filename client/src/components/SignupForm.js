@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const SignupForm = ({handleformslide}) => {
+const SignupForm = ({ handleformslide }) => {
     const history = useHistory();
 
     const [userFormData, setUserFormData] = useState({
@@ -64,17 +64,26 @@ const SignupForm = ({handleformslide}) => {
         <>
             <form style={{ transform: 'translateX(100vw)' }} className={'w-screen px-4'} noValidate validated={validated.toString()}
                 onSubmit={handleFormSubmit}>
-
-                {/*Full Name */}
-                <div className='grid' label='Full Name'>
-                    <label>Name</label>
+                    {/*First Name */}
+                <div className='grid' label='First Name'>
+                    <label>First Name</label>
                     <Input type='text'
-                        placeholder='Full Name'
-                        name='fullName'
+                        placeholder='First Name'
+                        name='firstName'
                         onChange={handleInputChange}
-                        value={userFormData.fullName}
+                        value={userFormData.firstName}
                         required />
 
+                </div>
+                {/*Last Name */}
+                <div className='grid' label='Last Name'>
+                    <label>Last Name</label>
+                    <Input type='text'
+                        placeholder='Last Name'
+                        name='lastName'
+                        onChange={handleInputChange}
+                        value={userFormData.lastName}
+                        required />
                 </div>
 
                 {/*Username */}
@@ -108,37 +117,19 @@ const SignupForm = ({handleformslide}) => {
                         value={userFormData.password}
                         required />
                 </div>
-                {/*First Name */}
-                <div className='grid' label='First Name'>
-                    <label>First Name</label>
-                    <Input type='text'
-                        placeholder='First Name'
-                        name='firstName'
-                        onChange={handleInputChange}
-                        value={userFormData.firstName}
-                        required />
 
-                </div>
-                <div className='grid' label='Last Name'>
-                    <label>Last Name</label>
-                    <Input type='text'
-                        placeholder='Last Name'
-                        name='lastName'
-                        onChange={handleInputChange}
-                        value={userFormData.lastName}
-                        required />
 
                 <div className='w-full flex justify-between text-lg'>
 
-                    <button 
-                    onClick={() => handleformslide('signup')}
-                    className='bg-gradient-to-t from-neutral-700  to-neutral-600 text-white my-5 px-8 text-md w-4/12 py-2 rounded-lg' type='button'>
+                    <button
+                        onClick={() => handleformslide('signup')}
+                        className='bg-gradient-to-t from-neutral-700  to-neutral-600 text-white my-5 px-8 text-md w-4/12 py-2 rounded-lg' type='button'>
                         Login
                     </button>
 
-                    <button 
-                    className=' bg-gradient-to-t from-blue-500  to-blue-400 text-white my-5 px-8 w-7/12 py-2 rounded-lg' 
-                    type="submit" >
+                    <button
+                        className=' bg-gradient-to-t from-blue-500  to-blue-400 text-white my-5 px-8 w-7/12 py-2 rounded-lg'
+                        type="submit" >
                         Create Account
                     </button>
 
