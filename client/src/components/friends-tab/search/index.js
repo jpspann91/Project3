@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { ReactComponent as SearchSVG } from './search.svg'
-import { useQuery } from "@apollo/client";
-import { QUERY_USERS, QUERY_USER } from "../../../utils/queries";
 import FindFriend from './FindFriend';
+
+const CLOSE_SEARCH_DELAY = 400;
 
 function SearchBar({ data }) {
     let isFound = false
     const [username, setusername] = useState('');
     const [list, setList] = useState(data.users)
-    const userList = data.users.map(el => el.username)
+    const [hasFocus, setFocus] = useState(false);
+
+    let userList = data.users.map(el => el.username);
+
+    userList.length = Math.min(userList.length, 12);
 
     console.log(data);
 
@@ -16,11 +20,17 @@ function SearchBar({ data }) {
     const handleInputChange = (event) => {
         const { value } = event.target;
         setusername(value);
-        if (userList.filter(person => person.toLowerCase().includes(username))) {
-            setList(data.users.filter(person => person.username.toLowerCase().includes(username)))
+        // setList(data.users.slice(0,10))
+        if (userList.filter(person => person.toLowerCase().includes(value))) {
+            setList(data.users.filter(person => person.username.toLowerCase().includes(value)))
         }
         // console.log(people);
     };
+
+    const handleBlur = (e) => {
+        setTimeout(() => setFocus(false),CLOSE_SEARCH_DELAY)
+    }
+
     return (
         <>
             <div className='relative'>
@@ -30,17 +40,23 @@ function SearchBar({ data }) {
                         placeholder='Find..'
                         type="text"
                         name="username"
+                        value={username}
                         onChange={handleInputChange}
+                        onFocus={() => setFocus(true)}
+                        onBlur={handleBlur}
                     >
                     </input>
 
                 </form>
-                <div className='z-50 absolute mt-6 border-t rounded-lg w-full bg-white shadow-lg max-h-96 overflow-y-scroll shadow-neutral-400 flex flex-col'>
+                {hasFocus && 
+                    <div className='z-50 absolute mt-6 border-t rounded-lg w-full bg-white shadow-lg max-h-96 overflow-y-scroll shadow-neutral-400 flex flex-col'>
 
-                    {list.length > 0 && list.length < 12 && list.map((data, index) => {
+                    {list.length > 0 && list.map((data, index) => {
                         return <FindFriend key={index} data={data} />
-                    })}
+                })}
                 </div>
+                }
+                
             </div>
         </>
     )
