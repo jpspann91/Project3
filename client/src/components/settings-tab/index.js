@@ -1,13 +1,20 @@
 import Auth from "../../utils/auth";
+import { useMutation, useQuery } from "@apollo/client";
 import { LOGOUT_USER } from '../../utils/mutations'
 
 function Settings() {
     let user = Auth.getProfile().data;
+    const [logout] = useMutation(LOGOUT_USER);
     console.log(user);
 
-    function handleLogout(){
-        LOGOUT_USER(user._id)
+    const handleLogout = async () => {
+        try {
+            await logout({
+                variables: { userId: user._id }
+            })
+        } catch(error) { console.log(JSON.stringify(error, null, 2));}
     }
+
 
     return (
         <div className="text-neutral-700 w-screen  grid content-start bg-white">

@@ -14,6 +14,7 @@ import TestGame1 from "./games/TestGame1";
 import CreateMatch from "./CreateMatch";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
+import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
@@ -52,7 +53,6 @@ const Home = () => {
     <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
       <Settings data={profileData} />
-      
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
           <Switch>

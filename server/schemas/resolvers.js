@@ -70,7 +70,7 @@ const resolvers = {
       return { token, user };
     },
     logout: async (parent, { userId }) => {
-      request = userId.context["request"]
+      request = await userId.context["request"]
       
       if (request.user.is_authenticated){
          

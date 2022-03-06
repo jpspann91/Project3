@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { QUERY_MATCHES } from "../../utils/queries";
 import GameCard from "../GameCard";
-import {ReactComponent as Arrow} from '../arrow.svg'
+import { ReactComponent as Arrow } from '../arrow.svg'
 import Auth from "../../utils/auth";
 
 const MatchList = () => {
@@ -46,10 +46,13 @@ const MatchList = () => {
 
   return (
     <div>
-      <div className="text-2xl px-4 flex justify-start items-center text-neutral-700 bg-gradient-to-t from-neutral-200 to-neutral-100 py-2 font-thin">
-        <Arrow className='mr-2 h-4 w-4 mt-1' />
-        Your Matches
+      <div className="text-2xl px-4 flex justify-between items-center text-neutral-700 bg-gradient-to-t from-neutral-200 to-neutral-100 py-2 font-thin">
+        <div className="flex justify-center items-center">
+          <Arrow className='mr-2 h-4 w-4 mt-1' />
+          Active Matches
         </div>
+        <div>( {data.matches.length} )</div>
+      </div>
       {getMatchCards()}
     </div>
   );

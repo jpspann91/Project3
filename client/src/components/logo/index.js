@@ -10,19 +10,20 @@ function Logo() {
   let timer = setInterval(() => {
     clearInterval(timer)
     setLogo(
-      <div className='flex pb-40'>
-        <div className='flex items-center -mr-10 animate-neSlide'>NE</div>
-        <div >
-          <Xdown className='w-36  animate-xdown' />
-          <Xup className='w-36 -mt-20 animate-xup' />
+
+        <div className='flex'>
+          <div className='flex items-center -mr-10 animate-neSlide'>NE</div>
+          <div>
+            <Xdown className='w-36  animate-xdown' />
+            <Xup className='w-36 -mt-20 animate-xup' />
+          </div>
+          <div className='flex items-center -ml-10 animate-usSlide'>US</div>
         </div>
-        <div className='flex items-center -ml-10 animate-usSlide'>US</div>
-      </div>
     )
 
   }, 300);
   return (
-    <div style={{ height: window.innerHeight }} className='pointer-events-none scale-150 grid content-center justify-center text-6xl font-thin'>
+    <div style={{transform: 'translateX(100vw)'}} className='w-screen h-40 pointer-events-none scale-150 grid content-center justify-center text-6xl font-thin'>
       {logo}
     </div>
   );

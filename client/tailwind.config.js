@@ -16,7 +16,10 @@ module.exports = {
         xdown: 'xdown 1s forwards',
         neSlide: 'neSlide 1s forwards',
         usSlide: 'usSlide 1s forwards',
-        default: 'default 1s forwards'
+        default: 'default 1s forwards',
+        loginSlideUp: 'loginSlideUp 1s forwards',
+        shiftleft: 'shiftleft .2s forwards',
+        shiftright: 'shiftright .2s forwards',
       },
       keyframes: {
         fadeIn: {
@@ -75,6 +78,19 @@ module.exports = {
           from: {opacity: 0},
           to: { opacity: 1 },
         },
+        loginSlideUp: {
+          from: {transform: 'translateY(100vw)'},
+          to: { transform: 'translateY(0vw)'},
+        },
+        shiftleft: {
+          from: {transform: 'translateX(0vw)'},
+          to: { transform: 'translateX(-100vw)'},
+        },
+        shiftright: {
+          from: {transform: 'translateX(-100vw)'},
+          to: { transform: 'translateX(0vw)'},
+        },
+
 
       },
     },
