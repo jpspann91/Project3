@@ -76,5 +76,18 @@
             "621d90a76742d2938ffd5a01",
             "621d90a76742d2938ffd5a02"
         ]
+    },
+    {
+        "_id": "621d90a76742d2938ffd5acf",
+        "status": "ongoing",
+        "game": "621d90a76742d2938ffd5a51",
+        "score": "0-1",       
+        "gameBoard": "                          O     OX   XOXXO",
+        "winner": "",
+        "activePlayer": "621d90a76742d2938ffd5a00",
+        "players": [
+            "621d90a76742d2938ffd5a00",
+            "621d90a76742d2938ffd5a02"
+        ]
     }
 ]

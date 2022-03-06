@@ -14,12 +14,12 @@ const MatchList = () => {
     console.log(JSON.stringify(error, null, 2));
     return error;
   }
+  
+  const userMatchData = data.matches.filter((match) => {
+    return match.players.some((player) => player._id === activeUser._id);
+  });
 
   const getMatchCards = () => {
-    const userMatchData = data.matches.filter((match) => {
-      return match.players.some((player) => player._id === activeUser._id);
-    });
-
     return userMatchData.map((match, index) => {
       const opponent =
         match.players[0]._id === activeUser._id
@@ -53,7 +53,7 @@ const MatchList = () => {
           <Arrow className='mr-2 h-4 w-4 mt-1' />
           Active Matches
         </div>
-        <div>( {data.matches.length} )</div>
+        <div>( { userMatchData.length } )</div>
       </div>
       {getMatchCards()}
     </div>

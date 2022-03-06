@@ -15,6 +15,7 @@ import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
 import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
+import FourScore from "./games/FourScore";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_USER} from "../utils/queries";
@@ -68,6 +69,9 @@ const Home = () => {
             </Route>
             <Route path={`${match.path}games/tictactoe/:matchId?`}>
               <TicTacToe />
+            </Route>
+            <Route path={`${match.path}games/fourscore/:matchId?`}>
+              <FourScore />
             </Route>
             <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
