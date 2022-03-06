@@ -1,8 +1,13 @@
 import Auth from "../../utils/auth";
+import { LOGOUT_USER } from '../../utils/mutations'
 
-function Settings(profile) {
+function Settings() {
     let user = Auth.getProfile().data;
     console.log(user);
+
+    function handleLogout(){
+        LOGOUT_USER(user._id)
+    }
 
     return (
         <div className="text-neutral-700 w-screen  grid content-start bg-white">
@@ -30,7 +35,7 @@ function Settings(profile) {
                     <div className="font-thin">{user._id}</div>
                 </div>
                 <div className="pb-5 w-full flex justify-end">
-                    <button className="bg-blue-500 text-white text-lg py-2 px-4 rounded-lg font-semibold w-full">Sign Out</button>
+                    <button onClick={handleLogout} className="bg-blue-500 text-white text-lg py-2 px-4 rounded-lg font-semibold w-full">Sign Out</button>
                 </div>
 
             </div>

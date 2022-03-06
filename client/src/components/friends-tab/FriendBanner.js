@@ -2,15 +2,12 @@ import { useMutation } from '@apollo/client';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PendingContext from '../../PendingContext';
+import Auth from '../../utils/auth';
 import { ADD_MATCH } from '../../utils/mutations';
 import { getObjectID } from '../../utils/utils';
 
-const currentUser = {
-    _id: "621d90a76742d2938ffd5a00",
-    username: "BriKernighan",
-  };
-
 function FriendBanner(friendObject) {
+    let currentUser = Auth.getProfile().data;
     const history = useHistory();
     const { pendingMatch, setPendingMatch } = useContext(PendingContext);
     const [ startMatch ] = useMutation(ADD_MATCH);

@@ -7,10 +7,6 @@ import PendingContext from "../../PendingContext";
 import PendingMatchNotice from "../PendingMatchNotice";
 import { QUERY_USER } from "../../utils/queries";
 
-const activeUser = {
-  username: "BriKernighan",
-};
-
 // const activeUser = {
 //     ...Auth.getProfile()
 // }
@@ -18,7 +14,7 @@ const activeUser = {
 // Auth.getProfile()
 
 function Friends() {
-
+  let activeUser = Auth.getProfile().data
   const { pendingMatch } = useContext(PendingContext);
   const { loading, error, data } = useQuery(QUERY_USER, {
     variables: {

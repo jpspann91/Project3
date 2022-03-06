@@ -17,6 +17,14 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const LOGOUT_USER = gql`
+  mutation logout($userId: ID!) {
+    logout(userId: $userId) {
+      _id
+    }
+  }`
+
+
 export const ADD_USER = gql`
   mutation addUser($params: String) {
     addUser(params: $params) {
@@ -66,7 +74,7 @@ export const REMOVE_FRIEND = gql`
 `;
 
 export const UPDATE_USERNAME = gql`
-  mutation updateUsername($username: String!) {
+  mutation updateUsername($username: String!, $userId: ID!) {
     updateUsername(username: $username) {
       _id
       username
@@ -75,7 +83,7 @@ export const UPDATE_USERNAME = gql`
 `;
 
 export const UPDATE_EMAIL = gql`
-  mutation updateEmail($email: String!) {
+  mutation updateEmail($email: String!, $userId: ID!) {
     updateEmail(email: $email) {
       _id
       username
@@ -85,7 +93,7 @@ export const UPDATE_EMAIL = gql`
 `;
 
 export const UPDATE_PASSWORD = gql`
-  mutation updatePassword($password: String!) {
+  mutation updatePassword($password: String!, $userId: ID!) {
     updatePassword(password: $password) {
       _id
       username
@@ -95,18 +103,19 @@ export const UPDATE_PASSWORD = gql`
 `;
 
 export const UPDATE_ONLINE = gql`
-  mutation updateOnline($online: Boolean!) {
-    updateOnline(online: $online) {
+  mutation updateOnline($online: Boolean! $userId: ID!) {
+    updateOnline(userId: $userId, online: $online) {
+
       _id
       username
       online
-    }
+      }
   }
 `;
 
 export const UPDATE_ICON = gql`
-  mutation updateIcon($icon: String!) {
-    updateIcon(icon: $icon) {
+  mutation updateIcon($icon: String!, $userId: ID!) {
+    updateIcon(userId: $userId, icon: $icon){
       _id
       username
       icon
@@ -115,22 +124,36 @@ export const UPDATE_ICON = gql`
 `;
 
 export const UPDATE_FULL_NAME = gql`
-  mutation updateFullName($fullName: String!) {
+  mutation updateFullName($fullName: String!, $userId: ID!) {
     updateFullName(fullName: $fullName) {
       _id
       username
-      icon
+      fullName
     }
   }
 `;
 
-export const UPDATE_ACTIVE_MATCHES = gql`
-  mutation updateActiveMatches($activeMatches: ID!) {
-    updateActiveMatches(activeMatches: $activeMatches) {
+export const REMOVE_ACTIVE_MATCHES = gql`
+  mutation removeActiveMatches($activeMatches: String!, $userId: ID!, $matchId: ID!) {
+    removeActiveMatches(activeMatches: $activeMatches, userId: $userId, matchId: $matchId) {
       _id
       username
       match {
         activePlayer
+        matchId
+      }
+    }
+  }
+`;
+
+export const ADD_ACTIVE_MATCHES = gql`
+  mutation addActiveMatches($activeMatches: String!, $userId: ID!, $matchId: ID!) {
+    addActiveMatches(activeMatches: $activeMatches, userId: $userId, matchId: $matchId) {
+      _id
+      username
+      match {
+        activePlayer
+        matchId
       }
     }
   }

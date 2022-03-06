@@ -51,8 +51,16 @@ type Query {
 type Mutation {
   addUser(params: String): Auth
   login(email: String!, password: String!): Auth
+  logout(userId: ID!): Auth
   addFriend(userId: ID!): User
   removeFriend(userId: ID!): User
+  updateUsername(userId: ID!, username: String!): User
+  updateEmail(userId: ID!, email: String!): User
+  updatePassword(userId: ID!, password: String!): User
+  updateOnline(userId: ID!, online: Boolean!): User
+  updateIcon(userId: ID!, icon: String!): User
+  removeActiveMatches(userId: ID!, activeMatches: String!): User
+  addActiveMatches(userId: ID!, activeMatches: String!): User
   addGame(gameType: String!, ruleSet: String!): Game
   updateGameType(gameId: ID!, gameType: String!): Game
   updateGameRuleSet(gameId: ID!, ruleSet: String!): Game
