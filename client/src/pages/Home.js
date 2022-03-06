@@ -16,6 +16,10 @@ import MatchList from "../components/match-list";
 import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
 
+import { useQuery } from "@apollo/client";
+import { QUERY_USER} from "../utils/queries";
+import Auth from "../utils/auth";
+
 const Home = () => {
   const match = useRouteMatch();
   const [pendingMatch, setPendingMatch] = useState({
@@ -28,16 +32,30 @@ const Home = () => {
       username: '',
     }
   })
+
+  
   
   const contextValue = useMemo(
     () => ({ pendingMatch, setPendingMatch }), 
     [pendingMatch]
   )
+  let activeUser = Auth.getProfile().data
+  const { loading, error, data } = useQuery(QUERY_USER, {
+    variables: {
+      username: activeUser.username,
+    },
+  });
+
+  if (loading) return <p>Loading</p>;
+  if (error) {
+    console.log(JSON.stringify(error, null, 2));
+    return error;
+  }
 
   return (
     <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
-      <Settings />
+      <Settings data={data} />
       
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
@@ -60,7 +78,7 @@ const Home = () => {
           </Switch>
         </div>
       </Router>
-      <Friends/>
+      <Friends data={data}/>
     </div>
     </PendingContext.Provider>
   );
