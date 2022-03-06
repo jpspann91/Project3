@@ -17,6 +17,13 @@ import MatchList from "../components/match-list";
 import PendingContext from "../PendingContext";
 import PendingMatchNotice from "../components/PendingMatchNotice";
 
+let profileData = {
+  _id: "EG76J42",
+  icon: "JD",
+  fullName: "John Doe",
+  username: "JonnyManiac",
+  online: false,
+};
 
 const Home = () => {
   const match = useRouteMatch();
@@ -33,12 +40,32 @@ const Home = () => {
   
   const contextValue = useMemo(
     () => ({ pendingMatch, setPendingMatch }), 
-    [pendingMatch])
+    [pendingMatch]
+  )
+  // const [pendingGame, setPendingGame] = useState({
+  //   id: '',
+  //   name: '',
+  // });
+  // const [pendingOpponent, setPendingOpponent] = useState({
+  //   id: '',
+  //   username: '',
+  // });
+
+  // const handlePendingGame = (game) => {
+  //   setPendingMatch(prevState => {
+  //     return {
+  //       ...prevState,
+  //       id: game._id,
+  //       name: game.gameType,
+  //     }
+  //   })
+  // }
 
   return (
     <PendingContext.Provider value={contextValue} >
     <div className="h-full w-full flex">
-      <Settings/>
+      <Settings data={profileData} />
+      
       <Router>
         <div className="w-screen grid content-start justify-center overflow-y-scroll pb-16">
           <Switch>
