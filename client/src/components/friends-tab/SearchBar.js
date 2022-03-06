@@ -14,8 +14,9 @@ function SearchBar() {
 
     return (
         <>
-            {loading ? <div>Loading...</div> : <div>
-                <SearchSVG className="absolute stroke-dark h-full p-1" /><input className='placeholder-neutral-800 text-lg focus:outline-none py-1 px-10 w-full bg-gradient-to-b from-neutral-300  to-neutral-200 rounded-full' placeholder='Find..' type="text"></input></div>}
+            {loading ? <div>Loading...</div> : <>
+                <SearchSVG className="absolute stroke-dark h-full p-1" /><input className='placeholder-neutral-800 text-lg focus:outline-none py-1 px-10 w-full bg-gradient-to-b from-neutral-300  to-neutral-200 rounded-full' placeholder='Find..' type="text"></input></>
+            }
 
         </>
     )

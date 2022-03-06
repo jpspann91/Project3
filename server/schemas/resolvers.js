@@ -75,6 +75,11 @@ const resolvers = {
       if (request.user.is_authenticated){
          
       auth.logout(request)
+
+      await User.findOneAndUpdate(
+        {_id: userId},
+        {$set: {online: false}},
+        {new: true});
           
           return True}
       
