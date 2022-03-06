@@ -25,7 +25,7 @@ function FindFriend(props) {
                 <div className="h-12 w-12 my-4 text-white font-semibold rounded-full bg-gradient-to-tr from-neutral-700  to-neutral-600 mr-2 flex justify-center items-center">
                     {props.data.icon}
                 </div>
-                <div className="h-full flex flex-col justify-evently items-start text-white">
+                <div className="h-full flex flex-col justify-evently items-start text-neutral-700">
                     <div>{props.data.username}</div>
                     <div className="font-thin text-lg">{props.data.fullName}</div>
                 </div>
