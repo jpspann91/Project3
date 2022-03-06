@@ -41,6 +41,7 @@ const TicTacToe = (props) => {
   const { matchId } = useParams();
   const { loading, error, data } = useQuery(QUERY_SINGLE_MATCH, {
     variables: { matchId },
+    pollInterval: 300,
   });
   const [updateMatch] = useMutation(UPDATE_MATCH);
 
