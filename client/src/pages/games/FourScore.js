@@ -394,8 +394,8 @@ const FourScore = () => {
             onClick={saveGameState}
           >
             Notify{" "}
-            {data.match.activePlayer?.username ===
-            data.match.players[0]?.username
+            {user.username ===
+              data.match.players[0]?.username
               ? data.match.players[1]?.username
               : data.match.players[0]?.username}
           </button>

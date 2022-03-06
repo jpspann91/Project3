@@ -127,7 +127,7 @@ const SignupForm = ({handleformslide}) => {
                         onChange={handleInputChange}
                         value={userFormData.lastName}
                         required />
-
+                </div>
                 <div className='w-full flex justify-between text-lg'>
 
                     <button 

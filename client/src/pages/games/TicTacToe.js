@@ -345,7 +345,7 @@ const TicTacToe = (props) => {
             onClick={saveGameState}
           >
             Notify{" "}
-            {data.match.activePlayer?.username ===
+            {user.username ===
               data.match.players[0]?.username
               ? data.match.players[1]?.username
               : data.match.players[0]?.username}
