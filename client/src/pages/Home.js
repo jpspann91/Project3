@@ -45,6 +45,7 @@ const Home = () => {
     variables: {
       username: activeUser.username,
     },
+    pollInterval: 300,
   });
 
   if (loading) return <p>Loading</p>;
