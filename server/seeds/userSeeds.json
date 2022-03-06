@@ -5,7 +5,8 @@
     "email": "bkernighan@techfriends.dev",
     "password": "password01",
     "icon": "BK",
-    "fullName": "Kernighan",
+    "firstName": "Brian",
+    "lastName":"Kernighan",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -22,7 +23,8 @@
     "email": "mkanatalexander@techfriends.dev",
     "password": "password02",
     "icon": "MKA",
-    "fullName": "Alexander",
+    "firstName": "Alexander",
+    "lastName":"Kanata",
     "online": false,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -35,7 +37,8 @@
     "email": "wtls@techfriends.dev",
     "password": "password03",
     "icon": "WTLS",
-    "fullName": "Lucky Stiff",
+    "firstName": "Lucky",
+    "lastName":"Stiff",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -48,7 +51,8 @@
     "email": "kbeck@techfriends.dev",
     "password": "password04",
     "icon": "KB",
-    "fullName": "Kent Beck",
+    "firstName": "Kent",
+    "lastName":"Beck",
     "online": false,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -61,7 +65,8 @@
     "email": "evberard@techfriends.dev",
     "password": "password05",
     "icon": "EVB",
-    "fullName": "Berard",
+    "firstName": "Ed",
+    "lastName":"Berard",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -74,7 +79,8 @@
     "email": "akay@techfriends.dev",
     "password": "password06",
     "icon": "AK",
-    "fullName": "Alan Kay",
+    "firstName": "Alan",
+    "lastName":"Kay",
     "online": false,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -87,7 +93,8 @@
     "email": "choare@techfriends.dev",
     "password": "password07",
     "icon": "CAR.H",
-    "fullName": "Hoare",
+    "firstName": "Carie",
+    "lastName":"Hoare",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -100,7 +107,8 @@
     "email": "dthomas@techfriends.dev",
     "password": "password08",
     "icon": "DT",
-    "fullName": "Thomas",
+    "firstName": "David",
+    "lastName":"Thomas",
     "online": false,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -113,7 +121,8 @@
     "email": "dknuth@techfriends.dev",
     "password": "password09",
     "icon": "DK",
-    "fullName": "Knuth",
+    "firstName": "Daniel",
+    "lastName":"Knuth",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -126,7 +135,8 @@
     "email": "lernantino@techfriends.dev",
     "password": "password10",
     "icon": "LRN",
-    "fullName": "Lantino",
+    "firstName": "Lantino",
+    "lastName":"Learnsalot",
     "online": false,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -139,7 +149,8 @@
     "email": "brosef@broseidon.com",
     "password": "password123",
     "icon": "BB",
-    "fullName": "Joseph Spann",
+    "firstName": "Joseph",
+    "lastName":"Spann",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",
@@ -152,7 +163,8 @@
     "email": "test@test.com",
     "password": "12341234",
     "icon": "TT",
-    "fullName": "Tester Testson",
+    "firstName": "Tester",
+    "lastName":"Testerson",
     "online": true,
     "friends": [
       "621d90a76742d2938ffd5a01",

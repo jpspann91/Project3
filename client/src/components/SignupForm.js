@@ -15,7 +15,8 @@ const SignupForm = ({handleformslide}) => {
         username: '',
         email: '',
         password: '',
-        fullName: ''
+        firstName: '',
+        lastName: ''
     })
 
     const [validated] = useState(false)
@@ -97,14 +98,24 @@ const SignupForm = ({handleformslide}) => {
                         value={userFormData.password}
                         required />
                 </div>
-                {/*Full Name */}
-                <div className='grid' label='Full Name'>
-                    <label>Name</label>
+                {/*First Name */}
+                <div className='grid' label='First Name'>
+                    <label>First Name</label>
                     <Input type='text'
-                        placeholder='Full Name'
-                        name='fullName'
+                        placeholder='First Name'
+                        name='firstName'
                         onChange={handleInputChange}
-                        value={userFormData.fullName}
+                        value={userFormData.firstName}
+                        required />
+
+                </div>
+                <div className='grid' label='Last Name'>
+                    <label>Last Name</label>
+                    <Input type='text'
+                        placeholder='Last Name'
+                        name='lastName'
+                        onChange={handleInputChange}
+                        value={userFormData.lastName}
                         required />
 
                 </div>
