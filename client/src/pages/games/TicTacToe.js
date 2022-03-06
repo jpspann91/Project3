@@ -225,7 +225,7 @@ const TicTacToe = (props) => {
   const getGameSquare = (value, row, col) => {
     const squareClickHandler = async () => {
       if (value !== " " || gameState === "ended") {
-        return () => {};
+        return () => { };
       } else {
         return await setSquareValue(row, col);
       }
@@ -298,10 +298,11 @@ const TicTacToe = (props) => {
                     height: window.innerHeight,
                     width: window.innerWidth,
                     transform: `translateX(${window.innerWidth}px)`,
-                  }}
-                  className="absolute animate-blur top-0 left-0  z-40 grid content-center justify-center text-5xl pb-24"
-                >
-                  {gameState.winner} Wins
+                  }} className="absolute text-white italic animate-blur bg-neutral-800 top-0 left-0  z-50 grid w-screen content-center justify-center text-5xl pb-24">
+                  <div className="w-full text-center mb-2 font-thin">
+                    {gameState.winner}
+                  </div>
+                  <div className="w-full text-center font-semibold animate-pulse">Wins</div>
                 </div>
                 {/* <a className="w-12 h-8 bg-green-500" href='/'>Return</a> */}
               </>
@@ -337,14 +338,14 @@ const TicTacToe = (props) => {
           >
             Notify{" "}
             {data.match.activePlayer?.username ===
-            data.match.players[0]?.username
+              data.match.players[0]?.username
               ? data.match.players[1]?.username
               : data.match.players[0]?.username}
           </button>
         </div>
       )}
-      
-       
+
+
     </>
   );
 };

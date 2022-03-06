@@ -64,7 +64,17 @@ const SignupForm = ({handleformslide}) => {
             <form style={{ transform: 'translateX(100vw)' }} className={'w-screen px-4'} noValidate validated={validated.toString()}
                 onSubmit={handleFormSubmit}>
 
+                {/*Full Name */}
+                <div className='grid' label='Full Name'>
+                    <label>Name</label>
+                    <Input type='text'
+                        placeholder='Full Name'
+                        name='fullName'
+                        onChange={handleInputChange}
+                        value={userFormData.fullName}
+                        required />
 
+                </div>
 
                 {/*Username */}
                 <div className='grid' label='Username'>
@@ -97,17 +107,7 @@ const SignupForm = ({handleformslide}) => {
                         value={userFormData.password}
                         required />
                 </div>
-                {/*Full Name */}
-                <div className='grid' label='Full Name'>
-                    <label>Name</label>
-                    <Input type='text'
-                        placeholder='Full Name'
-                        name='fullName'
-                        onChange={handleInputChange}
-                        value={userFormData.fullName}
-                        required />
 
-                </div>
                 <div className='w-full flex justify-between text-lg'>
 
                     <button 

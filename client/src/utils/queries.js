@@ -13,14 +13,6 @@ export const QUERY_USERS = gql`
       online
       icon
       fullName
-      activeMatches {
-        _id
-        game
-      }
-      pastMatches{
-        _id
-        game
-      }
     }
   }
 `;
