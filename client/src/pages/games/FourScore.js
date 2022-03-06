@@ -235,6 +235,7 @@ const FourScore = () => {
           className="w-full grid content-center justify-center"
           key={i}
           gutter={[6, 6]}
+          style={{ display: 'flex'}}
         >
           {gameBoard[i].map((value, j) => getGameSquare(value, i, j))}
         </Row>
