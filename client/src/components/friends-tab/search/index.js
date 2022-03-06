@@ -19,7 +19,7 @@ function SearchBar({ data }) {
         
         setusername(value);
 
-        setList(data.users.filter(person => person.username.toLowerCase().includes(value)))
+        setList(data.users.filter(person => person.username.toLowerCase().includes(value.toLowerCase())))
     };
 
     const handleBlur = (e) => {
