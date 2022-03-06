@@ -40,6 +40,7 @@ const MatchList = () => {
           opponent={opponent}
           type="match"
           isTurn={isTurn}
+          winner={match.winner}
         />
       );
     });

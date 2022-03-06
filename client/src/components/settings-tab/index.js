@@ -2,7 +2,6 @@ import Auth from "../../utils/auth";
 
 function Settings() {
   let user = Auth.getProfile().data;
-  console.log(user);
   return (
     <div className="text-neutral-700 w-screen  grid content-start bg-white">
       <div className="text-4xl font-medium py-5 px-4">Settings</div>
