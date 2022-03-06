@@ -123,15 +123,15 @@ export const UPDATE_ICON = gql`
   }
 `;
 
-export const UPDATE_FULL_NAME = gql`
-  mutation updateFullName($fullName: String!, $userId: ID!) {
-    updateFullName(fullName: $fullName) {
-      _id
-      username
-      fullName
-    }
-  }
-`;
+// export const UPDATE_FULL_NAME = gql`
+//   mutation updateFullName($fullName: String!, $userId: ID!) {
+//     updateFullName(fullName: $fullName) {
+//       _id
+//       username
+//       fullName
+//     }
+//   }
+// `;
 
 export const REMOVE_ACTIVE_MATCHES = gql`
   mutation removeActiveMatches($activeMatches: String!, $userId: ID!, $matchId: ID!) {

@@ -31,7 +31,7 @@ function Settings() {
                 </div>
                 <div className="flex text-2xl h-12 border-b flex justify-between items-center w-full  ">
                     <label className="mr-2 font-thin uppercase text-lg">Name</label>
-                    <div className="font-normal">{user.fullName}</div>
+                    <div className="font-normal">{user.firstName + ' '+ user.lastName}</div>
                 </div>
                 <div className="flex text-2xl h-12 border-b flex justify-between items-center w-full">
                     <div className="mr-2 font-thin uppercase text-lg">Email</div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactComponent as SearchSVG } from './search.svg'
-import { useMutation, useQuery,  } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_USERS } from '../../utils/queries';
 
 function SearchBar() {
@@ -8,7 +8,7 @@ function SearchBar() {
     const { loading, data } = useQuery(QUERY_USERS);
     const users = data?.users || [];
 
-    console.log(users);
+    console.log(JSON.stringify(users));
 
 
 

@@ -9,7 +9,8 @@ type User {
   friends: [User]
   online: Boolean
   icon: String
-  fullName: String
+  firstName: String
+  lastName: String
   activeMatches: [Match]
   pastMatches: [Match]
 }
@@ -39,7 +40,7 @@ type Auth {
 }
 
 type Query {
-  users: [User]
+  users: [User!]!
   user(username: String!): User
   games(username: String): [Game] 
   game(gameId: ID!): Game

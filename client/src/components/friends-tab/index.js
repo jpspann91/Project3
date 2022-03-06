@@ -5,7 +5,8 @@ import Auth from '../../utils/auth'
 import { useQuery } from "@apollo/client";
 import PendingContext from "../../PendingContext";
 import PendingMatchNotice from "../PendingMatchNotice";
-import { QUERY_USER } from "../../utils/queries";
+import { QUERY_USER} from "../../utils/queries";
+import SearchBar from './SearchBar'
 
 // const activeUser = {
 //     ...Auth.getProfile()
@@ -33,9 +34,7 @@ function Friends() {
     {pendingMatch.game.gameType && <PendingMatchNotice />}
         <div className='text-4xl font-medium pb-5'>Friends List</div>
         <div className='relative'>                    
-            <SearchSVG className="absolute stroke-dark h-full p-1" />
-
-            <input className='placeholder-neutral-800 text-lg focus:outline-none py-1 px-10 w-full bg-gradient-to-b from-neutral-300  to-neutral-200 rounded-full' placeholder='Find..' type="text"></input>
+            <SearchBar/>
         </div>
     </div>
     {!loading && (
