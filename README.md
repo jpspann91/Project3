@@ -1,7 +1,6 @@
 # Nexus
 
 ![nexus setting](https://user-images.githubusercontent.com/89421292/156946554-baabab8d-b20d-4d43-9444-8c869ff2bbc7.PNG)
-![nexus home](https://user-images.githubusercontent.com/89421292/156946558-2ccdf1e0-b148-4bb3-92d9-156a25849f55.PNG)
 ![nexus friends](https://user-images.githubusercontent.com/89421292/156946560-bbe643cb-7fdb-4008-bae2-2ef9a7966e41.PNG)
 
 
