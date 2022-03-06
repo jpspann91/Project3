@@ -15,6 +15,7 @@ import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
 import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
+import ConnectFour from "./games/ConnectFour";
 
 const Home = () => {
   const match = useRouteMatch();
@@ -50,6 +51,9 @@ const Home = () => {
             </Route>
             <Route path={`${match.path}games/tictactoe/:matchId?`}>
               <TicTacToe />
+            </Route>
+            <Route path={`${match.path}games/connectfour/:matchId?`}>
+              <ConnectFour />
             </Route>
             <Route path={`${match.path}games/testgame1/:matchId`}>
               <TestGame1 />
