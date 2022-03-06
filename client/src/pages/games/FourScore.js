@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Row } from "antd";
+import { Col, Row } from "antd";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { QUERY_SINGLE_MATCH } from "../../utils/queries";
 // import { UPDATE_MATCH } from "../../utils/mutations";
@@ -231,7 +231,11 @@ const FourScore = () => {
     let rows = [];
     for (let i = 0; i < gameBoard.length; i++) {
       const row = (
-        <Row className="w-full grid content-center justify-center" key={i}>
+        <Row
+          className="w-full grid content-center justify-center"
+          key={i}
+          gutter={[6, 6]}
+        >
           {gameBoard[i].map((value, j) => getGameSquare(value, i, j))}
         </Row>
       );
@@ -252,19 +256,21 @@ const FourScore = () => {
     };
 
     return (
-      <button
-        className="w-12 h-12 border-2 text-5xl text-neutral-700 flex justify-center align-center"
-        onClick={squareClickHandler}
-        key={row * 3 + col}
-      >
-        {value === "X" && (
-          <div className="w-10 h-10 rounded-full bg-red-400"></div>
-        )}
-        {value === "O" && (
-          <div className="w-10 h-10 rounded-full bg-black"></div>
-        )}
-        {value === "" && <div>' '</div>}
-      </button>
+      <Col span={3}>
+        <button
+          className="w-12 h-12 border-2 text-5xl text-neutral-700 flex justify-center align-center"
+          onClick={squareClickHandler}
+          key={row * 3 + col}
+        >
+          {value === "X" && (
+            <div className="w-10 h-10 rounded-full bg-red-400"></div>
+          )}
+          {value === "O" && (
+            <div className="w-10 h-10 rounded-full bg-black"></div>
+          )}
+          {value === "" && <div>' '</div>}
+        </button>
+      </Col>
     );
   };
 
