@@ -40,6 +40,7 @@ const Home = () => {
     () => ({ pendingMatch, setPendingMatch }), 
     [pendingMatch]
   )
+
   let activeUser = Auth.getProfile().data
   const { loading, error, data } = useQuery(QUERY_USER, {
     variables: {
@@ -48,11 +49,19 @@ const Home = () => {
     pollInterval: 300,
   });
 
+  
+
   if (loading) return <p>Loading</p>;
   if (error) {
     console.log(JSON.stringify(error, null, 2));
     return error;
   }
+
+  if (!data.user) {
+    Auth.logout();
+  }
+
+  console.log(activeUser)
 
   return (
     <PendingContext.Provider value={contextValue} >
