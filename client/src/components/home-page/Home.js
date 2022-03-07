@@ -6,19 +6,18 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 
-import Friends from "../components/friends-tab";
+import Friends from "../friends-tab";
 
-import TicTacToe from "./games/TicTacToe.js";
-import Settings from "../components/settings-tab";
-import TestGame1 from "./games/TestGame1";
-import GamesList from "../components/games-list";
-import MatchList from "../components/match-list";
-import PendingContext from "../PendingContext";
-import FourScore from "./games/FourScore";
+import TicTacToe from "../games/TicTacToe.js";
+import Settings from "../settings-tab";
+import GamesList from "../games-list";
+import MatchList from "../match-list";
+import PendingContext from "../../PendingContext";
+import FourScore from "../games/FourScore";
 
 import { useQuery } from "@apollo/client";
-import { QUERY_USER} from "../utils/queries";
-import Auth from "../utils/auth";
+import { QUERY_USER} from "../../utils/queries";
+import Auth from "../../utils/auth";
 
 const Home = ({handlePageState}) => {
   const match = useRouteMatch();
@@ -48,7 +47,7 @@ const Home = ({handlePageState}) => {
     pollInterval: 300,
   });
 
-  if (loading) return <p>Loading</p>;
+  if (loading) return <></>;
   if (error) {
     console.log(JSON.stringify(error, null, 2));
     return error;
@@ -70,7 +69,7 @@ const Home = ({handlePageState}) => {
               {!pendingMatch.user._id &&
                 <MatchList />
               }
-              <GamesList />
+              <GamesList handlePageState={handlePageState} />
             </Route>
             <Route path={`${match.path}games/tictactoe/:matchId?`}>
               <TicTacToe />
@@ -78,16 +77,13 @@ const Home = ({handlePageState}) => {
             <Route path={`${match.path}games/fourscore/:matchId?`}>
               <FourScore />
             </Route>
-            <Route path={`${match.path}games/testgame1/:matchId`}>
-              <TestGame1 />
-            </Route>
             <Route>
               <p>Route not found</p>
             </Route>
           </Switch>
         </div>
       </Router>
-      <Friends data={data} />
+      <Friends data={data} handlePageState={handlePageState} />
     </div>
     </PendingContext.Provider>
   );

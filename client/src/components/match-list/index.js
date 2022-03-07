@@ -7,9 +7,9 @@ import Auth from "../../utils/auth";
 
 const MatchList = () => {
   let activeUser = Auth.getProfile().data
-  const { loading, error, data } = useQuery(QUERY_MATCHES);
+  const { loading, error, data } = useQuery(QUERY_MATCHES, {pollInterval: 300});
 
-  if (loading) return <p>Loading</p>;
+  if (loading) return <></>;
   if (error) {
     console.log(JSON.stringify(error, null, 2));
     return error;

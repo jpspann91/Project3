@@ -25,7 +25,7 @@ const PendingMatchNotice = () => {
     if (pendingMatch.game.id) {
       return <div className="text-sm">Select an opponent for {pendingMatch.game.gameType}</div>;
     } else if (pendingMatch.user._id) {
-      return <div className="text-sm">Select game type to play against {pendingMatch.user.username}</div>
+      return <div className="text-sm">Select a game to play against {pendingMatch.user.username}</div>
     }
     return "";
   };

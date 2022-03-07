@@ -1,19 +1,13 @@
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PendingContext from '../../PendingContext';
 import Auth from '../../utils/auth';
 import { ADD_MATCH } from '../../utils/mutations';
-import { QUERY_USERS } from '../../utils/queries'
 import { getObjectID } from '../../utils/utils';
 
 function FriendBanner(friendObject) {
-    // const { loading, data } = useQuery(QUERY_USERS);
-    // const users = data?.users || [];
-    // console.log(users);
-
-
-    let currentUser = Auth.getProfile().data;
+let currentUser = Auth.getProfile().data;
     const history = useHistory();
     const { pendingMatch, setPendingMatch } = useContext(PendingContext);
     const [startMatch] = useMutation(ADD_MATCH);
@@ -54,20 +48,15 @@ function FriendBanner(friendObject) {
                         ...friendObject.data,
                     }
                 }
-            })
+            });
+
+            friendObject.handlePageState('games');
 
             // Add slide-right closeRight
 
             // history.push('/')
         }
 
-    }
-
-    let inviteButton;
-
-
-    if (friendObject.data.online) {
-        inviteButton = <button onClick={startMatchHandler} className='bg-neutral-700 hover:bg-neutral-800 px-4 py-3  rounded-md font-medium text-white text-xs'>INVITE</button>
     }
 
     return (

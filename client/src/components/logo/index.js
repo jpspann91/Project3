@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ReactComponent as Arrow } from '../arrow.svg'
+// import { ReactComponent as Arrow } from '../arrow.svg'
 import { ReactComponent as Xup } from './x-up.svg'
 import { ReactComponent as Xdown } from './x-down.svg'
 

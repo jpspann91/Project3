@@ -17,6 +17,7 @@ const GameCard = ({
   type,
   isTurn = false,
   winner = "",
+  handlePageState = () => {},
 }) => {
   let currentUser = Auth.getProfile().data;
   const history = useHistory();
@@ -25,6 +26,11 @@ const GameCard = ({
 
   const buttonClickHandler = async (e) => {
     if (type === "match") {
+      setPendingMatch({
+        user: {},
+        game: {},
+      });
+
       return history.push(path);
     } else {
       if (pendingMatch.user._id) {
@@ -45,12 +51,12 @@ const GameCard = ({
           },
         });
 
-        history.push(`${path}/${matchId}`);
-
         setPendingMatch({
           user: {},
           game: {},
         });
+
+        history.push(`${path}/${matchId}`);
 
         return;
       }
@@ -67,6 +73,8 @@ const GameCard = ({
           },
         };
       });
+
+      handlePageState("friends");
     }
   };
 
@@ -74,18 +82,18 @@ const GameCard = ({
     if (type === "game") {
       return "";
     }
-  
+
     if (winner) {
       if (winner === currentUser.username) {
-        return <div className="font-bold text-green-300"> You Won</div>
+        return <div className="font-bold text-green-300"> You Won</div>;
       } else {
-        return <div className="font-bold text-red-300">Game Finished</div>
+        return <div className="font-bold text-red-300">Game Finished</div>;
       }
     } else {
       if (isTurn) {
-        return <div className="font-bold text-amber-500">Your Turn</div>
+        return <div className="font-bold text-amber-500">Your Turn</div>;
       } else {
-        return <div className="font-semibold text-green-500">Their Turn</div>
+        return <div className="font-semibold text-green-500">Their Turn</div>;
       }
     }
   };
@@ -110,7 +118,9 @@ const GameCard = ({
                     <div className="text-center font-thin">
                       <div className="flex">
                         <div className="mr-1">VS.</div>
-                        <div className="font-normal text-neutral-500">{opponent}</div>
+                        <div className="font-normal text-neutral-500">
+                          {opponent}
+                        </div>
                       </div>
                     </div>
                     <div className="text-center font-thin">

@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as SearchSVG } from './search.svg'
 import FindFriend from './FindFriend';
 import Auth from '../../../utils/auth'
 
-const CLOSE_SEARCH_DELAY = 50;
+const CLOSE_SEARCH_DELAY = 200;
 
-function SearchBar({ data }) {
+function SearchBar({ data, handlePageState }) {
     const activeUser = Auth.getProfile().data.username
     const [username, setusername] = useState('');
-    const [list, setList] = useState(data.users.filter(data => data.username != activeUser))
+    const [list, setList] = useState(data.users.filter(data => data.username !== activeUser))
     const [hasFocus, setFocus] = useState(false);
 
     let userList = data.users.map(el => el.username);
@@ -21,14 +21,14 @@ function SearchBar({ data }) {
 
         setusername(value);
 
-        let temp = data.users.filter(person => person.username.toLowerCase().includes(value.toLowerCase())).filter(data => data.username != activeUser)
+        let temp = data.users.filter(person => person.username.toLowerCase().includes(value.toLowerCase())).filter(data => data.username !== activeUser)
 
         if (!temp) return
 
         setList(temp)
     };
 
-    const handleBlur = (e) => {
+    const handleBlur = () => {
         setTimeout(() => setFocus(false), CLOSE_SEARCH_DELAY)
     }
 
@@ -53,7 +53,7 @@ function SearchBar({ data }) {
                     <div className='z-50 absolute mt-6 border-t rounded-lg w-full bg-white shadow-lg max-h-80 overflow-y-scroll shadow-neutral-400 flex flex-col'>
 
                         {list.length > 0 && list.map((data, index) => {
-                            return <FindFriend key={index} data={data} />
+                            return <FindFriend key={index} data={data} handlePageState={handlePageState}/>
                         })}
 
                     </div>

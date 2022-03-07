@@ -6,11 +6,11 @@ import { ReactComponent as Arrow } from "../arrow.svg";
 import PendingMatchNotice from "../PendingMatchNotice";
 import PendingContext from "../../PendingContext";
 
-const GamesList = () => {
+const GamesList = ({ handlePageState }) => {
   const { pendingMatch } = useContext(PendingContext);
   const { loading, error, data } = useQuery(QUERY_GAMES);
 
-  if (loading) return <p>Loading</p>;
+  if (loading) return <></>;
   if (error) {
     console.log(JSON.stringify(error, null, 2));
     return error;
@@ -24,6 +24,7 @@ const GamesList = () => {
           key={`${index}-gameCard`}
           path={`games/${game.path}`}
           type="game"
+          handlePageState={handlePageState}
         />
       );
     });
