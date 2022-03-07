@@ -8,7 +8,6 @@ function FindFriend(props) {
 
     const [addFriend] = useMutation(ADD_FRIEND)
     const handleAddFriend = (event) => {
-        console.log(event);
         try {
             addFriend({
                 variables: { userId: event }
@@ -17,6 +16,7 @@ function FindFriend(props) {
             console.log(error)
         }
     }
+
 
     return (
         <div className="relative text-neutral-800 text-xl flex justify-between items-center px-4 border-b">
@@ -27,7 +27,11 @@ function FindFriend(props) {
                 </div>
                 <div className="h-full flex flex-col justify-evently items-start text-neutral-700">
                     <div>{props.data.username}</div>
-                    <div className="font-thin text-lg">{props.data.fullName}</div>
+                    <div className='flex'>
+                    <div className="font-thin text-lg pr-1">{props.data.firstName}</div>
+                    <div className="font-thin text-lg pr-1">{props.data.lastName}</div>
+                    </div>
+                        
                 </div>
             </div>
             <button onClick={(e) => handleAddFriend(e.target.id)} id={props.data._id} className="flex justify-center items-center bg-gradient-to-t from-green-500 to-green-400 py-3 px-3 rounded-lg text-white">

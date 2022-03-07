@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ReactComponent as SearchSVG } from './search.svg'
 import FindFriend from './FindFriend';
+import Auth from '../../../utils/auth'
 
 const CLOSE_SEARCH_DELAY = 400;
 
 function SearchBar({ data }) {
+    const activeUser = Auth.getProfile().data.username
     const [username, setusername] = useState('');
     const [list, setList] = useState(data.users)
     const [hasFocus, setFocus] = useState(false);
@@ -19,7 +21,11 @@ function SearchBar({ data }) {
         
         setusername(value);
 
-        setList(data.users.filter(person => person.username.toLowerCase().includes(value.toLowerCase())))
+        let temp = data.users.filter(person => person.username.toLowerCase().includes(value.toLowerCase())).filter(data => data.username != activeUser)
+
+        if(!temp) return
+
+        setList(temp)
     };
 
     const handleBlur = (e) => {

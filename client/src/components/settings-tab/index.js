@@ -4,7 +4,7 @@ import { LOGOUT_USER } from '../../utils/mutations'
 
 function Settings({data}) {
     const [logout] = useMutation(LOGOUT_USER);
-    console.log(data.user);
+    // console.log(data.user);
 
     const handleLogout = async () => {
         try {

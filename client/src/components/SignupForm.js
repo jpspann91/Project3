@@ -42,13 +42,15 @@ const SignupForm = ({ handleformslide }) => {
     const handleFormSubmit = async (event) => {
 
         event.preventDefault();
-        setUserFormData({ ...userFormData, icon: userFormData.firstName.substring(0,1) + userFormData.lastName.substring(0,1) })
 
         try {
             //Use the mutation here
             const { data } = await addUser({
                 variables: {
-                    params: JSON.stringify({ ...userFormData })
+                    params: JSON.stringify(
+                        { 
+                            ...userFormData, 
+                            icon: userFormData.firstName.substring(0,1) + userFormData.lastName.substring(0,1)  })
                 }
             })
 

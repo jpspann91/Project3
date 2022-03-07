@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import PendingContext from '../../PendingContext';
 import Auth from '../../utils/auth';
 import { ADD_MATCH } from '../../utils/mutations';
-import {QUERY_USERS} from '../../utils/queries'
+import { QUERY_USERS } from '../../utils/queries'
 import { getObjectID } from '../../utils/utils';
 
 function FriendBanner(friendObject) {
@@ -16,9 +16,9 @@ function FriendBanner(friendObject) {
     let currentUser = Auth.getProfile().data;
     const history = useHistory();
     const { pendingMatch, setPendingMatch } = useContext(PendingContext);
-    const [ startMatch ] = useMutation(ADD_MATCH);
+    const [startMatch] = useMutation(ADD_MATCH);
 
-    const startMatchHandler =  async () => {
+    const startMatchHandler = async () => {
 
         if (pendingMatch.game.id) {
 
@@ -26,16 +26,16 @@ function FriendBanner(friendObject) {
 
             await startMatch({
                 variables: {
-                params: JSON.stringify({
-                    _id: matchId,
-                    game: pendingMatch.game.id,
-                    status: "ongoing",
-                    winner: null,
-                    score: "0-0",
-                    gameBoard: "",
-                    players: [currentUser._id, friendObject.data._id],
-                    activePlayer: currentUser._id,
-                }),
+                    params: JSON.stringify({
+                        _id: matchId,
+                        game: pendingMatch.game.id,
+                        status: "ongoing",
+                        winner: null,
+                        score: "0-0",
+                        gameBoard: "",
+                        players: [currentUser._id, friendObject.data._id],
+                        activePlayer: currentUser._id,
+                    }),
                 },
             });
 
@@ -89,12 +89,15 @@ function FriendBanner(friendObject) {
                 <div className='flex justify-between' >
                     <div className='flex flex-col'>
                         <div className='mr-2'>{friendObject.data.username}</div>
-                    <div className='text-xs'>{friendObject.data.firstName}</div>
+                        <div className='flex'>
+                            <div className='text-xs mr-1'>{friendObject.data.firstName}</div>
+                            <div className='text-xs'>{friendObject.data.lastName}</div>
+                        </div>
                     </div>
 
-                        <div className='opacity-50 text-sm'>#{
-                        friendObject.data._id.substring(friendObject.data._id.length - 7,friendObject.data._id.length).toUpperCase()
-                        }</div>
+                    <div className='opacity-50 text-sm'>#{
+                        friendObject.data._id.substring(friendObject.data._id.length - 7, friendObject.data._id.length).toUpperCase()
+                    }</div>
                 </div>
             </div>
 
