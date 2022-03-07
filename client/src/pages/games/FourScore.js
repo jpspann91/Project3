@@ -235,7 +235,7 @@ const FourScore = () => {
           className="w-full grid content-center justify-center"
           key={`row-${i}`}
           gutter={[6, 6]}
-          style={{ display: 'flex'}}
+          style={{ display: 'flex' }}
         >
           {gameBoard[i].map((value, j) => getGameSquare(value, i, j))}
         </Row>
@@ -250,7 +250,7 @@ const FourScore = () => {
   const getGameSquare = (value, row, col) => {
     const squareClickHandler = async () => {
       if (value !== " " || gameState === "ended") {
-        return () => {};
+        return () => { };
       } else {
         return await setSquareValue(row, col);
       }
@@ -389,16 +389,19 @@ const FourScore = () => {
             </div>
           </div>
           <div className="flex justify-between">{getPlayerCards()}</div>
-          <button
-            className="font-thin w-full bg-gradient-to-t from-emerald-500  to-emerald-400 text-xl text-white py-2 rounded-sm"
-            onClick={saveGameState}
-          >
-            Notify{" "}
-            {user.username ===
-              data.match.players[0]?.username
-              ? data.match.players[1]?.username
-              : data.match.players[0]?.username}
-          </button>
+          <div className="w-full px-4">
+
+            <button
+              className="font-thin w-full bg-emerald-500 hover:bg-emerald-600 text-xl text-white py-2 rounded-sm"
+              onClick={saveGameState}
+            >
+              Notify{" "}
+              {user.username ===
+                data.match.players[0]?.username
+                ? data.match.players[1]?.username
+                : data.match.players[0]?.username}
+            </button>
+          </div>
         </div>
       )}
     </>

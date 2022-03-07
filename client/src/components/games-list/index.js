@@ -6,7 +6,7 @@ import { ReactComponent as Arrow } from "../arrow.svg";
 import PendingMatchNotice from "../PendingMatchNotice";
 import PendingContext from "../../PendingContext";
 
-const GamesList = (props) => {
+const GamesList = () => {
   const { pendingMatch } = useContext(PendingContext);
   const { loading, error, data } = useQuery(QUERY_GAMES);
 

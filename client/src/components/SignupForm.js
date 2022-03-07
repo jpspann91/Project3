@@ -126,12 +126,12 @@ const SignupForm = ({ handleformslide }) => {
 
                     <button
                         onClick={() => handleformslide('signup')}
-                        className='bg-gradient-to-t from-neutral-700  to-neutral-600 text-white my-5 px-8 text-md w-4/12 py-2 rounded-lg' type='button'>
+                        className='bg-neutral-700 hover:bg-neutral-800 text-white my-5 px-8 font-thin w-4/12 py-2 rounded-lg' type='button'>
                         Login
                     </button>
 
                     <button
-                        className=' bg-gradient-to-t from-blue-500  to-blue-400 text-white my-5 px-8 w-7/12 py-2 rounded-lg'
+                        className=' bg-gradient-to-t from-blue-500  to-blue-400 text-white font-thin my-5 px-8 w-7/12 py-2 rounded-lg'
                         type="submit" >
                         Create Account
                     </button>

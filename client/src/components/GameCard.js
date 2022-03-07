@@ -77,15 +77,15 @@ const GameCard = ({
   
     if (winner) {
       if (winner === currentUser.username) {
-        return "You won";
+        return <div className="font-bold text-green-300"> You Won</div>
       } else {
-        return "You lost";
+        return <div className="font-bold text-red-300">Game Finished</div>
       }
     } else {
       if (isTurn) {
-        return "Your turn";
+        return <div className="font-bold text-amber-500">Your Turn</div>
       } else {
-        return "Their turn";
+        return <div className="font-semibold text-green-500">Their Turn</div>
       }
     }
   };
@@ -108,7 +108,10 @@ const GameCard = ({
                 {opponent ? (
                   <>
                     <div className="text-center font-thin">
-                      You VS. {opponent}
+                      <div className="flex">
+                        <div className="mr-1">VS.</div>
+                        <div className="font-normal text-neutral-500">{opponent}</div>
+                      </div>
                     </div>
                     <div className="text-center font-thin">
                       {getGameStatus()}
@@ -123,10 +126,10 @@ const GameCard = ({
         </div>
         <div className="flex justify-between items-center">
           <button
-            className="bg-gradient-to-t from-neutral-700 to-neutral-600 text-md uppercase h-10 text-white px-4 py-2 rounded-sm"
+            className="bg-neutral-700 hover:bg-neutral-800 text-md w-20 uppercase h-10 text-white px-4 py-2 rounded-md"
             onClick={buttonClickHandler}
           >
-            {opponent ? "Continue" : "Start"}
+            {opponent ? "Visit" : "New"}
           </button>
         </div>
       </div>
