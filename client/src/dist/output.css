@@ -540,6 +540,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 1rem;
 }
 
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .mt-20 {
   margin-top: 5rem;
 }
@@ -1336,12 +1340,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
 
-.bg-gradient-to-bl {
-  background-image: linear-gradient(to bottom left, var(--tw-gradient-stops));
-}
-
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+
+.bg-gradient-to-bl {
+  background-image: linear-gradient(to bottom left, var(--tw-gradient-stops));
 }
 
 .from-black {
@@ -1364,6 +1368,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(38 38 38 / 0));
 }
 
+.from-neutral-300 {
+  --tw-gradient-from: #d4d4d4;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(212 212 212 / 0));
+}
+
 .from-neutral-200 {
   --tw-gradient-from: #e5e5e5;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(229 229 229 / 0));
@@ -1372,11 +1381,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .from-emerald-500 {
   --tw-gradient-from: #10b981;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(16 185 129 / 0));
-}
-
-.from-neutral-300 {
-  --tw-gradient-from: #d4d4d4;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(212 212 212 / 0));
 }
 
 .from-green-500 {
@@ -1400,6 +1404,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-to: #737373;
 }
 
+.to-neutral-200 {
+  --tw-gradient-to: #e5e5e5;
+}
+
 .to-neutral-100 {
   --tw-gradient-to: #f5f5f5;
 }
@@ -1416,10 +1424,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-to: #4ade80;
 }
 
-.to-neutral-200 {
-  --tw-gradient-to: #e5e5e5;
-}
-
 .fill-neutral-100 {
   fill: #f5f5f5;
 }
@@ -1428,12 +1432,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   stroke: #f5f5f5;
 }
 
-.p-5 {
-  padding: 1.25rem;
-}
-
 .p-1 {
   padding: 0.25rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-4 {
@@ -1461,16 +1465,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 1.25rem;
 }
 
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -1479,6 +1473,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .pb-16 {
@@ -1491,6 +1495,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-24 {
   padding-bottom: 6rem;
+}
+
+.pr-1 {
+  padding-right: 0.25rem;
 }
 
 .text-center {
