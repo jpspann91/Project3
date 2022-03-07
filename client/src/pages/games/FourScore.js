@@ -345,9 +345,9 @@ const FourScore = () => {
       {!loading && !error && (
         <div>
           <div title={`Four Score`} className={styles.board}>
-            <div className="grid justify-center content-center text-center">
+            <div className="grid justify-center content-center text-center mt-4">
               <div className="text-4xl">Four Score</div>
-              <div className="text-neutral-400">{matchId}</div>
+              {/* <div className="text-neutral-400">{matchId}</div> */}
             </div>
             {gameState?.winner && (
               <>
