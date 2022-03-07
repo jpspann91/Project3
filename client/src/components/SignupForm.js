@@ -24,6 +24,8 @@ const styles = {
 const EMAIL_MATCHER = /.+@.+\..+/;
 
 const validators = {
+    firstName: (firstName) => !!firstName,
+    lastName: (lastName) => !!lastName,
     password: (pswd) => {
         return pswd.length >= 5;
     },
@@ -36,6 +38,8 @@ const validators = {
 }
 
 const errorMessages = {
+    firstName: "Required",
+    lastName: "Required",
     password: 'Minimum 5 characters',
     email: 'Enter a valid email',
     username: 'Between 4 and 15 characters'
@@ -56,12 +60,16 @@ const SignupForm = ({ handleformslide }) => {
     // const [showAlert, setShowAlert] = useState(false);
 
     const [isValid, setIsValid] = useState({
+        firstName: true,
+        lastName: true,
         password: true,
         username: true,
         email: true,
     });
 
     const [hasBlurred, setHasBlurred] = useState({
+        firstName: false,
+        lastName: false,
         password: false,
         username: false,
         email: false,
@@ -70,32 +78,20 @@ const SignupForm = ({ handleformslide }) => {
     const [addUser, { error }] = useMutation(ADD_USER);
 
     useEffect(() => {
-        // if (error) {
-        //     setShowAlert(true);
-        // } else {
-        //     setShowAlert(false);
-        // }
-
         validateInput();
-
     }, [error, userFormData])
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setUserFormData({ ...userFormData, [name]: value })
-
     }
 
-    const validateInput = () => {
-        
-        setIsValid({
-            password: validators.password(userFormData.password),
-            email: validators.email(userFormData.email),
-            username: validators.username(userFormData.username),
-        })
-        
-
-
+    const validateInput = () => {      
+        let validity = {};
+        for (let key in validators) {
+            validity[key] = validators[key](userFormData[key]);
+        }
+        setIsValid(validity)
     }
 
     const handleFormSubmit = async (event) => {
@@ -132,24 +128,30 @@ const SignupForm = ({ handleformslide }) => {
                 onSubmit={handleFormSubmit}>
                 {/*First Name */}
                 <div className='grid' label='First Name'>
-                    <label>First Name</label>
+                    <label>First Name {hasBlurred.firstName && <span style={styles.message}>{!isValid.firstName && errorMessages.firstName}</span>}</label>
                     <Input type='text'
                         placeholder='First Name'
                         name='firstName'
                         onChange={handleInputChange}
+                        onBlur={() => setHasBlurred(prevBlur => ({ ...prevBlur, firstName: true }))}
+                        onFocus={() => setHasBlurred(prevBlur => ({ ...prevBlur, firstName: false }))}
                         value={userFormData.firstName}
-                        required />
+                        required
+                        style={hasBlurred.firstName && !isValid.firstName ? styles.error : {}} />
 
                 </div>
                 {/*Last Name */}
                 <div className='grid' label='Last Name'>
-                    <label>Last Name</label>
+                    <label>Last Name {hasBlurred.lastName && <span style={styles.message}>{!isValid.lastName && errorMessages.lastName}</span>}</label>
                     <Input type='text'
                         placeholder='Last Name'
                         name='lastName'
                         onChange={handleInputChange}
+                        onBlur={() => setHasBlurred(prevBlur => ({ ...prevBlur, lastName: true }))}
+                        onFocus={() => setHasBlurred(prevBlur => ({ ...prevBlur, lastName: false }))}
                         value={userFormData.lastName}
-                        required />
+                        required
+                        style={hasBlurred.username && !isValid.username ? styles.error : {}} />
                 </div>
 
                 {/*Username */}
@@ -159,6 +161,7 @@ const SignupForm = ({ handleformslide }) => {
                         placeholder='Username'
                         onChange={handleInputChange}
                         onBlur={() => setHasBlurred(prevBlur => ({ ...prevBlur, username: true }))}
+                        onFocus={() => setHasBlurred(prevBlur => ({ ...prevBlur, username: false }))}
                         name='username'
                         value={userFormData.username}
                         required
@@ -174,6 +177,7 @@ const SignupForm = ({ handleformslide }) => {
                         name='email'
                         onChange={handleInputChange}
                         onBlur={() => setHasBlurred(prevBlur => ({ ...prevBlur, email: true }))}
+                        onFocus={() => setHasBlurred(prevBlur => ({ ...prevBlur, email: false }))}
                         value={userFormData.email}
                         required
                         style={hasBlurred.email && !isValid.email ? styles.error : {}} 
@@ -187,6 +191,7 @@ const SignupForm = ({ handleformslide }) => {
                         name='password'
                         onChange={handleInputChange}
                         onBlur={() => setHasBlurred(prevBlur => ({ ...prevBlur, password: true }))}
+                        onFocus={() => setHasBlurred(prevBlur => ({ ...prevBlur, password: false }))}
                         value={userFormData.password}
                         required
                         style={hasBlurred.password && !isValid.password ? styles.error : {}}

@@ -26,6 +26,11 @@ const GameCard = ({
 
   const buttonClickHandler = async (e) => {
     if (type === "match") {
+      setPendingMatch({
+        user: {},
+        game: {},
+      });
+
       return history.push(path);
     } else {
       if (pendingMatch.user._id) {
@@ -46,12 +51,12 @@ const GameCard = ({
           },
         });
 
-        history.push(`${path}/${matchId}`);
-
         setPendingMatch({
           user: {},
           game: {},
         });
+
+        history.push(`${path}/${matchId}`);
 
         return;
       }
