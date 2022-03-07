@@ -20,6 +20,8 @@ module.exports = {
         loginSlideUp: 'loginSlideUp 1s forwards',
         shiftleft: 'shiftleft .2s forwards',
         shiftright: 'shiftright .2s forwards',
+        on: 'on .1s forwards',
+        off: 'off .1s forwards'
       },
       keyframes: {
         fadeIn: {
@@ -89,6 +91,14 @@ module.exports = {
         shiftright: {
           from: {transform: 'translateX(-100vw)'},
           to: { transform: 'translateX(0vw)'},
+        },
+        on: {
+          from: {transform: 'translateX(0em) scale(.9)'},
+          to: { transform: 'translateX(1.3em) scale(.9)'},
+        },
+        off: {
+          from: {transform: 'translateX(1.3em) scale(.9)'},
+          to: { transform: 'translateX(0em) scale(.9)'},
         },
 
 

@@ -34,7 +34,7 @@ function FindFriend(props) {
                         
                 </div>
             </div>
-            <button onClick={(e) => handleAddFriend(e.target.id)} id={props.data._id} className="flex justify-center items-center bg-gradient-to-t from-green-500 to-green-400 py-3 px-3 rounded-lg text-white">
+            <button onClick={(e) => handleAddFriend(e.target.id)} id={props.data._id} className="flex justify-center items-center bg-green-500 hover:bg-green-600 py-3 px-3 rounded-lg text-white">
                 <div className='pointer-events-none'>
                 <AddSVG />
                 </div>

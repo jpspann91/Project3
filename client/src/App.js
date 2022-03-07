@@ -135,7 +135,7 @@ function App() {
               {user?._id && (
 
                 <Route path="/">
-                  <Home />
+                  <Home handlePageState={handlePageState} />
                 </Route>
               )}
               {/* <Route exact path="/profile">

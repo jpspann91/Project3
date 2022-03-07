@@ -1,6 +1,7 @@
-import { Button } from "antd";
+
 import React, { useContext } from "react";
 import PendingContext from "../PendingContext";
+import {ReactComponent as CloseSVG} from './close.svg'
 
 const PendingMatchNotice = () => {
   const { pendingMatch, setPendingMatch } = useContext(PendingContext);
@@ -22,21 +23,20 @@ const PendingMatchNotice = () => {
 
   const getMessage = () => {
     if (pendingMatch.game.id) {
-      return `Select an opponent for ${pendingMatch.game.gameType}`;
+      return <div className="text-sm">Select an opponent for {pendingMatch.game.gameType}</div>;
     } else if (pendingMatch.user._id) {
-      return `Select game type to play against ${pendingMatch.user.username}`;
+      return <div className="text-sm">Select game type to play against {pendingMatch.user.username}</div>
     }
     return "";
   };
 
   return (
-    <div className="text-2xl text-center">
+    <div className="text-2xl text-center pt-2">
       <div
-        className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-        role="alert"
-      >
-        <span className="block sm:inline">{getMessage()}</span>
-        <Button onClick={closeNoticeHandler}>Cancel</Button>
+        className=" flex justify-between items-center bg-amber-100 border-l-2 border-amber-400 text-amber-700 px-4 py-3 relative"
+        role="alert">
+        <span className=" mr-2">{getMessage()}</span>
+        <CloseSVG onClick={closeNoticeHandler} />
       </div>
     </div>
   );

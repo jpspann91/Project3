@@ -21,7 +21,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_USER} from "../utils/queries";
 import Auth from "../utils/auth";
 
-const Home = () => {
+const Home = ({handlePageState}) => {
   const match = useRouteMatch();
   const [pendingMatch, setPendingMatch] = useState({
     game: {
@@ -83,7 +83,7 @@ const Home = () => {
           </Switch>
         </div>
       </Router>
-      <Friends data={data}/>
+      <Friends data={data} />
     </div>
     </PendingContext.Provider>
   );
