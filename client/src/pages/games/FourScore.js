@@ -233,7 +233,7 @@ const FourScore = () => {
       const row = (
         <Row
           className="w-full grid content-center justify-center"
-          key={i}
+          key={`row-${i}`}
           gutter={[6, 6]}
           style={{ display: 'flex'}}
         >
@@ -261,7 +261,7 @@ const FourScore = () => {
         <button
           className="w-12 h-12 border-2 text-5xl text-neutral-700 flex justify-center align-center"
           onClick={squareClickHandler}
-          key={row * 3 + col}
+          key={`square-${row * gameBoard.length + col}`}
         >
           {value === "X" && (
             <div className="w-10 h-10 rounded-full bg-red-400"></div>
@@ -324,7 +324,7 @@ const FourScore = () => {
   const getPlayerCards = () => {
     return data.match.players.map((player, index) => {
       return (
-        <div className="p-5 w-3/6 text-center" key={index}>
+        <div className="p-5 w-3/6 text-center" key={`player-${index}`}>
           <div className="text-lg font-semibold flex justify-center align-center">
             Player{" "}
             {index === 0 ? (
