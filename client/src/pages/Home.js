@@ -13,7 +13,6 @@ import Settings from "../components/settings-tab";
 import TestGame1 from "./games/TestGame1";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
-import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
 import FourScore from "./games/FourScore";
 
@@ -49,8 +48,6 @@ const Home = () => {
     pollInterval: 300,
   });
 
-  
-
   if (loading) return <p>Loading</p>;
   if (error) {
     console.log(JSON.stringify(error, null, 2));
@@ -60,8 +57,6 @@ const Home = () => {
   if (!data.user) {
     Auth.logout();
   }
-
-  console.log(activeUser)
 
   return (
     <PendingContext.Provider value={contextValue} >
