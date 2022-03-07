@@ -67,7 +67,7 @@ function FriendBanner(friendObject) {
 
 
     if (friendObject.data.online) {
-        inviteButton = <button onClick={startMatchHandler} className='bg-neutral-700 px-4 py-3  rounded-md font-medium text-white text-xs'>INVITE</button>
+        inviteButton = <button onClick={startMatchHandler} className='bg-neutral-700 hover:bg-neutral-800 px-4 py-3  rounded-md font-medium text-white text-xs'>INVITE</button>
     }
 
     return (
@@ -102,7 +102,7 @@ function FriendBanner(friendObject) {
             </div>
 
             {!window.location.href.includes('games') &&
-                <button onClick={startMatchHandler} className='bg-gradient-to-t from-blue-500  to-blue-400 px-4 py-3  rounded-md font-medium text-white text-xs'>Challenge</button>
+                <button onClick={startMatchHandler} className='bg-neutral-700 hover:bg-neutral-600 text-sm  uppercase h-10 text-white px-4 py-2 rounded-md'>Provoke</button>
 
             }
 

@@ -95,10 +95,10 @@ const LoginForm = ({handleformslide}) => {
             required
           />
         </div>
-        <div className='w-full flex justify-between'>
+        <div className='w-full flex justify-between text-lg'>
 
           <button
-            className='w-7/12 mt-5 bg-gradient-to-t from-blue-500  to-blue-400 text-white text-xl py-2 rounded-lg'
+            className='w-7/12 mt-5 bg-blue-500 hover:bg-blue-600 text-white  font-thin py-2 rounded-lg'
             disabled={!(userFormData.email && userFormData.password)}
             type="submit"
             variant="success">
@@ -107,7 +107,7 @@ const LoginForm = ({handleformslide}) => {
 
           <button
             onClick={() => handleformslide('login')}
-            className=' flex justify-center items-center mt-5 bg-gradient-to-t from-neutral-700  to-neutral-600 text-white text-xl py-2 w-4/12 rounded-lg'
+            className=' flex justify-center items-center mt-5 bg-neutral-700 hover:bg-neutral-800 font-thin text-white  py-2 w-4/12 rounded-lg'
             type='button'>
             Sign Up
           </button>
