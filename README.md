@@ -48,4 +48,4 @@
 <a name ='questions'></a> 
 ## Questions?
   
-  Reach me on Github here: [Ellisonac, Jspann91, DillanThomas88, amdiebolt](https://github.com/Ellisonac, Jspann91, DillanThomas88, amdiebolt)
+  Reach me on Github here: [Ellisonac, jpspann91, DillanThomas88, amdiebolt](https://github.com/Ellisonac, https://github.com/jpspann91, https://github.com/DillanThomas88, https://github.com/amdiebolt)
