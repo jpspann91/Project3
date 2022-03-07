@@ -60,11 +60,6 @@ const FourScore = () => {
     const { loadedGameBoard, loadedActiveUser, loadedGameState } =
       fetchGameState(data.match);
 
-    console.log(data.match);
-    console.log(loadedActiveUser);
-
-    console.log(activeUser);
-
     setGameBoard(loadedGameBoard);
     setActiveUser(loadedActiveUser);
     setGameState(loadedGameState);

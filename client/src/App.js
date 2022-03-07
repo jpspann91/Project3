@@ -47,50 +47,46 @@ const client = new ApolloClient({
 });
 
 
-
+const style = { height: window.innerHeight, transform: 'translateX(-100vw)' }
 
 function App() {
+  const [page, setPage] = useState('games');
+  const [pageStyle, setPageStyle] = useState('animate-default')
 
 
-  const [page, setPage] = useState('mt-14')
-  const style = { height: window.innerHeight, transform: 'translateX(-100vw)' }
-  function handlePageState(x) {
-    switch (x) {
-      case 'settings':
-
-        setPage(prevState => {
-          if (prevState == 'mt-14 animate-slideRight' || prevState == 'mt-14 animate-slidefarR') {
-            setPage('mt-14 animate-slidefarL')
-          }
-          else { setPage('mt-14 animate-slideLeft') }
-        })
-        break;
-
-      case 'friends':
-        setPage(prevState => {
-          if (prevState == 'mt-14 animate-slideLeft' || prevState == 'mt-14 animate-slidefarL') {
-            setPage('mt-14 animate-slidefarR')
-          }
-          else { setPage('mt-14 animate-slideRight') }
-        })
-        break;
-
-      case 'games':
-        setPage(prevState => {
-          if (prevState == 'mt-14 animate-slideLeft' || prevState == 'mt-14 animate-slidefarL') {
-            setPage('mt-14 animate-leftClose')
-          }
-          else { setPage('mt-14 animate-rightClose') }
-        })
-        break;
-      case 'default':
-        setPage('mt-14 animate-default')
-        break;
-
-      default:
-        break;
+  function handlePageState(newPage) {
+    if (newPage === 'default') {
+      setPageStyle('animate-default')
+      return
     }
+
+    if (page === 'games') {
+      if (newPage === 'settings') {
+        setPageStyle('animate-slideLeft')
+      } else {
+        setPageStyle('animate-slideRight')
+      }
+    }
+
+    if (page === 'settings') {
+      if (newPage === 'games') {
+        setPageStyle('animate-leftClose')
+      } else {
+        setPageStyle('animate-slidefarR')
+      }
+    }
+
+    if (page === 'friends') {
+      if (newPage === 'games') {
+        setPageStyle('animate-rightClose')
+      } else {
+        setPageStyle('animate-slidefarL')
+      }
+    }
+
+    setPage(newPage);
   }
+
   const [formslide,setformslide] = useState('flex animate-loginSlideUp')
   const handleformslide = (x) => {
     if(x === 'login'){setformslide('flex animate-shiftleft')}
@@ -100,6 +96,7 @@ function App() {
   useEffect(() => {
     handlePageState('default')
   }, []);
+
   let user = Auth.getProfile()?.data;
 
   return (
@@ -107,8 +104,8 @@ function App() {
       <Router forceRefresh={true}>
         <div style={{ height: window.innerHeight }} className="relative grid content-start text-neutral-700 overflow-hidden ">
           <div className='fixed scroll-shadow h-80 w-full bg-gradient-to-t from-black  to-transparent z-50 bottom-0 opacity-40 pointer-events-none'></div>
-          {user?._id && (<NavBar handlePageState={handlePageState} />)}
-          <div style={style} className={page}>
+          {user?._id && (<NavBar handlePageState={handlePageState} page={page}/>)}
+          <div style={style} className={`mt-14 ${pageStyle}`}>
 
             <Switch>
               <Route path="/signup">

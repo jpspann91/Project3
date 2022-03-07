@@ -117,7 +117,6 @@ const SignupForm = ({ handleformslide }) => {
                 }
             })
 
-            console.log(data)
             Auth.login(data.addUser.token)
 
             window.location.assign('/')

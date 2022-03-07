@@ -8,10 +8,6 @@ function SearchBar() {
     const { loading, data } = useQuery(QUERY_USERS);
     const users = data?.users || [];
 
-    console.log(users);
-
-
-
     return (
         <>
             {loading ? <div>Loading...</div> : <>

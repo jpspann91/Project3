@@ -21,12 +21,6 @@ const LoginForm = ({handleformslide}) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log('submit')
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
 
     try {
       const { data } = await login({
@@ -34,10 +28,6 @@ const LoginForm = ({handleformslide}) => {
         variables: { ...userFormData }
 
       });
-
-      console.log(data)
-
-      console.log('done')
 
       Auth.login(data.login.token);
     } catch (e) {

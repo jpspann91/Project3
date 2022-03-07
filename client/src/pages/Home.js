@@ -48,15 +48,15 @@ const Home = ({handlePageState}) => {
     pollInterval: 300,
   });
 
-  if (loading) return <p>Loading</p>;
+  if (loading) return <></>;
   if (error) {
     console.log(JSON.stringify(error, null, 2));
     return error;
   }
 
-  if (!data.user) {
-    Auth.logout();
-  }
+  // if (!data.user) {
+  //   Auth.logout();
+  // }
 
   return (
     <PendingContext.Provider value={contextValue} >
@@ -70,7 +70,7 @@ const Home = ({handlePageState}) => {
               {!pendingMatch.user._id &&
                 <MatchList />
               }
-              <GamesList />
+              <GamesList handlePageState={handlePageState} />
             </Route>
             <Route path={`${match.path}games/tictactoe/:matchId?`}>
               <TicTacToe />
@@ -87,7 +87,7 @@ const Home = ({handlePageState}) => {
           </Switch>
         </div>
       </Router>
-      <Friends data={data} />
+      <Friends data={data} handlePageState={handlePageState} />
     </div>
     </PendingContext.Provider>
   );

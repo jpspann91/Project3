@@ -86,6 +86,7 @@ const resolvers = {
       return False
     },
     addFriend: async (parent, { userId }, context) => {
+      console.log(context,userId)
       if (context.user) {
         const friendToAdd = await User.findOne({ _id: userId })
 
