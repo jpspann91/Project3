@@ -48,8 +48,8 @@ const TicTacToe = (props) => {
   useEffect(() => {
     // Load previous game state if available
     if (loading) return;
-    console.log(JSON.stringify(error, null, 2));
     if (error) {
+      console.log(JSON.stringify(error, null, 2));
       history.push('/')
     };
 
@@ -208,7 +208,7 @@ const TicTacToe = (props) => {
     for (let i = 0; i < 3; i++) {
       const row = (
         <Row className="w-full grid content-center justify-center"
-             key={i} 
+             key={`row-${i}`} 
              gutter={[6,6]}
              style={{ display: 'flex'}}
         >
@@ -232,11 +232,10 @@ const TicTacToe = (props) => {
     };
 
     return (
-      <Col span={8}>
+      <Col span={8} key={`col-${row * 3 + col}`}>
         <button
           className="w-24 h-24 border-2 text-5xl text-neutral-700"
-          onClick={squareClickHandler}
-          key={row * 3 + col}
+          onClick={squareClickHandler}         
         >
           {value}
         </button>
@@ -274,7 +273,7 @@ const TicTacToe = (props) => {
   const getPlayerCards = () => {
     return data.match.players.map((player, index) => {
       return (
-        <div className="p-5 w-3/6 text-center" key={index}>
+        <div className="p-5 w-3/6 text-center" key={`player-${index}`}>
           <div className="text-lg font-semibold">
             Player {index === 0 ? "X" : "O"}
           </div>

@@ -8,13 +8,13 @@ import {
 
 import Friends from "../components/friends-tab";
 
-import TicTacToe from "./games/TicTacToe.js";
+import TicTacToe from "../components/games/TicTacToe.js";
 import Settings from "../components/settings-tab";
-import TestGame1 from "./games/TestGame1";
+import TestGame1 from "../components/games/TestGame1";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
 import PendingContext from "../PendingContext";
-import FourScore from "./games/FourScore";
+import FourScore from "../components/games/FourScore";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_USER} from "../utils/queries";

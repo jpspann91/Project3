@@ -52,8 +52,8 @@ const FourScore = () => {
   useEffect(() => {
     // Load previous game state if available
     if (loading) return;
-    console.log(JSON.stringify(error, null, 2));
     if (error) {
+      console.log(JSON.stringify(error, null, 2));
       history.push("/");
     }
 
@@ -252,7 +252,7 @@ const FourScore = () => {
     };
 
     return (
-      <Col span={3}>
+      <Col span={3} key={`square-${row * gameBoard.length + col}`}>
         <button
           className="w-12 h-12 border-2 text-5xl text-neutral-700 flex justify-center align-center"
           onClick={squareClickHandler}
