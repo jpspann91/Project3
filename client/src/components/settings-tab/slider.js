@@ -7,7 +7,7 @@ function Slider(props) {
     const green = '#40D534 '
     let bgColor = gray
 
-    if(props.data.anim == 'animate-on'){
+    if(props.data.anim === 'animate-on'){
         bgColor = green
     }
     const [style, setStyle] = useState({

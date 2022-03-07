@@ -9,15 +9,11 @@ import {
 
 import { setContext } from '@apollo/client/link/context';
 
-import Home from './pages/Home.js';
+import Home from './components/home-page/Home.js';
 import LoginForm from './components/LoginForm.js';
 import SignupForm from './components/SignupForm.js'
-import Profile from './pages/Profile.js'
 import NavBar from "./components/nav/Navbar";
 import Logo from './components/logo';
-
-
-
 
 import 'antd/dist/antd.css';
 import Auth from './utils/auth.js';

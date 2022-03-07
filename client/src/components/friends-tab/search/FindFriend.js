@@ -1,5 +1,3 @@
-
-
 import { ReactComponent as AddSVG } from './add.svg'
 import { ADD_FRIEND } from "../../../utils/mutations";
 import { useMutation } from '@apollo/client';
@@ -16,7 +14,6 @@ function FindFriend(props) {
             console.log(JSON.stringify(error, null, 2));
         }
     }
-
 
     return (
         <div className="relative text-neutral-800 text-xl flex justify-between items-center px-4 border-b">

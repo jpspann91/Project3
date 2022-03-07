@@ -53,7 +53,7 @@ const SignupForm = ({ handleformslide }) => {
 
     const [validated] = useState(false)
 
-    const [showAlert, setShowAlert] = useState(false);
+    // const [showAlert, setShowAlert] = useState(false);
 
     const [isValid, setIsValid] = useState({
         password: true,
@@ -70,11 +70,11 @@ const SignupForm = ({ handleformslide }) => {
     const [addUser, { error }] = useMutation(ADD_USER);
 
     useEffect(() => {
-        if (error) {
-            setShowAlert(true);
-        } else {
-            setShowAlert(false);
-        }
+        // if (error) {
+        //     setShowAlert(true);
+        // } else {
+        //     setShowAlert(false);
+        // }
 
         validateInput();
 
@@ -99,12 +99,7 @@ const SignupForm = ({ handleformslide }) => {
     }
 
     const handleFormSubmit = async (event) => {
-
         event.preventDefault();
-
-        // Check user input against validators
-        let errors = [];
-        if (userFormData.email)
 
         try {
             //Use the mutation here

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Card, Row, Button, Col } from "antd";
+import { Row, Col } from "antd";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { QUERY_SINGLE_MATCH } from "../../utils/queries";
 // import { UPDATE_MATCH } from "../../utils/mutations";

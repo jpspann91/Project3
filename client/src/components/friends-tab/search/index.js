@@ -8,7 +8,7 @@ const CLOSE_SEARCH_DELAY = 200;
 function SearchBar({ data, handlePageState }) {
     const activeUser = Auth.getProfile().data.username
     const [username, setusername] = useState('');
-    const [list, setList] = useState(data.users.filter(data => data.username != activeUser))
+    const [list, setList] = useState(data.users.filter(data => data.username !== activeUser))
     const [hasFocus, setFocus] = useState(false);
 
     let userList = data.users.map(el => el.username);
@@ -21,7 +21,7 @@ function SearchBar({ data, handlePageState }) {
 
         setusername(value);
 
-        let temp = data.users.filter(person => person.username.toLowerCase().includes(value.toLowerCase())).filter(data => data.username != activeUser)
+        let temp = data.users.filter(person => person.username.toLowerCase().includes(value.toLowerCase())).filter(data => data.username !== activeUser)
 
         if (!temp) return
 

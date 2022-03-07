@@ -1,5 +1,5 @@
 import Auth from "../../utils/auth";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { LOGOUT_USER } from '../../utils/mutations'
 import Slider from "./slider";
 

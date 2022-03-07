@@ -59,13 +59,6 @@ let currentUser = Auth.getProfile().data;
 
     }
 
-    let inviteButton;
-
-
-    if (friendObject.data.online) {
-        inviteButton = <button onClick={startMatchHandler} className='bg-neutral-700 hover:bg-neutral-800 px-4 py-3  rounded-md font-medium text-white text-xs'>INVITE</button>
-    }
-
     return (
 
         <div className=' flex justify-between align-center py-2 text-lg border-b'>

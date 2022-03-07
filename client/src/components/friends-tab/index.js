@@ -4,9 +4,7 @@ import { useQuery } from "@apollo/client";
 import PendingContext from "../../PendingContext";
 import PendingMatchNotice from "../PendingMatchNotice";
 import { QUERY_USERS } from "../../utils/queries";
-
 import SearchBar from "./search";
-
 
 function Friends({data: user, handlePageState}) {
   const { pendingMatch } = useContext(PendingContext);
@@ -49,7 +47,7 @@ function Friends({data: user, handlePageState}) {
             {user.user.friends.filter(data => !data.online).map((data, index) => (
 
               // ! Offline Players
-              <FriendBanner data={data} key={index} />
+              <FriendBanner data={data} key={index} handlePageState={handlePageState}/>
             ))}
           </div>
         </>

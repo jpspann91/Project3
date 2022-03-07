@@ -6,19 +6,18 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 
-import Friends from "../components/friends-tab";
+import Friends from "../friends-tab";
 
-import TicTacToe from "../components/games/TicTacToe.js";
-import Settings from "../components/settings-tab";
-import TestGame1 from "../components/games/TestGame1";
-import GamesList from "../components/games-list";
-import MatchList from "../components/match-list";
-import PendingContext from "../PendingContext";
-import FourScore from "../components/games/FourScore";
+import TicTacToe from "../games/TicTacToe.js";
+import Settings from "../settings-tab";
+import GamesList from "../games-list";
+import MatchList from "../match-list";
+import PendingContext from "../../PendingContext";
+import FourScore from "../games/FourScore";
 
 import { useQuery } from "@apollo/client";
-import { QUERY_USER} from "../utils/queries";
-import Auth from "../utils/auth";
+import { QUERY_USER} from "../../utils/queries";
+import Auth from "../../utils/auth";
 
 const Home = ({handlePageState}) => {
   const match = useRouteMatch();
@@ -54,9 +53,9 @@ const Home = ({handlePageState}) => {
     return error;
   }
 
-  // if (!data.user) {
-  //   Auth.logout();
-  // }
+  if (!data.user) {
+    Auth.logout();
+  }
 
   return (
     <PendingContext.Provider value={contextValue} >
@@ -77,9 +76,6 @@ const Home = ({handlePageState}) => {
             </Route>
             <Route path={`${match.path}games/fourscore/:matchId?`}>
               <FourScore />
-            </Route>
-            <Route path={`${match.path}games/testgame1/:matchId`}>
-              <TestGame1 />
             </Route>
             <Route>
               <p>Route not found</p>

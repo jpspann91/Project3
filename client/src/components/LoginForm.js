@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { Input, message } from 'antd';
 
-import { ReactComponent as Arrow } from "../components/nav/close-left.svg"
-
 const LoginForm = ({handleformslide}) => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
-  const [form, setForm] = useState(' px-4 w-screen')
 
-  const [login, { error }] = useMutation(LOGIN_USER);
+  const [login] = useMutation(LOGIN_USER);
 
 
   const handleInputChange = (event) => {
@@ -50,7 +47,7 @@ const LoginForm = ({handleformslide}) => {
 
   return (
     <>
-      <form style={{ transform: 'translateX(100vw)' }} className={form}
+      <form style={{ transform: 'translateX(100vw)' }} className='px-4 w-screen'
         noValidate
         validated={validated.toString()}
         onSubmit={handleFormSubmit}>
