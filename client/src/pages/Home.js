@@ -13,7 +13,6 @@ import Settings from "../components/settings-tab";
 import TestGame1 from "./games/TestGame1";
 import GamesList from "../components/games-list";
 import MatchList from "../components/match-list";
-import Logo from "../components/logo"
 import PendingContext from "../PendingContext";
 import FourScore from "./games/FourScore";
 
@@ -40,6 +39,7 @@ const Home = ({handlePageState}) => {
     () => ({ pendingMatch, setPendingMatch }), 
     [pendingMatch]
   )
+
   let activeUser = Auth.getProfile().data
   const { loading, error, data } = useQuery(QUERY_USER, {
     variables: {
@@ -52,6 +52,10 @@ const Home = ({handlePageState}) => {
   if (error) {
     console.log(JSON.stringify(error, null, 2));
     return error;
+  }
+
+  if (!data.user) {
+    Auth.logout();
   }
 
   return (
