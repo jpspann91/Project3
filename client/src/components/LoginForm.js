@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { Input } from 'antd';
+import { Input, message } from 'antd';
 
 import { ReactComponent as Arrow } from "../components/nav/close-left.svg"
 
@@ -42,6 +41,11 @@ const LoginForm = ({handleformslide}) => {
 
       Auth.login(data.login.token);
     } catch (e) {
+      message.error({
+        content: 'Login unsuccessful',
+        duration: 2,
+      });
+
       console.error(e);
     }
 
