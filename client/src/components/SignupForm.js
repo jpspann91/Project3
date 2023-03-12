@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
-import 'antd/dist/antd.css';
+import 'antd/dist/reset.css';
 import { Input, message } from 'antd'
 import Auth from '../utils/auth'
 

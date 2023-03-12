@@ -15,7 +15,7 @@ import SignupForm from './components/SignupForm.js'
 import NavBar from "./components/nav/Navbar";
 import Logo from './components/logo';
 
-import 'antd/dist/antd.css';
+import 'antd/dist/reset.css';
 import Auth from './utils/auth.js';
 
 // Construct our main GraphQL API endpoint
