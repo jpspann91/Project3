@@ -25,6 +25,8 @@
 ## Usage
   
   Nexus is meant for playing peer to peer games in a convenient, social setting.
+  
+  https://nexus-game-dashboard.herokuapp.com/
 
 <a name ='contributing'></a> 
 ## Contributing
