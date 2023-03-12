@@ -25,5 +25,8 @@
     "mongo": "^0.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.1.2"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
